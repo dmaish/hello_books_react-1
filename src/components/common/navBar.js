@@ -17,21 +17,21 @@ const NavBar = () =>  (
 				<li className="nav-item">
 					<a
 						className="nav-link"
-						href="designs/UI/all_books.html">
+						href="api/v1/books">
 ALL BOOKS
 					</a>
 				</li>
 				<li className="nav-item">
 					<a
 						className="nav-link"
-						href="designs/UI/signup.html">
+						href="/api/v1/auth/register">
 SIGN UP
 					</a>
 				</li>
 				<li className="nav-item">
 					<a
 						className="nav-link"
-						href="designs/UI/sign.html">
+						href="/api/v1/auth/login">
 LOG IN
 					</a>
 				</li>

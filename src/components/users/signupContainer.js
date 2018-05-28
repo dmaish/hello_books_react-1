@@ -1,17 +1,7 @@
 import React, {Component} from "react";
-import validator from "validator";
-import connect from "react-redux";
-import registerUser from "././actions/userActions";
-
-export const validate = user => {
-	const errors = {};
-	if (validator.isEmpty(user.email)) errors.email = "Please enter your email.";
-	if (validator.isEmpty(user.username)) errors.username =
-  "Please enter your username.";
-	if (validator.isEmpty(user.password)) errors.password =
-  "Please enter your password.";
-	return errors;
-};
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {userActions} from "../../actions/userActions";
 
 class SignUpContainer extends Component {
 	constructor(props) {
@@ -23,29 +13,34 @@ class SignUpContainer extends Component {
 				password:"",
 				isLoading: false,
 				errors: {}
-			}
+			},
+			submitted: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-	handleChange (e) {
-		const {name, value} = e.target;
+	handleChange (event) {
+		const {name, value} = event.target;
 		const {user} = this.state;
-		this.setState({[name]: value});
+		this.setState({
+			user: {
+				...user,
+				[name]: value
+			}
+		});
 	}
-	handleSubmit (e) {
-		e.preventDefault();
-		e.setState({submitted: true});
+	handleSubmit (event) {
+		event.preventDefault();
+		this.setState({submitted: true});
 		const {user} = this.state;
-		const {dispatch} = this.state;
-
-		// if (user.email && user.password && user.username) {
-		// 	dispatch(registerUser(user));
-		// }
+		const {dispatch} = this.props;
+		if (user.email && user.password && user.username) {
+			dispatch(userActions.register(user));
+		}
 	}
 	render(){
-		const user = this.state;
-		const loggingIn = this.props;
+		const {registering} = this.props;
+		const {user, submitted} = this.state;
 		return (
 			<form onSubmit={this.handleSubmit}
 				className="form-horizontal">
@@ -95,7 +90,8 @@ class SignUpContainer extends Component {
 					</div>
 					<div className="d-inline mx-auto center">
 						<button type="submit" className="btn btn-primary">Sign Up</button>
-						{loggingIn}
+						{registering}
+						// <Link to="/auth/login"></Link>
 					</div>
 				</div>
 			</form>
@@ -104,15 +100,12 @@ class SignUpContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
+	const {registering} = state.registering;
 	return {
-		user: state.user
+		registering
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		registerUser: user => dispatch(registerUser(user))
-	};
-};
+const connectedRegister = connect(mapStateToProps)(SignUpContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpContainer);
+export {connectedRegister as SignUpContainer};

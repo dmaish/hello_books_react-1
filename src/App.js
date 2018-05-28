@@ -1,19 +1,47 @@
 import React, { Component } from "react";
-import "./assets/style.css";
-import Footer from "./components/common/footer";
-import NavBar from "./components/common/navBar";
-import Main from "./components/home/main"
+import {Router, Route} from "react-router-dom";
+import {connect} from "react-redux";
+import Landing from "./components/landing";
+import {history} from "./helpers/history";
+import {alertActions} from "./actions/alertActions";
+import {SignUpContainer} from "./components/users/signupContainer";
 
-class App extends Component {
+class Application extends Component {
+	constructor(props) {
+		super(props);
+		const {dispatch} = this.props;
+		history.listen((location, action) => {
+			dispatch(alertActions.clear());
+		});
+	}
 	render() {
+		const {alert} = this.props;
 		return (
-			<div className="App">
-				<NavBar />
-				<Main />
-				<Footer />
+			<div>
+				{alert.message &&
+				<div className={`alert $ {alert.type}`}>{alert.message}
+				</div>}
+				<Landing></Landing>
+				<Router history={history}>
+					<div>
+						<Route exact path="/" Component={Landing}>
+						</Route>
+						<Route path="/auth/register" Component={SignUpContainer}>
+						</Route>
+					</div>
+				</Router>
 			</div>
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	const {alert} = state;
+	return {
+		alert
+	};
+}
+
+const App = connect(mapStateToProps)(Application);
 
 export default App;
