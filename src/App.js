@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import {Router, Route} from "react-router-dom";
+import {Router , Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Landing from "./components/landing";
 import {history} from "./helpers/history";
 import {alertActions} from "./actions/alertActions";
-import {SignUpContainer} from "./components/users/signupContainer";
+import SignUpContainer from "./components/users/signupContainer";
 
 class Application extends Component {
 	constructor(props) {
@@ -21,13 +21,10 @@ class Application extends Component {
 				{alert.message &&
 				<div className={`alert $ {alert.type}`}>{alert.message}
 				</div>}
-				<Landing></Landing>
 				<Router history={history}>
 					<div>
-						<Route exact path="/" Component={Landing}>
-						</Route>
-						<Route path="/auth/register" Component={SignUpContainer}>
-						</Route>
+						<Route exact path="/" component={Landing}></Route>
+						<Route path="/api/v1/auth/register" component={SignUpContainer}></Route>
 					</div>
 				</Router>
 			</div>

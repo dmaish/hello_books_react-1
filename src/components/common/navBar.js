@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "./logo.jpg";
+import { Link } from "react-router-dom";
 
 const NavBar = () =>  (
 	<div>
@@ -22,11 +23,7 @@ ALL BOOKS
 					</a>
 				</li>
 				<li className="nav-item">
-					<a
-						className="nav-link"
-						href="/api/v1/auth/register">
-SIGN UP
-					</a>
+					<Link to="/api/v1/auth/register" className="nav-link"> SIGN UP</Link>
 				</li>
 				<li className="nav-item">
 					<a

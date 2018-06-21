@@ -9,6 +9,8 @@ class SignUpContainer extends Component {
 		this.state = {
 			user: {
 				email: "",
+        first_name: "",
+        last_name: "",
 				username:"",
 				password:"",
 				isLoading: false,
@@ -34,7 +36,7 @@ class SignUpContainer extends Component {
 		this.setState({submitted: true});
 		const {user} = this.state;
 		const {dispatch} = this.props;
-		if (user.email && user.password && user.username) {
+		if (user.email && user.first_name && user.last_name && user.password && user.username) {
 			dispatch(userActions.register(user));
 		}
 	}
@@ -57,6 +59,30 @@ class SignUpContainer extends Component {
 							value={user.email}
 							aria-describedby="emailHelp"
 							placeholder="Enter email"
+						/>
+					</div>
+          <div class="form-group">
+						<label for="formGroupExampleInput">First Name: </label>
+						<input
+							type="text"
+							onChange={this.handleChange}
+							name="first_name"
+							className="form-control"
+							id="formGroupExampleInput"
+							value={user.first_name}
+							placeholder="Enter your first name"
+						/>
+					</div>
+          <div class="form-group">
+						<label for="formGroupExampleInput">Last Name: </label>
+						<input
+							type="text"
+							onChange={this.handleChange}
+							name="last_name"
+							className="form-control"
+							id="formGroupExampleInput"
+							value={user.last_name}
+							placeholder="Enter your last name"
 						/>
 					</div>
 					<div class="form-group">
@@ -82,16 +108,10 @@ class SignUpContainer extends Component {
 							id="exampleInputPassword1"
 							placeholder="Password" />
 					</div>
-					<div className="form-check">
-						<input type="checkbox" className="form-check-input"
-							id="exampleCheck1" />
-						<label className="form-check-label"
-							for="exampleCheck1">Check me out</label>
-					</div>
+
 					<div className="d-inline mx-auto center">
 						<button type="submit" className="btn btn-primary">Sign Up</button>
 						{registering}
-						// <Link to="/auth/login"></Link>
 					</div>
 				</div>
 			</form>
@@ -99,13 +119,13 @@ class SignUpContainer extends Component {
 	}
 }
 
+
 const mapStateToProps = (state) => {
-	const {registering} = state.registering;
+	const {registering} = state.registration;
 	return {
 		registering
 	};
 };
 
-const connectedRegister = connect(mapStateToProps)(SignUpContainer);
 
-export {connectedRegister as SignUpContainer};
+export default connect(mapStateToProps)(SignUpContainer);
