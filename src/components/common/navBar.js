@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const NavBar = () =>  (
 	<div>
 		<nav className="navbar navbar-light" id="nav-bg">
-			<a className="navbar-brand" href="/">
+			<Link to="/" className="navbar-brand">
 				<img
 					src={logo}
 					width={30}
@@ -13,24 +13,16 @@ const NavBar = () =>  (
 					className="d-inline-block align-top"
 					alt="logo" />
             Hello Books
-			</a>
+			</Link>
 			<ul className="nav justify-content-end">
 				<li className="nav-item">
-					<a
-						className="nav-link"
-						href="api/v1/books">
-ALL BOOKS
-					</a>
+					<Link to="/api/v1/books" className="nav-link"> ALL BOOKS</Link>
 				</li>
 				<li className="nav-item">
 					<Link to="/api/v1/auth/register" className="nav-link"> SIGN UP</Link>
 				</li>
 				<li className="nav-item">
-					<a
-						className="nav-link"
-						href="/api/v1/auth/login">
-LOG IN
-					</a>
+				<Link to="/api/v1/auth/login" className="nav-link">LOG IN</Link>
 				</li>
 			</ul>
 		</nav>

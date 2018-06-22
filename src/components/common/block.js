@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const BlockDiv = () => (
 	<div
@@ -16,42 +17,28 @@ Free Registration
 					<p>
 Any person can register in our system for free. There are no additional charges.
 					</p>
-					<a href="designs/UI/signup.html">
-						<button className="btn btn-primary btn-lg">
-Sign Up
-						</button>
-					</a>
+					<Link to="/api/v1/auth/register">
+						<button className="btn btn-primary btn-lg">Sign Up</button>
+					</Link>
 				</div>
 				<div className="col-md-4 m-right">
-					<h4>
-Access to Thousands of Books
-					</h4>
-					<p>
-There are thousands of books available for borrow.
-					</p>
-					<a href="designs/UI/sign.html">
-						<button className="btn btn-primary btn-lg">
-Log In
-						</button>
-					</a>
+					<h4>Access to Thousands of Books</h4>
+					<p>There are thousands of books available for borrow.</p>
+					<Link to="/api/v1/auth/login">
+						<button className="btn btn-primary btn-lg">Log In</button>
+					</Link>
 				</div>
 				<div className="col-md-4">
-					<h4>
-Many Categories
-					</h4>
-					<p>
-There are many categories in our bookstore to choose.
-					</p>
-					<a href="designs/UI/all_books.html">
-						<button className="btn btn-primary btn-lg">
-All Books
-						</button>
-					</a>
+					<h4>Many Categories</h4>
+					<p>There are many categories in our bookstore to choose.</p>
+					<Link to="/api/v1/books">
+						<button className="btn btn-primary btn-lg">All Books</button>
+					</Link>
 				</div>
 			</div>
 		</div>
 	</div>
-			
+
 );
 
 export default BlockDiv;

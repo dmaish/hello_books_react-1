@@ -4,30 +4,112 @@ import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
 
 export const userActions = {
-	register
+	register,
+	login,
+	logout
 };
 
 function register(user) {
 	return dispatch => {
-		dispatch(request(user));
+		dispatch(requestRegister(user));
 		userServices.register(user)
 			.then(
 				user => {
-					dispatch(success());
-					history.push("/auth/login");
+					dispatch(successRegister(user));
+					history.push("/api/v1/auth/login");
 					dispatch(alertActions.success(
 						"Registration successfull."));
 				},
 				error => {
-					dispatch(failure(error));
+					dispatch(failureRegister(error));
 					dispatch(alertActions.error(error));
 				}
 			);
 	};
-	function request (user) {return {type:
-    userConstants.REGISTER_REQUEST, user};}
-	function success (user) {return {type:
-    userConstants.REGISTER_SUCCESS, user};}
-	function failure (error) {return {type:
-    userConstants.REGISTER_FAILURE, error};}
+	function requestRegister (user) {
+		return {
+			type: userConstants.REGISTER_REQUEST,
+			user
+		};
+	}
+	function successRegister (user) {
+		return {
+			type: userConstants.REGISTER_SUCCESS,
+			user
+		};
+	}
+	function failureRegister (error) {
+		return {
+			type: userConstants.REGISTER_FAILURE,
+			error
+		};
+	}
+}
+
+function login(user) {
+	return dispatch => {
+		dispatch(requestLogin(user));
+		userServices.login(user)
+			.then(
+				user => {
+					dispatch(successLogin(user));
+					history.push("/dashboard");
+					dispatch(alertActions.success(
+						"You have logged in successfully."
+					));
+				},
+				error => {
+					dispatch(failureLogin(error));
+					dispatch(alertActions.error(error));
+				}
+			);
+	};
+	function requestLogin (user) {
+		return {
+			type: userConstants.LOGIN_REQUEST,
+			isFetching: true,
+			isAuthenticated: false,
+			user
+		};
+	}
+	function successLogin (user) {
+		return {
+			type: userConstants.LOGIN_SUCCESS,
+			isFetching: false,
+			isAuthenticated: true,
+			access_token: user
+		};
+	}
+	function failureLogin (error) {
+		return {
+			type: userConstants.LOGIN_FAILURE,
+			isFetching: false,
+			isAuthenticated: false,
+			error
+		};
+	}
+}
+
+function logout() {
+	return dispatch => {
+		dispatch(requestLogout());
+		localStorage.removeItem("access_token");
+		dispatch(receiveLogout);
+	};
+}
+
+function requestLogout() {
+	return {
+		type: userConstants.LOGIN_REQUEST,
+		isFetching: true,
+		isAuthenticated: true
+	};
+}
+
+function receiveLogout() {
+	return {
+		type: userConstants.LOGIN_SUCCESS,
+		isFetching: false,
+		isAuthenticated: false
+	};
 }

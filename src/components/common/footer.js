@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import heiroffire from "./heiroffire.jpg"
 
 const Footer = () => (
@@ -9,23 +10,13 @@ const Footer = () => (
 					<div className="row">
 						<div className="col-md-4">
 							<div className="row">
-								<h5>
-Meta Links
-								</h5>
+								<h5>Meta Links</h5>
 							</div>
 							<nav className="nav flex-column">
-								<a className="nav-link active" href="#">
-All Books
-								</a>
-								<a className="nav-link" href="#">
-Sign Up
-								</a>
-								<a className="nav-link" href="#">
-Log In
-								</a>
-								<a className="nav-link" href="#">
-Borrow Book
-								</a>
+								<Link to="/allbooks" className="nav-link active">All Books</Link>
+								<Link to="/api/v1/auth/register" className="nav-link">Sign Up</Link>
+								<Link to="/api/v1/auth/login" className="nav-link">Log In</Link>
+								<Link to="/api/v1/users/books" className="nav-link">Borrow Book</Link>
 							</nav>
 						</div>
 						<div className="col-md-4">
@@ -35,16 +26,11 @@ Borrow Book
 									className="img-fluid mr-3"
 									alt="my books" />
 								<div className="media-body mt-2">
-									<h5>
-Title: Heir of Fire
-									</h5>
-									<h6>
-Author: Sarah Maas
-									</h6>
+									<h5>Title: Heir of Fire</h5>
+									<h6>Author: Sarah Maas</h6>
 									<button
 										className="btn btn-warning"
-										aria-hidden="true">
-Borrow Book
+										aria-hidden="true">Borrow Book
 									</button>
 								</div>
 							</div>

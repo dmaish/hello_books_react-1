@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import library1 from "./library1.jpg";
 import kids_library from "./kids_library.jpg";
 import complibrary from "./complibrary.jpg";
@@ -26,7 +27,7 @@ const Header = () => (
 				<div className="carousel-item active">
 					<img
 						className="d-block w-100"
-						src={complibrary} />
+						src={complibrary} alt="modern library"/>
 					<div className="carousel-caption d-none d-md-block">
 						<h1>
 							<b>
@@ -38,35 +39,29 @@ Hello World Library brings the latest kinds of books
                   for you. Borrow books from our library.
 						</p>
 						<button className="btn btn-info btn-lg">
-							<a href="designs/UI/signup.html">
-SIGN UP NOW
-							</a>
+							<Link to="/api/v1/auth/register">SIGN UP NOW</Link>
 						</button>
 					</div>
 				</div>
 				<div className="carousel-item">
 					<img
 						className="d-block w-100"
-						src={kids_library} />
+						src={kids_library} alt="kids library setting"/>
 					<div className="carousel-caption d-none d-md-block">
 						<h1>
-							<b>
-THE BEST BOOKSTORE EVER
-							</b>
+							<b>THE BEST BOOKSTORE EVER</b>
 						</h1>
 						<p>
 Hello World Library brings the latest
                   kinds of books for you. Borrow books from our library.
 						</p>
 						<button className="btn btn-info btn-lg">
-							<a href="designs/UI/all_books.html">
-                    VIEW ALL BOOKS
-							</a>
+							<Link to="/api/v1/books">VIEW ALL BOOKS</Link>
 						</button>
 					</div>
 				</div>
 				<div className="carousel-item">
-					<img className="d-block w-100" src={library1} />
+					<img className="d-block w-100" src={library1} alt="library complex"/>
 					<div className="carousel-caption d-none d-md-block">
 						<h1>
 							<b>
@@ -78,9 +73,7 @@ Hello World Library brings the latest kinds of books
                   rom our library.
 						</p>
 						<button className="btn btn-info btn-lg">
-							<a href="designs/UI/signup.html">
-CHECK STORE
-							</a>
+							<Link to="/api/v1/books">CHECK STORE</Link>
 						</button>
 					</div>
 				</div>

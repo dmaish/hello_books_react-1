@@ -5,6 +5,7 @@ import Landing from "./components/landing";
 import {history} from "./helpers/history";
 import {alertActions} from "./actions/alertActions";
 import SignUpContainer from "./components/users/signupContainer";
+import LoginContainer from "./components/users/loginContainer";
 
 class Application extends Component {
 	constructor(props) {
@@ -25,6 +26,7 @@ class Application extends Component {
 					<div>
 						<Route exact path="/" component={Landing}></Route>
 						<Route path="/api/v1/auth/register" component={SignUpContainer}></Route>
+						<Route path="/api/v1/auth/login" component={LoginContainer}></Route>
 					</div>
 				</Router>
 			</div>

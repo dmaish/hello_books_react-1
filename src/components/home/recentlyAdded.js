@@ -9,9 +9,7 @@ const RecentlyAdded = () => (
 		<div className="container pt-5">
 			<div className="row">
 				<h3>
-					<b>
-RECENTLY ADDED
-					</b>
+					<b>RECENTLY ADDED</b>
 				</h3>
 			</div>
 		</div>
@@ -58,7 +56,7 @@ View All Books
 						<img
 							src={thedetour}
 							className="card-img-top"
-							alt="image of the detour" />
+							alt="detour book" />
 						<div className="card-body">
 							<h5>
 Title: The Detour

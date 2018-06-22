@@ -33,7 +33,6 @@ class SignUpContainer extends Component {
 	}
 	handleSubmit (event) {
 		event.preventDefault();
-		this.setState({submitted: true});
 		const {user} = this.state;
 		const {dispatch} = this.props;
 		if (user.email && user.first_name && user.last_name && user.password && user.username) {
@@ -42,14 +41,15 @@ class SignUpContainer extends Component {
 	}
 	render(){
 		const {registering} = this.props;
-		const {user, submitted} = this.state;
+		const {user} = this.state;
 		return (
 			<form onSubmit={this.handleSubmit}
 				className="form-horizontal">
 				<div className="container col-md-5 offset-md-3" id="nav-bg">
+					<br />
 					<h4 className="text-center">Please Sign Up Here: </h4>
 					<div className="form-group">
-						<label for="exampleInputEmail1">Email: </label>
+						<label htmlFor="exampleInputEmail1">Email: </label>
 						<input
 							type="email"
 							onChange={this.handleChange}
@@ -61,8 +61,8 @@ class SignUpContainer extends Component {
 							placeholder="Enter email"
 						/>
 					</div>
-          <div class="form-group">
-						<label for="formGroupExampleInput">First Name: </label>
+          <div className="form-group">
+						<label htmlFor="formGroupExampleInput">First Name: </label>
 						<input
 							type="text"
 							onChange={this.handleChange}
@@ -73,8 +73,8 @@ class SignUpContainer extends Component {
 							placeholder="Enter your first name"
 						/>
 					</div>
-          <div class="form-group">
-						<label for="formGroupExampleInput">Last Name: </label>
+          <div className="form-group">
+						<label htmlFor="formGroupExampleInput">Last Name: </label>
 						<input
 							type="text"
 							onChange={this.handleChange}
@@ -85,8 +85,8 @@ class SignUpContainer extends Component {
 							placeholder="Enter your last name"
 						/>
 					</div>
-					<div class="form-group">
-						<label for="formGroupExampleInput">Username: </label>
+					<div className="form-group">
+						<label htmlFor="formGroupExampleInput">Username: </label>
 						<input
 							type="text"
 							onChange={this.handleChange}
@@ -98,7 +98,7 @@ class SignUpContainer extends Component {
 						/>
 					</div>
 					<div className="form-group">
-						<label for="exampleInputPassword1">Password: </label>
+						<label htmlFor="exampleInputPassword1">Password: </label>
 						<input
 							type="password"
 							onChange={this.handleChange}
@@ -113,6 +113,9 @@ class SignUpContainer extends Component {
 						<button type="submit" className="btn btn-primary">Sign Up</button>
 						{registering}
 					</div>
+					<br/>
+					<p>Already have an account? <Link to="/api/v1/auth/login">Login here</Link></p>
+					<br/>
 				</div>
 			</form>
 		);
