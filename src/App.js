@@ -6,6 +6,7 @@ import {history} from "./helpers/history";
 import {alertActions} from "./actions/alertActions";
 import SignUpContainer from "./components/users/signupContainer";
 import LoginContainer from "./components/users/loginContainer";
+import AllBooks from "./components/books/books";
 
 class Application extends Component {
 	constructor(props) {
@@ -27,6 +28,7 @@ class Application extends Component {
 						<Route exact path="/" component={Landing}></Route>
 						<Route path="/api/v1/auth/register" component={SignUpContainer}></Route>
 						<Route path="/api/v1/auth/login" component={LoginContainer}></Route>
+						<Route path="/api/v1/books" component={AllBooks}></Route>
 					</div>
 				</Router>
 			</div>

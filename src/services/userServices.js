@@ -23,6 +23,12 @@ function login(user) {
   return fetch('https://stark-falls-93345.herokuapp.com/auth/login',
   requestOptions)
   .then(handleResponse)
+  // .then(res => {
+  //   if (res && res.user.access_token) {
+  //     localStorage.setItem("user", JSON.stringify(res.user.access_token))
+  //   }
+  //   return res.user;
+  // })
 }
 
 function handleResponse(response) {

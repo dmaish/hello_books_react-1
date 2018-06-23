@@ -13,10 +13,10 @@ const Footer = () => (
 								<h5>Meta Links</h5>
 							</div>
 							<nav className="nav flex-column">
-								<Link to="/allbooks" className="nav-link active">All Books</Link>
+								<Link to="/api/v1/books" className="nav-link active">All Books</Link>
 								<Link to="/api/v1/auth/register" className="nav-link">Sign Up</Link>
 								<Link to="/api/v1/auth/login" className="nav-link">Log In</Link>
-								<Link to="/api/v1/users/books" className="nav-link">Borrow Book</Link>
+								<Link to="/api/v1/login" className="nav-link">Borrow Book</Link>
 							</nav>
 						</div>
 						<div className="col-md-4">

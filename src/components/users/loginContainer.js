@@ -1,17 +1,7 @@
 import React, {Component} from "react";
-import {validator} from "validator";
 import { connect } from "react-redux";
 import {Link} from "react-router-dom";
 import {userActions} from "../../actions/userActions";
-
-export const validate = user => {
-	const errors = {};
-	if (validator.isEmpty(user.email)) errors.email =
-  "Please enter your email.";
-	if(validator.isEmpty(user.password)) errors.password =
-  "Please enter your password.";
-	return errors;
-};
 
 class LoginContainer extends Component {
 	constructor(props){

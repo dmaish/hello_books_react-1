@@ -94,13 +94,13 @@ function logout() {
 	return dispatch => {
 		dispatch(requestLogout());
 		localStorage.removeItem("access_token");
-		dispatch(receiveLogout);
+		dispatch(receiveLogout());
 	};
 }
 
 function requestLogout() {
 	return {
-		type: userConstants.LOGIN_REQUEST,
+		type: userConstants.LOGOUT_REQUEST,
 		isFetching: true,
 		isAuthenticated: true
 	};
@@ -108,7 +108,7 @@ function requestLogout() {
 
 function receiveLogout() {
 	return {
-		type: userConstants.LOGIN_SUCCESS,
+		type: userConstants.LOGOUT_SUCCESS,
 		isFetching: false,
 		isAuthenticated: false
 	};
