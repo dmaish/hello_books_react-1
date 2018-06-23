@@ -7,6 +7,8 @@ import {alertActions} from "./actions/alertActions";
 import SignUpContainer from "./components/users/signupContainer";
 import LoginContainer from "./components/users/loginContainer";
 import AllBooks from "./components/books/books";
+import AdminDashboard from "./components/dashboard/adminDashboard";
+import UserDashboard from "./components/dashboard/userDashboard";
 
 class Application extends Component {
 	constructor(props) {
@@ -29,6 +31,8 @@ class Application extends Component {
 						<Route path="/api/v1/auth/register" component={SignUpContainer}></Route>
 						<Route path="/api/v1/auth/login" component={LoginContainer}></Route>
 						<Route path="/api/v1/books" component={AllBooks}></Route>
+						<Route path="/api/v1/dashboard" component={UserDashboard}></Route>
+						<Route path="/api/v1/secret/admin/dashboard" component={AdminDashboard}></Route>
 					</div>
 				</Router>
 			</div>

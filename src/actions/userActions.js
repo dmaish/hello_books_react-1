@@ -53,7 +53,7 @@ function login(user) {
 			.then(
 				user => {
 					dispatch(successLogin(user));
-					history.push("/dashboard");
+					history.push("/api/v1/dashboard");
 					dispatch(alertActions.success(
 						"You have logged in successfully."
 					));
