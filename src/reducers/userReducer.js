@@ -1,7 +1,5 @@
 import {userConstants} from "../actions/actionTypes";
 
-// let access_token = JSON.parse(localStorage.getItem("access_token"));
-
 export function registration(state = {}, {type}) {
 	switch (type) {
 	case userConstants.REGISTER_REQUEST:
