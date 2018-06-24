@@ -8,7 +8,7 @@ class UserDashboard extends Component{
     return(
       <div className="container-fluid">
     <nav className="navbar navbar-light" id="nav-bg">
-        <Link to="/" className="navbar-brand">
+        <Link to="/api/v1/dashboard" className="navbar-brand">
             <img src={logo} width="30" height="30" className="d-inline-block align-top"
                  alt="hello books logo"/>
             Hello Books
@@ -31,7 +31,7 @@ class UserDashboard extends Component{
                 </div>
             </li>
             <li className="nav-item">
-                <Link to="/api/v1/books" className="nav-link">All Books</Link>
+                <Link to="/api/v1/auth/logout" className="nav-link">Logout</Link>
             </li>
         </ul>
     </nav>

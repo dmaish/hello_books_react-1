@@ -53,6 +53,7 @@ function login(user) {
 			.then(
 				user => {
 					dispatch(successLogin(user));
+					localStorage.setItem("access_token",user.access_token);
 					history.push("/api/v1/dashboard");
 					dispatch(alertActions.success(
 						"You have logged in successfully."
@@ -77,7 +78,7 @@ function login(user) {
 			type: userConstants.LOGIN_SUCCESS,
 			isFetching: false,
 			isAuthenticated: true,
-			access_token: user
+			access_token: user.access_token
 		};
 	}
 	function failureLogin (error) {
@@ -91,25 +92,15 @@ function login(user) {
 }
 
 function logout() {
+	userServices.logout();
 	return dispatch => {
-		dispatch(requestLogout());
-		localStorage.removeItem("access_token");
-		dispatch(receiveLogout());
+		dispatch(logoutUser());
+		history.push("/");
 	};
 }
 
-function requestLogout() {
+function logoutUser() {
 	return {
-		type: userConstants.LOGOUT_REQUEST,
-		isFetching: true,
-		isAuthenticated: true
-	};
-}
-
-function receiveLogout() {
-	return {
-		type: userConstants.LOGOUT_SUCCESS,
-		isFetching: false,
-		isAuthenticated: false
+		type: userConstants.LOGOUT_USER,
 	};
 }

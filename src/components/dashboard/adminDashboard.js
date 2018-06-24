@@ -9,7 +9,7 @@ class AdminDashboard extends Component{
     return(
   <div className="container-fluid">
     <nav className="navbar navbar-light" id="nav-bg">
-        <Link to ="/" className="navbar-brand">
+        <Link to ="/api/v1/secret/admin/dashboard" className="navbar-brand">
             <img src={logo} id="logoimg" className="d-inline-block align-top"
                  alt="hello books logo"/>
             Hello Books
@@ -31,7 +31,7 @@ class AdminDashboard extends Component{
                 </div>
             </li>
             <li className="nav-item">
-                <Link to="/api/v1/books" className="nav-link">All Books</Link>
+                <Link to="/api/v1/auth/logout" className="nav-link">Logout</Link>
             </li>
         </ul>
     </nav>

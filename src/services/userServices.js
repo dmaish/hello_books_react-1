@@ -1,6 +1,7 @@
 export const userServices = {
   register,
-  login
+  login,
+  logout
 }
 
 function register(user) {
@@ -23,12 +24,31 @@ function login(user) {
   return fetch('https://stark-falls-93345.herokuapp.com/auth/login',
   requestOptions)
   .then(handleResponse)
-  // .then(res => {
-  //   if (res && res.user.access_token) {
-  //     localStorage.setItem("user", JSON.stringify(res.user.access_token))
-  //   }
-  //   return res.user;
-  // })
+}
+
+function logout() {
+  let access_token = JSON.parse(localStorage.getItem("access_token"));
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'access_token': access_token
+    }
+  };
+  return fetch('https://stark-falls-93345.herokuapp.com/auth/logout',
+requestOptions)
+.then(handleResponse)
+}
+
+function resetpassword(user) {
+  const requestOptions = {
+    method: "POST",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(user)
+  };
+  return fetch('https://stark-falls-93345.herokuapp.com/auth/reset-password',
+requestOptions)
+.then(handleResponse)
 }
 
 function handleResponse(response) {
@@ -36,4 +56,5 @@ function handleResponse(response) {
     return Promise.reject(response.statusText);
   }
   return response.json();
+
 }
