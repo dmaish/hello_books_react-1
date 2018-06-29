@@ -7,3 +7,9 @@ export const userConstants = {
 	LOGIN_FAILURE: "USERS_LOGIN_FAILURE",
 	LOGOUT_USER: "USERS_LOGOUT",
 };
+
+export const booksConstants = {
+	BOOKS_REQUEST: "GET_BOOKS_REQUEST",
+	BOOKS_SUCCESS: "GET_BOOKS_SUCCESS",
+	BOOKS_FAILURE: "GET_BOOKS_FAILURE",
+};
