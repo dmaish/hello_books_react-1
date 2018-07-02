@@ -8,3 +8,16 @@ export function getBooks(books = [], {type}){
 		return books;
 	}
 }
+
+export function addBook(state = {}, {type}){
+	switch(type){
+	case booksConstants.ADD_BOOK_REQUEST:
+		return {};
+	case booksConstants.ADD_BOOK_SUCCESS:
+		return {};
+	case booksConstants.ADD_BOOK_FAILURE:
+		return {};
+	default:
+		return state;
+	}
+}

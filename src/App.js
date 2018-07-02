@@ -9,6 +9,7 @@ import LoginContainer from "./components/users/loginContainer";
 import AllBooks from "./components/books/books";
 import AdminDashboard from "./components/dashboard/adminDashboard";
 import UserDashboard from "./components/dashboard/userDashboard";
+import AddBookContainer from "./components/containers/addBookContainer";
 
 class Application extends Component {
 	constructor(props) {
@@ -33,6 +34,7 @@ class Application extends Component {
 						<Route path="/api/v1/books" component={AllBooks}></Route>
 						<Route path="/api/v1/dashboard" component={UserDashboard}></Route>
 						<Route path="/api/v1/secret/admin/dashboard" component={AdminDashboard}></Route>
+						<Route path="/api/v1/secret/admin/addbook" component={AddBookContainer}></Route>
 					</div>
 				</Router>
 			</div>

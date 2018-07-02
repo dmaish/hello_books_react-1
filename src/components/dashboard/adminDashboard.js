@@ -25,7 +25,7 @@ class AdminDashboard extends Component{
                    aria-expanded="false">Menu</Link>
                 <div className="dropdown-menu">
                     <Link to="/api/v1/admin/messages" className="dropdown-item">Messages</Link>
-                    <Link to="/api/v1/books" className="dropdown-item">Add Book</Link>
+                    <Link to="/api/v1/secret/admin/addbook" className="dropdown-item">Add Book</Link>
                     <div className="dropdown-divider"></div>
                     <Link to="/api/v1/users" className="dropdown-item bg-success">All Users</Link>
                 </div>
@@ -58,49 +58,6 @@ class AdminDashboard extends Component{
         </div>
         <div className="col-sm-9">
             <div id="accordion">
-                <div className="card">
-                    <div className="card-header" id="headingOne">
-                        <h5 className="mb-0">
-                            <button className="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                    aria-expanded="true" aria-controls="collapseOne">
-                                Add Book
-                            </button>
-                        </h5>
-                    </div>
-
-                    <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div className="card-body">
-                            <div className="form-group">
-                                <label htmlFor="formGroupExampleInput">Book Title: </label>
-                                <input type="text" className="form-control" id="formGroupExampleInput"
-                                       placeholder="Book Authors"></input>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="formGroupExampleInput">Authors: </label>
-                                <input type="text" className="form-control" id="formGroupExampleInput"
-                                       placeholder="Enter Authors"></input>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="formGroupExampleInput">Publisher: </label>
-                                <input type="text" className="form-control" id="formGroupExampleInput"
-                                       placeholder="Enter Publisher"></input>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="formGroupExampleInput">Year: </label>
-                                <input type="text" className="form-control" id="formGroupExampleInput"
-                                       placeholder="Enter Year"></input>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="formGroupExampleInput">ISNB: </label>
-                                <input type="text" className="form-control" id="formGroupExampleInput"
-                                       placeholder="Enter ISNB"></input>
-                            </div>
-                            <div className="d-inline mx-auto center">
-                                <button type="submit" className="btn btn-primary">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <hr className="my-4"/>
                 <h1 className="text-center">All Library Books</h1>
                 <table className="table table-striped">

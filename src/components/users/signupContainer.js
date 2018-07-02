@@ -21,8 +21,8 @@ class SignUpContainer extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-	handleChange (event) {
-		const {name, value} = event.target;
+	handleChange (e) {
+		const {name, value} = e.target;
 		const {user} = this.state;
 		this.setState({
 			user: {
@@ -31,8 +31,8 @@ class SignUpContainer extends Component {
 			}
 		});
 	}
-	handleSubmit (event) {
-		event.preventDefault();
+	handleSubmit (e) {
+		e.preventDefault();
 		const {user} = this.state;
 		const {dispatch} = this.props;
 		if (user.email && user.first_name && user.last_name && user.password && user.username) {
