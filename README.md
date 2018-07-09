@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ezrqnkemboi/hello_books_react.svg?branch=master)](https://travis-ci.org/ezrqnkemboi/hello_books_react)
+[![Build Status](https://travis-ci.org/ezrqnkemboi/hello_books_react.svg?branch=develop)](https://travis-ci.org/ezrqnkemboi/hello_books_react)
 [![Coverage Status](https://coveralls.io/repos/github/ezrqnkemboi/hello_books_react/badge.svg?branch=ch-setup-react-app-157074612)](https://coveralls.io/github/ezrqnkemboi/hello_books_react?branch=ch-setup-react-app-157074612)
 # Hello Books Library  
 
