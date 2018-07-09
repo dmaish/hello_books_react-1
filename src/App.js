@@ -1,21 +1,56 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import {Router , Route} from "react-router-dom";
+import {connect} from "react-redux";
+import Landing from "./components/landing";
+import {history} from "./helpers/history";
+import {alertActions} from "./actions/alertActions";
+import SignUpContainer from "./components/users/signupContainer";
+import LoginContainer from "./components/users/loginContainer";
+import AllBooks from "./components/books";
+import AdminDashboard from "./components/dashboard/adminDashboard";
+import UserDashboard from "./components/dashboard/userDashboard";
+import AddBookContainer from "./components/containers/addBookContainer";
+import SingleBook from "./components/page/singleBook";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+class Application extends Component {
+	constructor(props) {
+		super(props);
+		const {dispatch} = this.props;
+		history.listen((location, action) => {
+			dispatch(alertActions.clear());
+		});
+	}
+	render() {
+		const {alert} = this.props;
+		return (
+			<div>
+				{alert.message &&
+				<div className={`alert $ {alert.type}`}>{alert.message}
+				</div>}
+				<Router history={history}>
+					<div>
+						<Route exact path="/" component={Landing}></Route>
+						<Route path="/api/v1/auth/register" component={SignUpContainer}></Route>
+						<Route path="/api/v1/auth/login" component={LoginContainer}></Route>
+						<Route path="/api/v1/books" component={AllBooks}></Route>
+						<Route path="/api/v1/dashboard" component={UserDashboard}></Route>
+						<Route path="/api/v1/secret/admin/dashboard" component={AdminDashboard}></Route>
+						<Route path="/api/v1/secret/admin/addbook" component={AddBookContainer}></Route>
+						<Route path="/api/v1/books/:book_id" component={SingleBook}></Route>
+					</div>
+				</Router>
+			</div>
+		);
+	}
 }
+
+function mapStateToProps(state) {
+	const {alert} = state;
+	return {
+		alert
+	};
+}
+
+const App = connect(mapStateToProps)(Application);
 
 export default App;

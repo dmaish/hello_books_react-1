@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#root {
+  min-height: 100%;
+  width: 100%;
+  background-color: white;
+}
+#nav-bg {
+    background-color: #e3f2fd;
+}
+.d-inline.mx-auto.center {
+    text-align: center !important;
+    display: block !important;
+}
+#nav-bg1 {
+    background-color: #F5F27F;
+    color: black;
+}
+.media img {
+    max-width: 120px;
+    height: auto;
+}
+.carousel-caption {
+    top: 200px;
+}
+.carousel-inner img {
+    height: 500px;
+
+}
+.carousel-inner h1 {
+    color: #00FFFF;
+    font-weight: 600;
+}
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+#bookimgs {
+  width: 18rem;
+  height: 500px;
+}
+
+#userdashboardimg {
+   width: 18rem;
+   height: 40px;
+}
+
+#logoimg {
+  width: 30px;
+  height: 30px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
