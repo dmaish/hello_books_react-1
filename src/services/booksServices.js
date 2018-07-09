@@ -12,7 +12,7 @@ function addBook(book) {
 		headers: {
 			"Content-Type": "application/json",
 			AccessControlAllowOrigin:"https://stark-falls-93345.herokuapp.com",
-			"access_token": accessToken()["access_token"]
+			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		},
 		body: JSON.stringify(book)
 	};
@@ -21,28 +21,26 @@ function addBook(book) {
 		.then(handleResponse);
 }
 
-function getBooks(books) {
+function getBooks() {
 	const requestOptions = {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json"
-		},
-		body: JSON.stringify(books)
+		}
 	};
-	return fetch("https://stark-falls-93345.herokuapp.com/books/",
+	return fetch("https://stark-falls-93345.herokuapp.com/books",
 		requestOptions)
 		.then(handleResponse);
 }
 
-function getBook(book) {
+function getBook(book_id) {
 	const requestOptions = {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json"
-		},
-		body: JSON.stringify(book)
+		}
 	};
-	return fetch("https://stark-falls-93345.herokuapp.com/books/:book_id",
+	return fetch(`https://stark-falls-93345.herokuapp.com/books/${book_id}`,
 		requestOptions)
 		.then(handleResponse);
 }

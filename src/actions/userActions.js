@@ -91,14 +91,18 @@ function login(user) {
 	}
 }
 
-function logout() {
-	userServices.logout();
+function logout(user) {
 	return dispatch => {
-		dispatch(logoutUser());
-		history.push("/");
-		dispatch(alertActions.success(
-			"You have logged out successfully."
-		));
+		userServices.logout(user)
+			.then(
+				user => {
+					dispatch(logoutUser(user));
+					history.push("/");
+					dispatch(alertActions.success(
+						"You have logged out successfully."
+					));
+				}
+			);
 	};
 }
 

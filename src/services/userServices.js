@@ -1,3 +1,5 @@
+import {accessToken} from "../helpers/token";
+
 export const userServices = {
 	register,
 	login,
@@ -27,12 +29,11 @@ function login(user) {
 }
 
 function logout() {
-	let access_token = JSON.parse(localStorage.getItem("access_token"));
 	const requestOptions = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			"access_token": access_token
+			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		}
 	};
 	return fetch("https://stark-falls-93345.herokuapp.com/auth/logout",

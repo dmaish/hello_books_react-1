@@ -28,7 +28,7 @@ export function login(state = {}, {type}) {
 	}
 }
 
-export function logggingout(state = {}, {type}) {
+export function logout(state = {}, {type}) {
 	switch (type) {
 	case userConstants.LOGOUT_USER:
 		return {};

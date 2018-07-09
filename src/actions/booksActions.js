@@ -6,7 +6,8 @@ import {history} from "../helpers/history";
 
 export const booksActions = {
 	getBooks,
-	addBook
+	addBook,
+	getBook
 };
 
 function addBook(book) {
@@ -48,10 +49,10 @@ function addedBookFailure(error){
 	};
 }
 
-function getBooks(books) {
+function getBooks() {
 	return dispatch => {
-		dispatch(requestBooks(books));
-		booksServices.getBooks(books)
+		dispatch(requestBooks());
+		booksServices.getBooks()
 			.then(
 				books => {
 					dispatch(receiveBooks(books));
@@ -64,10 +65,9 @@ function getBooks(books) {
 
 			);
 	};
-	function requestBooks(books){
+	function requestBooks(){
 		return {
-			type: booksConstants.BOOKS_REQUEST,
-			books
+			type: booksConstants.BOOKS_REQUEST
 		};
 	}
 	function receiveBooks(books) {
@@ -79,6 +79,40 @@ function getBooks(books) {
 	function failureBooks(error) {
 		return {
 			type: booksConstants.BOOKS_FAILURE,
+			error
+		};
+	}
+}
+
+function getBook() {
+	return dispatch => {
+		dispatch(getBookRequest());
+		booksServices.getBook()
+			.then(
+				book => {
+					dispatch(receiveBook(book));
+					dispatch(alertActions.success("Book was found successfully."));
+				},
+				error => {
+					dispatch(theBookNotFound(error));
+					dispatch(alertActions.error(error));
+				}
+			);
+	};
+	function getBookRequest(){
+		return {
+			type: booksConstants.SINGLE_BOOK_REQUEST,
+		};
+	}
+	function receiveBook(book) {
+		return {
+			type: booksConstants.SINGLE_BOOK_SUCCESS,
+			book
+		};
+	}
+	function theBookNotFound(error) {
+		return {
+			type: booksConstants.SINGLE_BOOK_FAILURE,
 			error
 		};
 	}
