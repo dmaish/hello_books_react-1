@@ -1,39 +1,48 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {book} from "./containers/getBooksContainer";
+// import {book} from "./containers/getBooksContainer";
 import {booksActions} from "../actions/booksActions";
 
 class AllBooks extends Component {
-  compoundDidMount(){
-    this.props.booksActions.getBooks()
+  // state = {
+  //   books:[]
+  // }
+  //
+  // componentWillReceiveProps(nextProps){
+  //   this.setState({books:nextProps.books})
+  // }
+  componentWillMount(){
+     this.props.dispatch(booksActions.getBooks())
   }
+
 	render(){
-		const {books} = this.props;
-		const list = function(){
-			return book(books);
-		};
-    // return (
-    //   <div id="main">
-    //   {list()}
-    // </div>
-    // )
+    if(this.props.books.loading){
+      return (<p>Loading...</p>)
+    }
+    let books;
+    if(this.props.books.books.all_books){
+     books = this.props.books.books.all_books.map(book=>(
+
+       <div className="card-body" key={book.book_id}>
+         <h5>{`Title: ${book.book_title}`}</h5>
+         <h6>{`Author: ${book.authors}`}</h6>
+         <h6>{`Book Isnb: ${book.book_isnb}`}</h6>
+         <h6>{`Copies: ${book.copies}`}</h6>
+       </div>
+      ))
+    }
+
     return(
-      <div className="card-body" key={book.book_id}>
-          <br/>
-          <br/>
-          <h5>{`Title: ${book.book_title}`}</h5>
-          <h6>{`Author: ${book.authors}`}</h6>
-          <h6>{`Book Isnb: ${book.book_isnb}`}</h6>
-          <h6>{`Copies: ${book.copies}`}</h6>
+      <div>
+        {books}
       </div>
-  )
+    )
 	}
 }
 
 const mapStateToProps = (state) => {
-  const {gettingBooks} = state.getBooks
   return {
-    gettingBooks
+    books:state.getBooks
   }
 }
 

@@ -56,7 +56,6 @@ function getBooks() {
 			.then(
 				books => {
 					dispatch(receiveBooks(books));
-					dispatch(alertActions.success("Books found"));
 				},
 				error => {
 					dispatch(failureBooks(error));

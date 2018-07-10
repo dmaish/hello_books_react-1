@@ -1,15 +1,19 @@
 import {booksConstants} from "../actions/actionTypes";
 
-export function getBooks(books = [], {type}){
-	switch(type) {
+export function getBooks(state = {
+	loading:false,
+	books:[],
+	errors:{}
+}, actions){
+	switch(actions.type) {
 	case booksConstants.BOOKS_REQUEST:
-		return {};
+		return {...state, loading:true};
 	case booksConstants.BOOKS_SUCCESS:
-		return books;
+		return {...state, books:actions.books, loading:false};
 	case booksConstants.BOOKS_FAILURE:
-		return {};
+		return {...state, loading:false, errors:actions.error};
 	default:
-		return books;
+		return state;
 	}
 }
 

@@ -23,12 +23,9 @@ function addBook(book) {
 
 function getBooks() {
 	const requestOptions = {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json"
-		}
+		method: "GET"
 	};
-	return fetch("https://stark-falls-93345.herokuapp.com/books",
+	return fetch("http://stark-falls-93345.herokuapp.com/books",
 		requestOptions)
 		.then(handleResponse);
 }
@@ -74,6 +71,11 @@ function getBook(book_id) {
 
 function handleResponse(response) {
 	if(!response.ok) {
+		response.json().then(data=>{
+			console.log(data);
+		}).catch(err=>{
+			console.log(err);
+		});
 		return Promise.reject(response.statusText);
 	}
 	return response.json();
