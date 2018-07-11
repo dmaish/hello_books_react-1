@@ -32,7 +32,7 @@ class Application extends Component {
 						<Route exact path="/" component={Landing}></Route>
 						<Route path="/api/v1/auth/register" component={SignUpContainer}></Route>
 						<Route path="/api/v1/auth/login" component={LoginContainer}></Route>
-						<Route path="/api/v1/books" component={AllBooks}></Route>
+						<Route exact path="/api/v1/books" component={AllBooks}></Route>
 						<Route path="/api/v1/dashboard" component={UserDashboard}></Route>
 						<Route path="/api/v1/secret/admin/dashboard" component={AdminDashboard}></Route>
 						<Route path="/api/v1/secret/admin/addbook" component={AddBookContainer}></Route>
