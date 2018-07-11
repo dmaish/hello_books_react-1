@@ -1,16 +1,9 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-// import {book} from "./containers/getBooksContainer";
+import {Link} from "react-router-dom";
 import {booksActions} from "../actions/booksActions";
 
 class AllBooks extends Component {
-  // state = {
-  //   books:[]
-  // }
-  //
-  // componentWillReceiveProps(nextProps){
-  //   this.setState({books:nextProps.books})
-  // }
   componentWillMount(){
      this.props.dispatch(booksActions.getBooks())
   }
@@ -28,6 +21,7 @@ class AllBooks extends Component {
          <h6>{`Author: ${book.authors}`}</h6>
          <h6>{`Book Isnb: ${book.book_isnb}`}</h6>
          <h6>{`Copies: ${book.copies}`}</h6>
+         <Link to={"/api/v1/books/" + book.book_id}><button className="btn btn-success">Check Book</button></Link>
        </div>
       ))
     }

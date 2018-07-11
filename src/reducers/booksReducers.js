@@ -17,14 +17,20 @@ export function getBooks(state = {
 	}
 }
 
-export function getBook(book = {}, {type}){
-	switch(type){
+export function gettingBook(state = {
+	loading:false,
+	book:{},
+	error:{}
+}, action){
+	switch(action.type){
 	case booksConstants.SINGLE_BOOK_REQUEST:
-		return {};
+		return {...state, loading:true};
 	case booksConstants.SINGLE_BOOK_SUCCESS:
-		return book;
+		return {...state, book:action.book, loading:false};
 	case booksConstants.SINGLE_BOOK_FAILURE:
-		return {};
+		return {...state, loading:false, error:action.error};
+	default:
+	return state;
 	}
 }
 

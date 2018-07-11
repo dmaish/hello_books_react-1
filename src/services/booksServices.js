@@ -32,10 +32,7 @@ function getBooks() {
 
 function getBook(book_id) {
 	const requestOptions = {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json"
-		}
+		method: "GET"
 	};
 	return fetch(`https://stark-falls-93345.herokuapp.com/books/${book_id}`,
 		requestOptions)
@@ -77,6 +74,7 @@ function handleResponse(response) {
 			console.log(err);
 		});
 		return Promise.reject(response.statusText);
+
 	}
 	return response.json();
 }
