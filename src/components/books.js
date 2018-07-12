@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {booksActions} from "../actions/booksActions";
-import logo from "./common/logo.jpg";
+import Nav from "./containers/publicNav";
 
 class AllBooks extends Component {
   componentWillMount(){
@@ -31,21 +31,7 @@ class AllBooks extends Component {
 
     return(
       <div>
-      <nav className="navbar navbar-light" id="nav-bg">
-          <Link to="/" className="navbar-brand">
-              <img src={logo} width="30" height="30" className="d-inline-block align-top"
-                   alt="hello books logo"/>
-              Hello Books
-          </Link>
-          <ul className="nav justify-content-end">
-              <li className="nav-item">
-                  <Link to="/api/v1/auth/register" className="nav-link">Sign Up</Link>
-              </li>
-              <li className="nav-item">
-                  <Link to="/api/v1/auth/login" className="nav-link">Log In</Link>
-              </li>
-          </ul>
-      </nav>
+        <Nav/>
         <hr className="my-4"/>
         <div className="container-fluid pt-5 pb-5 bg-light">
           <div className="row">

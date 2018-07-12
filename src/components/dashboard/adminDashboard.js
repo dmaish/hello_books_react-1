@@ -1,11 +1,33 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
-import user1 from "../../assets/images/user1.png"
-
+import {booksActions} from "../../actions/booksActions";
 
 class AdminDashboard extends Component{
+  componentWillMount(){
+    this.props.dispatch(booksActions.getBooks())
+  }
   render() {
+    let books;
+    if (this.props.books.books.all_books){
+      books = this.props.books.books.all_books.map((book, index) =>
+        <tr>
+            <th scope="row">{index+1}</th>
+            <td>{book.book_title}</td>
+            <td>{book.authors}</td>
+            <td>{book.publisher}</td>
+            <td>{book.year}</td>
+            <td>{book.book_isnb}</td>
+            <td>
+                <button type="button" className="btn btn-success">Edit</button>
+            </td>
+            <td>
+                <button type="button" className="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+      )
+    }
     return(
   <div className="container-fluid">
     <nav className="navbar navbar-light" id="nav-bg">
@@ -26,6 +48,7 @@ class AdminDashboard extends Component{
                 <div className="dropdown-menu">
                     <Link to="/api/v1/admin/messages" className="dropdown-item">Messages</Link>
                     <Link to="/api/v1/secret/admin/addbook" className="dropdown-item">Add Book</Link>
+                    <Link to="/api/v1/users/books/:book_id" className="dropdown-item">Borrow Book</Link>
                     <div className="dropdown-divider"></div>
                     <Link to="/api/v1/users" className="dropdown-item bg-success">All Users</Link>
                 </div>
@@ -36,31 +59,51 @@ class AdminDashboard extends Component{
         </ul>
     </nav>
     <div className="row" id="row-1">
-        <div className="col-sm-3">
-            <div className="card" id="userdashboardimg">
-                <img className="card-img-top" src={user1} alt="admin"/>
-                <div className="card-body">
-                    <h5 className="card-title"><b>My Profile</b></h5>
-                    <p className="card-text"><b>Description: </b>I am a professional librarian.</p>
-                </div>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item"><b>Name:</b> Admin Number</li>
-                    <li className="list-group-item"><b>Email:</b> admin@gmail.com</li>
-                    <li className="list-group-item"><b>Username:</b> Admin</li>
-                    <li className="list-group-item"><b>D.O.B:</b> 01/01/1980</li>
-                    <li className="list-group-item"><b>Institution:</b> Kenyatta University</li>
-                    <li className="list-group-item"><b>Profession:</b> Librarian</li>
-                    <li className="list-group-item"><b>Tel No:</b> +25472434324223</li>
-                    <li className="list-group-item"><b>City:</b> Nairobi</li>
-                </ul>
-
-            </div>
+        <div className="col-sm-4">
+        <hr className="my-4"/>
+          <h1 className="text-center">All Users</h1>
+            <table className="table table-sm">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Books Borrowed</th>
+                <th scope="col">Books Unreturned</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td scope="row">1</td>
+                <td>Ezrqn</td>
+                <td>23</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td scope="row">2</td>
+                <td>JohnDoe</td>
+                <td>10</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td scope="row">3</td>
+                <td>Samjunior</td>
+                <td>2</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td scope="row">4</td>
+                <td>Marlone</td>
+                <td>34</td>
+                <td>2</td>
+              </tr>
+              </tbody>
+            </table>
         </div>
-        <div className="col-sm-9">
+        <div className="col-sm-8">
             <div id="accordion">
                 <hr className="my-4"/>
                 <h1 className="text-center">All Library Books</h1>
-                <table className="table table-striped">
+                <table className="table table-bordered">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -72,90 +115,7 @@ class AdminDashboard extends Component{
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Milk and Honey</td>
-                        <td>Rupi Kaur</td>
-                        <td>Andrews McMeel Publishing</td>
-                        <td>2005</td>
-                        <td>1449478654, 9781449478650</td>
-                        <td>
-                            <button type="button" className="btn btn-success">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" className="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>When it Comes to Love: a collection of poems</td>
-                        <td>Rama Kaba</td>
-                        <td>Zircon Press</td>
-                        <td>2015</td>
-                        <td>098094323, 9780980943238</td>
-                        <td>
-                            <button type="button" className="btn btn-success">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" className="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Algorithms to Live By: The Computer Science of Human Decisions</td>
-                        <td>Brian Christian, Tom Griffiths</td>
-                        <td>HarperCollins Publishers Limited</td>
-                        <td>2016</td>
-                        <td>0007547978, 9780007547975</td>
-                        <td>
-                            <button type="button" className="btn btn-success">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" className="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Algorithms to Live By: The Computer Science of Human Decisions</td>
-                        <td>Brian Christian, Tom Griffiths</td>
-                        <td>HarperCollins Publishers Limited</td>
-                        <td>2016</td>
-                        <td>0007547978, 9780007547975</td>
-                        <td>
-                            <button type="button" className="btn btn-success">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" className="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Algorithms to Live By: The Computer Science of Human Decisions</td>
-                        <td>Brian Christian, Tom Griffiths</td>
-                        <td>HarperCollins Publishers Limited</td>
-                        <td>2016</td>
-                        <td>0007547978, 9780007547975</td>
-                        <td>
-                            <button type="button" className="btn btn-success">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" className="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Algorithms to Live By: The Computer Science of Human Decisions</td>
-                        <td>Brian Christian, Tom Griffiths</td>
-                        <td>HarperCollins Publishers Limited</td>
-                        <td>2016</td>
-                        <td>0007547978, 9780007547975</td>
-                        <td>
-                            <button type="button" className="btn btn-success">Edit</button>
-                        </td>
-                        <td>
-                            <button type="button" className="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
+                      {books}
                     </tbody>
                 </table>
             </div>
@@ -167,4 +127,10 @@ class AdminDashboard extends Component{
   }
 }
 
-export default AdminDashboard;
+const mapStateToProps = (state) => {
+  return {
+    books: state.getBooks
+  }
+}
+
+export default connect(mapStateToProps)(AdminDashboard);

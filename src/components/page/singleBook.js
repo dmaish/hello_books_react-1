@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
+import Nav from "../containers/publicNav";
 
 
 class SingleBook extends Component{
@@ -29,6 +30,7 @@ class SingleBook extends Component{
     const { book } = this.state
 		return(
 		  <div>
+      <Nav/>
 		  <div className="card-body">
 		    <h5><b>Title:</b> {book.book_details.book_title}</h5>
 		    <h6><b>Author:</b> {book.book_details.authors}</h6>
