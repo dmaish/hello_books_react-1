@@ -11,6 +11,7 @@ import AdminDashboard from "./components/dashboard/adminDashboard";
 import UserDashboard from "./components/dashboard/userDashboard";
 import AddBookContainer from "./components/containers/addBookContainer";
 import SingleBook from "./components/page/singleBook";
+import EditBook from "./components/books/editComponent";
 
 class Application extends Component {
 	constructor(props) {
@@ -37,6 +38,7 @@ class Application extends Component {
 						<Route path="/api/v1/secret/admin/dashboard" component={AdminDashboard}></Route>
 						<Route path="/api/v1/secret/admin/addbook" component={AddBookContainer}></Route>
 						<Route path="/api/v1/books/:book_id" component={SingleBook}></Route>
+						<Route path="/api/v1/books/:book_id" component={EditBook}></Route>
 					</div>
 				</Router>
 			</div>

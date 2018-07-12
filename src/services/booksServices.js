@@ -21,6 +21,21 @@ function addBook(book) {
 		.then(handleResponse);
 }
 
+function editBook(book) {
+	const requestOptions = {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			AccessControlAllowOrigin:"https://stark-falls-93345.herokuapp.com",
+			"Authorization": `Bearer ${accessToken()["access_token"]}`
+		},
+		body: JSON.stringify(book)
+	};
+	return fetch("https://stark-falls-93345.herokuapp.com/books/{book.book_id}",
+		requestOptions)
+		.then(handleResponse);
+}
+
 function getBooks() {
 	const requestOptions = {
 		method: "GET"
@@ -39,32 +54,19 @@ function getBook(book_id) {
 		.then(handleResponse);
 }
 
-// function editBook(book_id) {
-// 	const requestOptions = {
-// 		method: "PUT",
-// 		headers: {
-// 			"Content-Type": "application/json",
-// 			"access_token": accessToken()["access_token"]
-// 		},
-// 		body: JSON.stringify(bookDetails)
-// 	};
-// 	return fetch("https://stark-falls-93345.herokuapp.com/books/:book_id",
-// 		requestOptions)
-// 		.then(handleResponse);
-// }
-//
-// function deleteBook(book_id) {
-// 	const requestOptions = {
-// 		method: "DELETE",
-// 		headers: {
-// 			"Content-Type": "application/json",
-// 			"access_token": accessToken()["access_token"]
-// 		}
-// 	};
-// 	return fetch("https://stark-falls-93345.herokuapp.com/books/:book_id",
-// 		requestOptions)
-// 		.then(handleResponse);
-// }
+
+function deleteBook(book_id) {
+	const requestOptions = {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+			"access_token": accessToken()["access_token"]
+		}
+	};
+	return fetch("https://stark-falls-93345.herokuapp.com/books/:book_id",
+		requestOptions)
+		.then(handleResponse);
+}
 
 function handleResponse(response) {
 	if(!response.ok) {

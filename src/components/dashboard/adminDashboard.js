@@ -20,10 +20,14 @@ class AdminDashboard extends Component{
             <td>{book.year}</td>
             <td>{book.book_isnb}</td>
             <td>
+              <Link to="/api/v1/secret/admin/editbook">
                 <button type="button" className="btn btn-success">Edit</button>
+              </Link>
             </td>
             <td>
+              <Link to="/api/v1/secret/admin/deletebook">
                 <button type="button" className="btn btn-danger">Delete</button>
+              </Link>
             </td>
         </tr>
       )
@@ -48,7 +52,6 @@ class AdminDashboard extends Component{
                 <div className="dropdown-menu">
                     <Link to="/api/v1/admin/messages" className="dropdown-item">Messages</Link>
                     <Link to="/api/v1/secret/admin/addbook" className="dropdown-item">Add Book</Link>
-                    <Link to="/api/v1/users/books/:book_id" className="dropdown-item">Borrow Book</Link>
                     <div className="dropdown-divider"></div>
                     <Link to="/api/v1/users" className="dropdown-item bg-success">All Users</Link>
                 </div>
@@ -112,6 +115,13 @@ class AdminDashboard extends Component{
                         <th scope="col">Publisher</th>
                         <th scope="col">Year</th>
                         <th scope="col">ISNB</th>
+                        <th scope="col" colspan="2">
+                          <Link to="/api/v1/secret/admin/addbook">
+                            <center>
+                            <button type="button" className="btn btn-primary">Add Book</button>
+                            </center>
+                          </Link>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>

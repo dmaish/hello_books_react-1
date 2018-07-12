@@ -49,6 +49,45 @@ function addedBookFailure(error){
 	};
 }
 
+function editBook() {
+	return dispatch => {
+		dispatch(requestEditBook());
+		booksServices.editBook()
+			.then(
+				book => {
+					dispatch(editedBook(book));
+					history.push("/api/v1/secret/admin/dashboard");
+					dispatch(alertActions.success("Edited Book successfully."));
+				},
+				error => {
+					dispatch(editBookFailure(error));
+					dispatch(alertActions.error(error));
+				}
+			);
+	};
+}
+
+function requestEditBook(book) {
+	return {
+		type: booksConstants.EDIT_BOOK_REQUEST,
+		book
+	};
+}
+
+function editedBook(book) {
+	return {
+		type: booksConstants.EDIT_BOOK_SUCCESS,
+		book
+	};
+}
+
+function editBookFailure(error) {
+	return {
+		type: booksConstants.EDIT_BOOK_FAILURE,
+		error
+	};
+}
+
 function getBooks() {
 	return dispatch => {
 		dispatch(requestBooks());
@@ -113,6 +152,21 @@ function getBook() {
 		return {
 			type: booksConstants.SINGLE_BOOK_FAILURE,
 			error
+		};
+	}
+}
+
+function deleteBook(){
+	return dispatch => {
+		dispatch(deleteBookRequest());
+		booksServices.deleteBook()
+			.then(
+
+			);
+	};
+	function deleteBookRequest(){
+		return {
+			type: booksConstants.DELETE_BOOK_REQUEST
 		};
 	}
 }
