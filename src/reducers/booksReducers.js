@@ -1,26 +1,36 @@
 import {booksConstants} from "../actions/actionTypes";
 
-export function getBooks(books = [], {type}){
-	switch(type) {
+export function getBooks(state = {
+	loading:false,
+	books:[],
+	errors:{}
+}, actions){
+	switch(actions.type) {
 	case booksConstants.BOOKS_REQUEST:
-		return {};
+		return {...state, loading:true};
 	case booksConstants.BOOKS_SUCCESS:
-		return books;
+		return {...state, books:actions.books, loading:false};
 	case booksConstants.BOOKS_FAILURE:
-		return {};
+		return {...state, loading:false, errors:actions.error};
 	default:
-		return books;
+		return state;
 	}
 }
 
-export function getBook(book = {}, {type}){
-	switch(type){
+export function gettingBook(state = {
+	loading:false,
+	book:{},
+	error:{}
+}, action){
+	switch(action.type){
 	case booksConstants.SINGLE_BOOK_REQUEST:
-		return {};
+		return {...state, loading:true};
 	case booksConstants.SINGLE_BOOK_SUCCESS:
-		return book;
+		return {...state, book:action.book, loading:false};
 	case booksConstants.SINGLE_BOOK_FAILURE:
-		return {};
+		return {...state, loading:false, error:action.error};
+	default:
+	return state;
 	}
 }
 
@@ -34,5 +44,35 @@ export function addBook(state = {}, {type}){
 		return {};
 	default:
 		return state;
+	}
+}
+
+export function editingBook(state = {
+	loading: false,
+	book:{},
+	error:{}
+}, action){
+	switch(action.type){
+		case booksConstants.EDIT_BOOK_REQUEST:
+			return {...state, loading:true};
+		case booksConstants.EDIT_BOOK_SUCCESS:
+			return {...state, loading:false, book:action.book};
+		case booksConstants.EDIT_BOOK_FAILURE:
+			return {...state, loading:false, error:action.error}
+		default:
+			return state;
+	}
+}
+
+export function deletingBookReducer(state = {
+	loading: false,
+	book_id: "",
+	error: {}
+}, action){
+	switch (action.type){
+		case booksConstants.DELETE_BOOK_SUCCESS:
+			return {...state, loading:false, book_id:action.book_id};
+		default:
+			return state;
 	}
 }

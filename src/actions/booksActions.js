@@ -7,7 +7,8 @@ import {history} from "../helpers/history";
 export const booksActions = {
 	getBooks,
 	addBook,
-	getBook
+	getBook,
+	deleteBook
 };
 
 function addBook(book) {
@@ -49,6 +50,45 @@ function addedBookFailure(error){
 	};
 }
 
+function editBook() {
+	return dispatch => {
+		dispatch(requestEditBook());
+		booksServices.editBook()
+			.then(
+				book => {
+					dispatch(editedBook(book));
+					history.push("/api/v1/secret/admin/dashboard");
+					dispatch(alertActions.success("Edited Book successfully."));
+				},
+				error => {
+					dispatch(editBookFailure(error));
+					dispatch(alertActions.error(error));
+				}
+			);
+	};
+}
+
+function requestEditBook(book) {
+	return {
+		type: booksConstants.EDIT_BOOK_REQUEST,
+		book
+	};
+}
+
+function editedBook(book) {
+	return {
+		type: booksConstants.EDIT_BOOK_SUCCESS,
+		book
+	};
+}
+
+function editBookFailure(error) {
+	return {
+		type: booksConstants.EDIT_BOOK_FAILURE,
+		error
+	};
+}
+
 function getBooks() {
 	return dispatch => {
 		dispatch(requestBooks());
@@ -56,7 +96,6 @@ function getBooks() {
 			.then(
 				books => {
 					dispatch(receiveBooks(books));
-					dispatch(alertActions.success("Books found"));
 				},
 				error => {
 					dispatch(failureBooks(error));
@@ -114,6 +153,25 @@ function getBook() {
 		return {
 			type: booksConstants.SINGLE_BOOK_FAILURE,
 			error
+		};
+	}
+}
+
+function deleteBook(book_id){
+	return dispatch => {
+		booksServices.deleteBook(book_id)
+			.then(
+				book => {
+					dispatch(deleteBookSuccess(book));
+					history.push("/api/v1/secret/admin/dashboard");
+					dispatch(alertActions.success("Book was deleted successfully."));
+				}
+			);
+	};
+	function deleteBookSuccess(book_id){
+		return {
+			type: booksConstants.DELETE_BOOK,
+			book_id
 		};
 	}
 }
