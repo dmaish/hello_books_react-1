@@ -33,6 +33,7 @@ function logout() {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
+			AccessControlAllowOrigin:"https://stark-falls-93345.herokuapp.com",
 			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		}
 	};

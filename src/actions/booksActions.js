@@ -7,7 +7,8 @@ import {history} from "../helpers/history";
 export const booksActions = {
 	getBooks,
 	addBook,
-	getBook
+	getBook,
+	deleteBook
 };
 
 function addBook(book) {
@@ -156,17 +157,21 @@ function getBook() {
 	}
 }
 
-function deleteBook(){
+function deleteBook(book_id){
 	return dispatch => {
-		dispatch(deleteBookRequest());
-		booksServices.deleteBook()
+		booksServices.deleteBook(book_id)
 			.then(
-
+				book => {
+					dispatch(deleteBookSuccess(book));
+					history.push("/api/v1/secret/admin/dashboard");
+					dispatch(alertActions.success("Book was deleted successfully."));
+				}
 			);
 	};
-	function deleteBookRequest(){
+	function deleteBookSuccess(book_id){
 		return {
-			type: booksConstants.DELETE_BOOK_REQUEST
+			type: booksConstants.DELETE_BOOK,
+			book_id
 		};
 	}
 }

@@ -63,3 +63,16 @@ export function editingBook(state = {
 			return state;
 	}
 }
+
+export function deletingBookReducer(state = {
+	loading: false,
+	book_id: "",
+	error: {}
+}, action){
+	switch (action.type){
+		case booksConstants.DELETE_BOOK_SUCCESS:
+			return {...state, loading:false, book_id:action.book_id};
+		default:
+			return state;
+	}
+}

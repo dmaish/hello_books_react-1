@@ -3,13 +3,16 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
 import {booksActions} from "../../actions/booksActions";
+import DeleteBook from "../page/deleteBook";
 
 class AdminDashboard extends Component{
   componentWillMount(){
     this.props.dispatch(booksActions.getBooks())
   }
+
   render() {
     let books;
+    const {dispatch} = this.props
     if (this.props.books.books.all_books){
       books = this.props.books.books.all_books.map((book, index) =>
         <tr>
@@ -21,17 +24,17 @@ class AdminDashboard extends Component{
             <td>{book.book_isnb}</td>
             <td>
               <Link to="/api/v1/secret/admin/editbook">
-                <button type="button" className="btn btn-success">Edit</button>
+              <button type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                Edit</button>
               </Link>
             </td>
             <td>
-              <Link to="/api/v1/secret/admin/deletebook">
-                <button type="button" className="btn btn-danger">Delete</button>
-              </Link>
+              <DeleteBook bookId={book.book_id}/>
             </td>
         </tr>
       )
     }
+
     return(
   <div className="container-fluid">
     <nav className="navbar navbar-light" id="nav-bg">
