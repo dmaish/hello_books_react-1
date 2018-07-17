@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
 import {booksActions} from "../../actions/booksActions";
+import {userActions} from "../../actions/userActions";
 
 class AdminDashboard extends Component{
 
@@ -61,7 +62,9 @@ class AdminDashboard extends Component{
                 </div>
             </li>
             <li className="nav-item">
-                <Link to="/api/v1/auth/logout" className="nav-link">Logout</Link>
+                <button type="button" className="btn btn-warning"
+                onClick={(e) => {e.preventDefault(); this.props.logout()}}
+                >Logout</button>
             </li>
         </ul>
     </nav>
@@ -151,7 +154,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     deleteBook: (bookId) => dispatch(booksActions.deleteBook(bookId)),
-    getBooks: () => dispatch(booksActions.getBooks())
+    getBooks: () => dispatch(booksActions.getBooks()),
+    logout: () => dispatch(userActions.logout())
   }
 }
 

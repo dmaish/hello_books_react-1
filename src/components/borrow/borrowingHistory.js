@@ -4,14 +4,14 @@ import {borrowHistory} from "../../actions/borrowHistoryActions";
 
 class BorrowHistory extends Component{
   componentWillMount(){
-    this.props.dispatch(borrowHistory.returnBorrowHistory())
+    this.props.returnBorrowHistory()
   }
 
   render(){
     let books;
     if (this.props.books.books){
       books = this.props.books.books.map((book, index)=>(
-<tbody>
+        <tbody>
         <tr>
           <td>{index+1}</td>
           <td>{book.book_id}</td>
@@ -92,4 +92,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(BorrowHistory);
+const mapDispatchToProps = dispatch => {
+  return {
+    returnBorrowHistory: () => dispatch(borrowHistory.returnBorrowHistory())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BorrowHistory);

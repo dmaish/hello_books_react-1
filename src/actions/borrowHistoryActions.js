@@ -3,7 +3,8 @@ import {borrowServices} from "../services/borrowServices";
 import {alertActions} from "./alertActions";
 
 export const borrowHistory = {
-	returnBorrowHistory
+	returnBorrowHistory,
+	unReturnBooksHistory
 };
 
 function returnBorrowHistory() {
@@ -36,6 +37,42 @@ function receiveHistory(books) {
 }
 
 function historyFailure(error){
+	return {
+		type: borrowConstants.BORROW_HISTORY_FAILURE,
+		error
+	};
+}
+
+function unReturnBooksHistory(){
+	return dispatch => {
+		dispatch(requestUnreturnHistory());
+		borrowServices.unReturnedBooks()
+			.then(
+				books => {
+					dispatch(receiveUnreturnHistory(books));
+				},
+				error => {
+					dispatch(unreturnHistoryFailure(error));
+					dispatch(alertActions.error(error));
+				}
+			);
+	};
+}
+
+function requestUnreturnHistory(){
+	return {
+		type: borrowConstants.BORROW_HISTORY_REQUEST
+	};
+}
+
+function receiveUnreturnHistory(books) {
+	return {
+		type: borrowConstants.BORROW_HISTORY_SUCCESS,
+		books
+	};
+}
+
+function unreturnHistoryFailure(error) {
 	return {
 		type: borrowConstants.BORROW_HISTORY_FAILURE,
 		error

@@ -21,11 +21,9 @@ class EditBook extends Component{
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	handleChange(e){
-		const {name, value} = this.target;
-		const {book} = this.state;
 		this.setState({
-        ...book,
-        [name]: value
+        ...this.state.book,
+        [e.target.name]: e.target.value
 		}
 		);
 	}

@@ -54,7 +54,7 @@ function login(user) {
 				user => {
 					dispatch(successLogin(user));
 					localStorage.setItem("access_token", JSON.stringify(user.access_token));
-					history.push("/api/v1/dashboard");
+					history.push("/api/v1/secret/admin/dashboard");
 					dispatch(alertActions.success(
 						"You have logged in successfully."
 					));

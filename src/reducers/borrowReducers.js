@@ -28,14 +28,14 @@ export function returnBookReducer(state = {
 
 export function borrowHistoryReducer(state = {
 	loading: false,
-	borrows: [],
+	books: [],
 	error: {}
 }, actions) {
 	switch(actions.type) {
 	case borrowConstants.BORROW_HISTORY_REQUEST:
 		return {...state, loading:true};
 	case borrowConstants.BORROW_HISTORY_SUCCESS:
-		return {...state, borrows:actions.borrows, loading:false};
+		return {...state, books:actions.books, loading:false};
 	case borrowConstants.BORROW_HISTORY_FAILURE:
 		return {...state, error:actions.error, loading:false};
 	default:
@@ -43,14 +43,18 @@ export function borrowHistoryReducer(state = {
 	}
 }
 
-export function unReturnedBooks(state = {}, {type}) {
-	switch(type){
+export function unReturnedBooksReducer(state = {
+	loading: false,
+	books: [],
+	error: {}
+}, actions) {
+	switch(actions.type){
 	case borrowConstants.UNRETURNED_REQUEST:
-		return {};
+		return {...state, loading:true};
 	case borrowConstants.UNRETURNED_SUCCESS:
-		return {};
+		return {...state, loading:false, books:actions.books};
 	case borrowConstants.UNRETURNED_FAILURE:
-		return {};
+		return {...state, loading:false, error:actions.error};
 	default:
 		return state;
 	}

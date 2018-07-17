@@ -124,9 +124,9 @@ function getBooks() {
 	}
 }
 
-function getBook() {
+function getBook(book_id) {
 	return dispatch => {
-		dispatch(getBookRequest());
+		dispatch(getBookRequest(book_id));
 		booksServices.getBook()
 			.then(
 				book => {
@@ -144,10 +144,10 @@ function getBook() {
 			type: booksConstants.SINGLE_BOOK_REQUEST,
 		};
 	}
-	function receiveBook(book) {
+	function receiveBook(book_id) {
 		return {
 			type: booksConstants.SINGLE_BOOK_SUCCESS,
-			book
+			book_id
 		};
 	}
 	function theBookNotFound(error) {
