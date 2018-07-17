@@ -3,11 +3,11 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
 import {booksActions} from "../../actions/booksActions";
-import DeleteBook from "../page/deleteBook";
 
 class AdminDashboard extends Component{
+
   componentWillMount(){
-    this.props.dispatch(booksActions.getBooks())
+    this.props.getBooks()
   }
 
   render() {
@@ -23,13 +23,14 @@ class AdminDashboard extends Component{
             <td>{book.year}</td>
             <td>{book.book_isnb}</td>
             <td>
-              <Link to="/api/v1/secret/admin/editbook">
-              <button type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                Edit</button>
+              <Link to={`/api/v1/books/${book.book_id}`}>
+                  <button type="button" className="btn btn-success">Edit</button>
               </Link>
             </td>
             <td>
-              <DeleteBook bookId={book.book_id}/>
+              <button className="btn btn-danger" type="button"
+              onClick={ (e) => {e.preventDefault();this.props.deleteBook(book.book_id)} }>Delete
+              </button>
             </td>
         </tr>
       )
@@ -142,8 +143,16 @@ class AdminDashboard extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    books: state.getBooks
+    books: state.getBooks,
+    book_id: state.deletingBookReducer
   }
 }
 
-export default connect(mapStateToProps)(AdminDashboard);
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteBook: (bookId) => dispatch(booksActions.deleteBook(bookId)),
+    getBooks: () => dispatch(booksActions.getBooks())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);

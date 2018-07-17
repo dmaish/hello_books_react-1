@@ -4,6 +4,7 @@ export const booksServices = {
 	addBook,
 	getBooks,
 	getBook,
+	editBook,
 	deleteBook
 };
 
@@ -23,6 +24,7 @@ function addBook(book) {
 }
 
 function editBook(book) {
+	let bookId = book.book_id;
 	const requestOptions = {
 		method: "PUT",
 		headers: {
@@ -32,7 +34,7 @@ function editBook(book) {
 		},
 		body: JSON.stringify(book)
 	};
-	return fetch("https://stark-falls-93345.herokuapp.com/books/{book.book_id}",
+	return fetch(`https://stark-falls-93345.herokuapp.com/books/${bookId}`,
 		requestOptions)
 		.then(handleResponse);
 }

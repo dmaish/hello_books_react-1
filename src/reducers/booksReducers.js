@@ -49,7 +49,7 @@ export function addBook(state = {}, {type}){
 
 export function editingBook(state = {
 	loading: false,
-	book:{},
+	book: {},
 	error:{}
 }, action){
 	switch(action.type){

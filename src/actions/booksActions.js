@@ -8,6 +8,7 @@ export const booksActions = {
 	getBooks,
 	addBook,
 	getBook,
+	editBook,
 	deleteBook
 };
 
@@ -50,9 +51,9 @@ function addedBookFailure(error){
 	};
 }
 
-function editBook() {
+function editBook(book) {
 	return dispatch => {
-		dispatch(requestEditBook());
+		dispatch(requestEditBook(book));
 		booksServices.editBook()
 			.then(
 				book => {
