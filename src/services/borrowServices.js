@@ -1,4 +1,4 @@
-import accessToken from "../helpers/token";
+import {accessToken} from "../helpers/token";
 
 export const borrowServices = {
 	borrow,
@@ -67,8 +67,14 @@ function unReturnedBooks() {
 }
 
 function handleResponse(response) {
-	if(!response.ok){
+	if(!response.ok) {
+		response.json().then(data=>{
+			console.log(data);
+		}).catch(err=>{
+			console.log(err);
+		});
 		return Promise.reject(response.statusText);
+
 	}
-	response.json();
+	return response.json();
 }

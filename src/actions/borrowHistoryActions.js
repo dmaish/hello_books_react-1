@@ -1,20 +1,43 @@
 import {borrowConstants} from "./borrowTypes";
 import {borrowServices} from "../services/borrowServices";
 import {alertActions} from "./alertActions";
-import {history} from "../helpers/history";
 
 export const borrowHistory = {
-  borrowHistory,
-  unReturnedBooks
-}
+	returnBorrowHistory
+};
 
-
-function borrowHistory() {
+function returnBorrowHistory() {
 	return dispatch => {
-		dispatch(requestHistory);
+		dispatch(requestHistory());
+		borrowServices.borrowHistory()
+			.then(
+				books => {
+					dispatch(receiveHistory(books));
+				},
+				error => {
+					dispatch(historyFailure(error));
+					dispatch(alertActions.error(error));
+				}
+			);
 	};
 }
 
-function unReturnedBooks(){
+function requestHistory() {
+	return {
+		type: borrowConstants.BORROW_HISTORY_REQUEST
+	};
+}
 
+function receiveHistory(books) {
+	return {
+		type: borrowConstants.BORROW_HISTORY_SUCCESS,
+		books
+	};
+}
+
+function historyFailure(error){
+	return {
+		type: borrowConstants.BORROW_HISTORY_FAILURE,
+		error
+	};
 }

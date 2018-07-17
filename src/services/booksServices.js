@@ -23,16 +23,14 @@ function addBook(book) {
 		.then(handleResponse);
 }
 
-function editBook(book) {
-	let bookId = book.book_id;
+function editBook(bookId) {
 	const requestOptions = {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 			AccessControlAllowOrigin:"https://stark-falls-93345.herokuapp.com",
 			"Authorization": `Bearer ${accessToken()["access_token"]}`
-		},
-		body: JSON.stringify(book)
+		}
 	};
 	return fetch(`https://stark-falls-93345.herokuapp.com/books/${bookId}`,
 		requestOptions)

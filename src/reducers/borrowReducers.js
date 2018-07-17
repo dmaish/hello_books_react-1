@@ -26,14 +26,18 @@ export function returnBook(state = {}, {type}) {
 	}
 }
 
-export function borrowHistory(state = {}, {type}) {
-	switch(type) {
+export function borrowHistoryReducer(state = {
+	loading: false,
+	borrows: [],
+	error: {}
+}, actions) {
+	switch(actions.type) {
 	case borrowConstants.BORROW_HISTORY_REQUEST:
-		return {};
+		return {...state, loading:true};
 	case borrowConstants.BORROW_HISTORY_SUCCESS:
-		return {};
+		return {...state, borrows:actions.borrows, loading:false};
 	case borrowConstants.BORROW_HISTORY_FAILURE:
-		return {};
+		return {...state, error:actions.error, loading:false};
 	default:
 		return state;
 	}
