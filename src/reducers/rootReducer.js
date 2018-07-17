@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 
 import {registration, login, logout} from "./userReducer";
-import {borrow, returnBook, borrowHistoryReducer, unReturnedBooks} from "./borrowReducers";
+import {borrowReducer, returnBookReducer, borrowHistoryReducer, unReturnedBooks} from "./borrowReducers";
 import {getBooks, addBook, gettingBook, editingBook, deletingBookReducer} from "./booksReducers";
 import {alert} from "./alertReducer";
 
@@ -10,8 +10,8 @@ const rootReducer = combineReducers({
 	login,
 	logout,
 	alert,
-	borrow,
-	returnBook,
+	borrowReducer,
+	returnBookReducer,
 	borrowHistoryReducer,
 	unReturnedBooks,
 	getBooks,

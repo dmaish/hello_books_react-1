@@ -1,26 +1,26 @@
 import {borrowConstants} from "../actions/borrowTypes";
 
-export function borrow(state = {}, {type}){
-	switch(type) {
-	case borrowConstants.BORROW_REQUEST:
-		return {borrowing: true};
+export function borrowReducer(state = {
+	borrowing: false,
+	book_id: "",
+	error: {}
+}, actions){
+	switch(actions.type) {
 	case borrowConstants.BORROW_SUCCESS:
-		return {};
-	case borrowConstants.BORROW_FAILURE:
-		return {};
+		return {...state, borrowing:false, book_id:actions.book_id};
 	default:
 		return state;
 	}
 }
 
-export function returnBook(state = {}, {type}) {
-	switch(type) {
-	case borrowConstants.RETURN_REQUEST:
-		return {returning: true};
+export function returnBookReducer(state = {
+	returning: false,
+	book_id: "",
+	error: {}
+}, actions) {
+	switch(actions.type) {
 	case borrowConstants.RETURN_SUCCESS:
-		return {};
-	case borrowConstants.RETURN_FAILURE:
-		return {};
+		return {...state, returning:false, book_id:actions.book_id};
 	default:
 		return state;
 	}

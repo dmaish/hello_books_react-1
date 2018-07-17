@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
 import {booksActions} from "../../actions/booksActions";
+import {borrowActions} from "../../actions/borrowActions";
 import BorrowHistory from "../borrow/borrowingHistory";
 
 
@@ -24,9 +25,9 @@ class UserDashboard extends Component{
           <td>{book.year}</td>
           <td>{book.book_isnb}</td>
           <td>
-            <Link to={`/api/v1/users/books/${book.book_id}`}>
-              <button type="button" className="btn btn-info">Borrow Book</button>
-            </Link>
+              <button type="button" className="btn btn-info"
+              onClick={ (e) => {e.preventDefault();this.props.borrow(book.book_id)}}>Borrow Book
+              </button>
           </td>
       </tr>
     )
@@ -92,12 +93,14 @@ class UserDashboard extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    books: state.getBooks
+    books: state.getBooks,
+    book_id: state.borrowReducer
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    borrow: (bookId) => dispatch(borrowActions.borrow(bookId)),
     getBooks: () => dispatch(booksActions.getBooks())
   }
 }

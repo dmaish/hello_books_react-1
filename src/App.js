@@ -42,7 +42,7 @@ class Application extends Component {
 						<Route path="/api/v1/books/:book_id" component={SingleBook}></Route>
 						<Route path="/api/v1/books/:book_id" component={EditBook}></Route>
 						<Route path="/api/v1/auth/logout" component={Logout}></Route>
-						<Route path="/api/v1/users/books" component={BorrowHistory}></Route>
+						<Route exact path="/api/v1/users/books" component={BorrowHistory}></Route>
 					</div>
 				</Router>
 			</div>

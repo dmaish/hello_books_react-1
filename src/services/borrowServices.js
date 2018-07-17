@@ -12,9 +12,9 @@ function borrow(book_id) {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			"access_token": accessToken()["access_token"]
+			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		}};
-	return fetch("https://stark-falls-93345.herokuapp.com/users/books:book_id",
+	return fetch(`https://stark-falls-93345.herokuapp.com/users/books/${book_id}`,
 		requestOptions)
 		.then(
 			handleResponse
@@ -26,10 +26,10 @@ function returnBook(book_id) {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
-			"access_token": accessToken()["access_token"]
+			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		}
 	};
-	return fetch("https://stark-falls-93345.herokuapp.com/users/books:book_id",
+	return fetch(`https://stark-falls-93345.herokuapp.com/users/books/${book_id}`,
 		requestOptions)
 		.then(
 			handleResponse
@@ -41,7 +41,7 @@ function borrowHistory() {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
-			"access_token": accessToken()["access_token"]
+			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		}
 	};
 	return fetch("https://stark-falls-93345.herokuapp.com/users/books",
@@ -56,7 +56,7 @@ function unReturnedBooks() {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
-			"access_token": accessToken()["access_token"]
+			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		}
 	};
 	return fetch("https://stark-falls-93345.herokuapp.com/users/books?returned=false",
