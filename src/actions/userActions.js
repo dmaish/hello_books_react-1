@@ -95,7 +95,8 @@ function logout() {
 	return dispatch => {
 		userServices.logout();
 		dispatch(logoutUser());
-		history.push("/");
+		localStorage.removeItem("access_token");
+		history.push("/api/v1/auth/login");
 		dispatch(alertActions.success(
 			"You have logged out successfully."
 		));

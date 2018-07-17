@@ -5,6 +5,7 @@ import logo from "../common/logo.jpg";
 import {booksActions} from "../../actions/booksActions";
 import {borrowActions} from "../../actions/borrowActions";
 import BorrowHistory from "../borrow/borrowingHistory";
+import {userActions} from "../../actions/userActions";
 
 
 class UserDashboard extends Component{
@@ -58,7 +59,9 @@ class UserDashboard extends Component{
                 </div>
             </li>
             <li className="nav-item">
-                <Link to="/api/v1/auth/logout" className="nav-link">Logout</Link>
+                <button type="button" className="btn btn-warning"
+                onClick={ (e) => {e.preventDefault(); this.props.logout()}}
+                >Logout</button>
             </li>
         </ul>
     </nav>
@@ -101,7 +104,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     borrow: (bookId) => dispatch(borrowActions.borrow(bookId)),
-    getBooks: () => dispatch(booksActions.getBooks())
+    getBooks: () => dispatch(booksActions.getBooks()),
+    logout: () => dispatch(userActions.logout())
   }
 }
 

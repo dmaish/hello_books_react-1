@@ -28,10 +28,12 @@ export function login(state = {}, {type}) {
 	}
 }
 
-export function logout(state = {}, {type}) {
-	switch (type) {
+export function logoutReducer(state = {
+	loggedOut: false
+}, action) {
+	switch (action.type) {
 	case userConstants.LOGOUT_USER:
-		return {};
+		return {...state, loggedOut:true};
 	default:
 		return state;
 
