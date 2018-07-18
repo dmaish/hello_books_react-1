@@ -8,6 +8,7 @@ export const booksActions = {
 	getBooks,
 	addBook,
 	getBook,
+	editBook,
 	deleteBook
 };
 
@@ -50,9 +51,9 @@ function addedBookFailure(error){
 	};
 }
 
-function editBook() {
+function editBook(book) {
 	return dispatch => {
-		dispatch(requestEditBook());
+		dispatch(requestEditBook(book));
 		booksServices.editBook()
 			.then(
 				book => {
@@ -123,9 +124,9 @@ function getBooks() {
 	}
 }
 
-function getBook() {
+function getBook(book_id) {
 	return dispatch => {
-		dispatch(getBookRequest());
+		dispatch(getBookRequest(book_id));
 		booksServices.getBook()
 			.then(
 				book => {
@@ -143,10 +144,10 @@ function getBook() {
 			type: booksConstants.SINGLE_BOOK_REQUEST,
 		};
 	}
-	function receiveBook(book) {
+	function receiveBook(book_id) {
 		return {
 			type: booksConstants.SINGLE_BOOK_SUCCESS,
-			book
+			book_id
 		};
 	}
 	function theBookNotFound(error) {

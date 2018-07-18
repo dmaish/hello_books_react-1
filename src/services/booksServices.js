@@ -4,6 +4,7 @@ export const booksServices = {
 	addBook,
 	getBooks,
 	getBook,
+	editBook,
 	deleteBook
 };
 
@@ -22,7 +23,8 @@ function addBook(book) {
 		.then(handleResponse);
 }
 
-function editBook(book) {
+function editBook(bookData) {
+	let book_id = bookData.book_id;
 	const requestOptions = {
 		method: "PUT",
 		headers: {
@@ -30,9 +32,9 @@ function editBook(book) {
 			AccessControlAllowOrigin:"https://stark-falls-93345.herokuapp.com",
 			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		},
-		body: JSON.stringify(book)
+		body: JSON.stringify(bookData)
 	};
-	return fetch("https://stark-falls-93345.herokuapp.com/books/{book.book_id}",
+	return fetch(`https://stark-falls-93345.herokuapp.com/books/${book_id}`,
 		requestOptions)
 		.then(handleResponse);
 }

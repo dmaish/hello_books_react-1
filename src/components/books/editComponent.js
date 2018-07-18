@@ -7,43 +7,51 @@ class EditBook extends Component{
 		super(props);
 		this.state = {
 			book: {
-				year: "",
-				edition: "",
-				publisher: "",
-				city_published:"",
-				copies:"",
-        loading: false
+				book_details: {
+					year: "",
+					edition: "",
+					publisher: "",
+					city_published:"",
+					copies:"",
+	        loading: false
+				}
 			}
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	handleChange(e){
-		const {name, value} = this.target;
-		const {book} = this.state;
 		this.setState({
-        ...book,
-        [name]: value
+        ...this.state.book,
+        [e.target.name]: e.target.value
 		}
 		);
 	}
 	handleSubmit(e){
 		e.preventDefault();
     const {book} = this.state;
-    const {dispatch} = this.props;
-    dispatch(booksActions.editBook(book))
+		this.props.editBook(book)
 	}
 
   componentDidMount(){
-    const {book_id} = this.props.match.params
+    const {bookId} = this.props.match.params
+		this.props.editBook(bookId).then(() => {
+			const {book} = this.props
+			this.setState({
+				book: Object.assign({}, this.state.book.book_details,
+				{
+					year: book.year,
+					edition: book.edition,
+					publisher: book.publisher,
+					city_published: book.city_published,
+					copies: book.copies,
+					book_id: book.book_id
+				})
+			})
+		})
   }
 
   render(){
-    if (this.state.loading){
-      return(
-        <p>Loading editing....</p>
-      )
-    }
     const {book} = this.state;
     return (
       <form onSubmit={this.handleSubmit} className="form-horizontal">
@@ -58,7 +66,7 @@ class EditBook extends Component{
                 className="form-control"
     						name="publisher"
                 id="publisher"
-                value={book.publisher}
+                value={book.book_details.publisher}
                 placeholder="Enter publisher"
               />
             </div>
@@ -70,7 +78,7 @@ class EditBook extends Component{
                 className="form-control"
     						name="year"
                 id="year"
-                value={book.year}
+                value={book.book_details.year}
                 placeholder="Enter year published"
               />
             </div>
@@ -82,7 +90,7 @@ class EditBook extends Component{
                 className="form-control"
     						name="city_published"
                 id="citypublished"
-                value={book.city_published}
+                value={book.book_details.city_published}
                 placeholder="Enter city published"
               />
             </div>
@@ -94,7 +102,7 @@ class EditBook extends Component{
                 className="form-control"
     						name="edition"
                 id="edition"
-                value={book.edition}
+                value={book.book_details.edition}
                 placeholder="Enter book edition"
               />
             </div>
@@ -106,13 +114,12 @@ class EditBook extends Component{
                 className="form-control"
     						name="copies"
                 id="copies"
-                value={book.copies}
+                value={book.book_details.copies}
                 placeholder="Enter book title"
               />
             </div>
             <div className="d-inline mx-auto center">
             <button type="submit" className="btn btn-primary">Submit</button>
-            {this.props}
     				</div>
     				<br/>
         </div>
@@ -127,4 +134,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(EditBook);
+const mapDispatchToProps = dispatch => {
+	return {
+		editBook: (book) => dispatch(booksActions.editBook(book))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditBook);

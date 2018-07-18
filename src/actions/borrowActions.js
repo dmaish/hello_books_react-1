@@ -10,36 +10,40 @@ export const borrowActions = {
 
 function borrow(book_id) {
 	return dispatch => {
-		dispatch(requestBorrow);
+		borrowServices.borrow(book_id)
+			.then(
+				book => {
+					dispatch(borrowSuccess(book));
+					history.push("/api/v1/dashboard");
+					dispatch(alertActions.success("You have borrowed the book successfully."));
+				}
+			);
 	};
 }
 
-function requestBorrow() {
-
-}
-
-function borrowSuccess(){
-
-}
-
-function borrowFailure(){
-
+function borrowSuccess(book_id){
+	return {
+		type: borrowConstants.BORROW_SUCCESS,
+		book_id
+	};
 }
 
 function returnBook(book_id) {
 	return dispatch => {
-		dispatch(requestReturn);
+		borrowServices.returnBook(book_id)
+			.then(
+				book => {
+					dispatch(returnSuccess(book));
+					history.push("/api/v1/dashboard");
+					dispatch(alertActions.success("You have returned the book successfully."));
+				}
+			);
 	};
 }
 
-function requestReturn(){
-
-}
-
-function returnSuccess(){
-
-}
-
-function returnFailure(){
-
+function returnSuccess(book_id){
+	return {
+		type: borrowConstants.RETURN_SUCCESS,
+		book_id
+	};
 }

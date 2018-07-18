@@ -12,7 +12,7 @@ import UserDashboard from "./components/dashboard/userDashboard";
 import AddBookContainer from "./components/containers/addBookContainer";
 import SingleBook from "./components/page/singleBook";
 import EditBook from "./components/books/editComponent";
-import Logout from "./components/users/logoutContainer";
+import BorrowHistory from "./components/borrow/borrowingHistory";
 
 class Application extends Component {
 	constructor(props) {
@@ -40,7 +40,7 @@ class Application extends Component {
 						<Route path="/api/v1/secret/admin/addbook" component={AddBookContainer}></Route>
 						<Route path="/api/v1/books/:book_id" component={SingleBook}></Route>
 						<Route path="/api/v1/books/:book_id" component={EditBook}></Route>
-						<Route path="/api/v1/auth/logout" component={Logout}></Route>
+						<Route exact path="/api/v1/users/books" component={BorrowHistory}></Route>
 					</div>
 				</Router>
 			</div>

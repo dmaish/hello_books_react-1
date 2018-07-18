@@ -38,7 +38,7 @@ class AddBookContainer extends Component{
     e.preventDefault();
     const {book} = this.state;
     const {dispatch} = this.props;
-    dispatch(booksActions.addBook(book.book_id));
+    dispatch(booksActions.addBook(book));
 	}
   render(){
     const {addingBook} = this.props
