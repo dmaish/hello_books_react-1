@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {borrowHistory} from "../../actions/borrowHistoryActions";
+import {borrowActions} from "../../actions/borrowActions";
 
 class BorrowHistory extends Component{
-  
+
   componentWillMount(){
     this.props.returnBorrowHistory()
   }
@@ -11,7 +12,6 @@ class BorrowHistory extends Component{
   render(){
     let books;
     if (this.props.books.books.all_borrowed_books){
-      console.log("These are the props", this.props);
       books = this.props.books.books.all_borrowed_books.map(
         (book, index) => (
           <tr key={book.book_id}>
@@ -19,57 +19,18 @@ class BorrowHistory extends Component{
             <td>{book.book_id}</td>
             <td>{book.borrow_id}</td>
             <td>{book.returned}</td>
+            <td>
+              <button type="button" className="btn btn-primary"
+              onClick={(e) => {e.preventDefault();this.props.returnBook(book.book_id)}}>
+              Return Book
+              </button>
+            </td>
           </tr>
         )
       )
     }
     return(
-      <div className="col-sm-5">
-      <hr className="my-4"/>
-        <h1 className="text-center">Books Yet To Return</h1>
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Book Title</th>
-                <th scope="col">Borrow Id</th>
-                <th scope="col">Borrowed</th>
-                <th scope="col">Due Date</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <td scope="row">1</td>
-                <td>The Title</td>
-                <td>6521</td>
-                <td>24/08/2017</td>
-                <td>20/09/2017</td>
-                <td>
-                  <button type="button" className="btn btn-primary">Return Book</button>
-                </td>
-              </tr>
-              <tr>
-                <td scope="row">1</td>
-                <td>Heights High</td>
-                <td>6521</td>
-                <td>24/08/2017</td>
-                <td>20/09/2017</td>
-                <td>
-                  <button type="button" className="btn btn-primary">Return Book</button>
-                </td>
-              </tr>
-              <tr>
-                <td scope="row">1</td>
-                <td>Caleb Olemo</td>
-                <td>6521</td>
-                <td>24/08/2017</td>
-                <td>20/09/2017</td>
-                <td>
-                  <button type="button" className="btn btn-primary">Return Book</button>
-                </td>
-              </tr>
-          </tbody>
-        </table>
+      <div>
       <hr className="my-4"/>
         <h1 className="text-center">The Borrowing History.</h1>
         <table className="table table-bordered">
@@ -98,7 +59,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    returnBorrowHistory: () => dispatch(borrowHistory.returnBorrowHistory())
+    returnBorrowHistory: () => dispatch(borrowHistory.returnBorrowHistory()),
+    returnBook: (book_id) => dispatch(borrowActions.returnBook(book_id))
   }
 }
 

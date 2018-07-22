@@ -5,6 +5,7 @@ import logo from "../common/logo.jpg";
 import {booksActions} from "../../actions/booksActions";
 import {borrowActions} from "../../actions/borrowActions";
 import BorrowHistory from "../borrow/borrowingHistory";
+import UnReturnedBooks from "../borrow/unReturned"
 import {userActions} from "../../actions/userActions";
 
 
@@ -66,7 +67,9 @@ class UserDashboard extends Component{
         </ul>
     </nav>
     <div className="row" id="row-1">
+    <div className="col-sm-5">
       <BorrowHistory/>
+      </div>
         <div className="col-sm-7">
           <div id="accordion">
           <hr className="my-4"/>

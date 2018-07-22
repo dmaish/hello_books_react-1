@@ -13,13 +13,11 @@ function returnBorrowHistory() {
 		borrowServices.borrowHistory()
 			.then(
 				books => {
-					console.log("Publish:", books);
 					dispatch(receiveHistory(books));
 
 				},
 				error => {
 					dispatch(historyFailure(error));
-					console.log("the error is", error);
 					dispatch(alertActions.error(error));
 				}
 			);
@@ -53,6 +51,7 @@ function unReturnBooksHistory(){
 			.then(
 				books => {
 					dispatch(receiveUnreturnHistory(books));
+					console.log("unreturned books are:", books);
 				},
 				error => {
 					dispatch(unreturnHistoryFailure(error));
