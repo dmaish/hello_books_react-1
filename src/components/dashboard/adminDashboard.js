@@ -24,8 +24,8 @@ class AdminDashboard extends Component{
             <td>{book.year}</td>
             <td>{book.book_isnb}</td>
             <td>
-              <Link to={`/api/v1/books/${book.book_id}`}>
-                  <button type="button" className="btn btn-success">Edit</button>
+              <Link to={`/api/v1/secret/admin/books/${book.book_id}`}>
+                <button type="button" className="btn btn-success">Edit</button>
               </Link>
             </td>
             <td>

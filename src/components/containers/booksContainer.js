@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {booksActions} from "../actions/booksActions";
-import Nav from "./containers/publicNav";
+import {booksActions} from "../../actions/booksActions";
+import Nav from "./publicNav";
 
 class AllBooks extends Component {
   componentWillMount(){
@@ -11,7 +11,7 @@ class AllBooks extends Component {
 
 	render(){
     if(this.props.books.loading){
-      return (<p>Loading...</p>)
+      return (<p>Loading books...</p>)
     }
     let books;
     if(this.props.books.books.all_books){

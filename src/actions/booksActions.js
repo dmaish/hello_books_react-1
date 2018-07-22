@@ -54,7 +54,7 @@ function addedBookFailure(error){
 function editBook(book) {
 	return dispatch => {
 		dispatch(requestEditBook(book));
-		booksServices.editBook()
+		booksServices.editBook(book)
 			.then(
 				book => {
 					dispatch(editedBook(book));

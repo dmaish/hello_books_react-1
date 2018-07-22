@@ -32,10 +32,7 @@ class LoginContainer extends Component {
 		this.setState({submitted: true});
 		const {user} = this.state;
 		const {dispatch} = this.props;
-
-		if (user.email && user.password) {
-			dispatch(userActions.login(user));
-		}
+		dispatch(userActions.login(user));
 	}
 	render(){
 		const {loggingin} = this.props;

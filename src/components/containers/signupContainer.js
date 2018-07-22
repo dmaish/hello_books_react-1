@@ -35,9 +35,7 @@ class SignUpContainer extends Component {
 		e.preventDefault();
 		const {user} = this.state;
 		const {dispatch} = this.props;
-		if (user.email && user.first_name && user.last_name && user.password && user.username) {
-			dispatch(userActions.register(user));
-		}
+		dispatch(userActions.register(user));
 	}
 	render(){
 		const {registering} = this.props;

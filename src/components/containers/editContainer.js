@@ -7,14 +7,12 @@ class EditBook extends Component{
 		super(props);
 		this.state = {
 			book: {
-				book_details: {
+					book_id:"",
 					year: "",
 					edition: "",
 					publisher: "",
 					city_published:"",
-					copies:"",
-	        loading: false
-				}
+					copies:""
 			}
 		};
 		this.handleChange = this.handleChange.bind(this);
@@ -30,26 +28,37 @@ class EditBook extends Component{
 	handleSubmit(e){
 		e.preventDefault();
     const {book} = this.state;
+		console.log("the book is ", book)
 		this.props.editBook(book)
 	}
 
-  componentDidMount(){
-    const {bookId} = this.props.match.params
-		this.props.editBook(bookId).then(() => {
-			const {book} = this.props
-			this.setState({
-				book: Object.assign({}, this.state.book.book_details,
-				{
-					year: book.year,
-					edition: book.edition,
-					publisher: book.publisher,
-					city_published: book.city_published,
-					copies: book.copies,
-					book_id: book.book_id
-				})
-			})
-		})
-  }
+	componentDidMount(){
+		let bookId = this.props.match.params.book_id
+		console.log("The id is ", bookId);
+		fetch(`https://stark-falls-93345.herokuapp.com/books/${bookId}`)
+			.then(
+				res => res.json()
+			).then(
+				data => {
+					const {book} = this.props
+					console.log("here is the data state", data.book_details);
+					console.log("The details to be updated are:", book);
+					this.setState({
+					book: Object.assign({}, data.book_details,
+						{
+							year: book.year,
+							edition: book.edition,
+							publisher: book.publisher,
+							city_published: book.city_published,
+							copies: book.copies
+						}
+					)
+				})}
+			)
+			.catch(
+				error => console.log(error)
+			);
+	}
 
   render(){
     const {book} = this.state;
@@ -66,7 +75,7 @@ class EditBook extends Component{
                 className="form-control"
     						name="publisher"
                 id="publisher"
-                value={book.book_details.publisher}
+                value={book.publisher}
                 placeholder="Enter publisher"
               />
             </div>
@@ -78,7 +87,7 @@ class EditBook extends Component{
                 className="form-control"
     						name="year"
                 id="year"
-                value={book.book_details.year}
+                value={book.year}
                 placeholder="Enter year published"
               />
             </div>
@@ -90,7 +99,7 @@ class EditBook extends Component{
                 className="form-control"
     						name="city_published"
                 id="citypublished"
-                value={book.book_details.city_published}
+                value={book.city_published}
                 placeholder="Enter city published"
               />
             </div>
@@ -102,7 +111,7 @@ class EditBook extends Component{
                 className="form-control"
     						name="edition"
                 id="edition"
-                value={book.book_details.edition}
+                value={book.edition}
                 placeholder="Enter book edition"
               />
             </div>
@@ -114,7 +123,7 @@ class EditBook extends Component{
                 className="form-control"
     						name="copies"
                 id="copies"
-                value={book.book_details.copies}
+                value={book.copies}
                 placeholder="Enter book title"
               />
             </div>
@@ -136,7 +145,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		editBook: (book) => dispatch(booksActions.editBook(book))
+		editBook: (bookData) => dispatch(booksActions.editBook(bookData)),
+		getBook: (bookId) => dispatch(booksActions.getBook(bookId))
 	}
 }
 
