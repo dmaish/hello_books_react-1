@@ -40,11 +40,10 @@ function borrowHistory() {
 	const requestOptions = {
 		method: "GET",
 		headers: {
-			"Content-Type": "application/json",
 			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		}
 	};
-	return fetch("https://stark-falls-93345.herokuapp.com/users/books",
+	return fetch("https://stark-falls-93345.herokuapp.com/users/books/",
 		requestOptions)
 		.then(
 			handleResponse
@@ -55,7 +54,6 @@ function unReturnedBooks() {
 	const requestOptions = {
 		method: "GET",
 		headers: {
-			"Content-Type": "application/json",
 			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		}
 	};

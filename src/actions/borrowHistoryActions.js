@@ -13,10 +13,13 @@ function returnBorrowHistory() {
 		borrowServices.borrowHistory()
 			.then(
 				books => {
+					console.log("Publish:", books);
 					dispatch(receiveHistory(books));
+
 				},
 				error => {
 					dispatch(historyFailure(error));
+					console.log("the error is", error);
 					dispatch(alertActions.error(error));
 				}
 			);

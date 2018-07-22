@@ -3,23 +3,25 @@ import {connect} from "react-redux";
 import {borrowHistory} from "../../actions/borrowHistoryActions";
 
 class BorrowHistory extends Component{
+  
   componentWillMount(){
     this.props.returnBorrowHistory()
   }
 
   render(){
     let books;
-    if (this.props.books.books){
-      books = this.props.books.books.map((book, index)=>(
-        <tbody>
-        <tr>
-          <td>{index+1}</td>
-          <td>{book.book_id}</td>
-          <td>{book.borrow_id}</td>
-          <td>{book.returned}</td>
-        </tr>
-        </tbody>
-      ))
+    if (this.props.books.books.all_borrowed_books){
+      console.log("These are the props", this.props);
+      books = this.props.books.books.all_borrowed_books.map(
+        (book, index) => (
+          <tr key={book.book_id}>
+            <td>{index+1}</td>
+            <td>{book.book_id}</td>
+            <td>{book.borrow_id}</td>
+            <td>{book.returned}</td>
+          </tr>
+        )
+      )
     }
     return(
       <div className="col-sm-5">
@@ -79,7 +81,9 @@ class BorrowHistory extends Component{
                 <th scope="col">Status</th>
             </tr>
           </thead>
-          {books}
+          <tbody>
+              {books}
+          </tbody>
         </table>
       </div>
     )
