@@ -20,48 +20,57 @@ class EditBook extends Component{
 	}
 	handleChange(e){
 		this.setState({
-        ...this.state.book,
-        [e.target.name]: e.target.value
-		}
-		);
+			book:  Object.assign({}, this.state.book,{
+				[e.target.name]:e.target.value
+			})
+		});
+		console.log(this.state);
 	}
 	handleSubmit(e){
 		e.preventDefault();
     const {book} = this.state;
-		console.log("the book is ", book)
+		console.log(book.edition);
 		this.props.editBook(book)
 	}
 
-	componentDidMount(){
+	componentWillMount(){
 		let bookId = this.props.match.params.book_id
-		console.log("The id is ", bookId);
 		fetch(`https://stark-falls-93345.herokuapp.com/books/${bookId}`)
 			.then(
-				res => res.json()
+				res => {
+					return res.json()
+				}
 			).then(
 				data => {
-					const {book} = this.props
-					console.log("here is the data state", data.book_details);
-					console.log("The details to be updated are:", book);
+
+					const book = data.book_details
+
 					this.setState({
-					book: Object.assign({}, data.book_details,
-						{
-							year: book.year,
-							edition: book.edition,
-							publisher: book.publisher,
-							city_published: book.city_published,
-							copies: book.copies
-						}
-					)
-				})}
+							book: Object.assign({}, data.book_details,{
+									year: book.year,
+									edition: book.edition,
+									publisher: book.publisher,
+									city_published: book.city_published,
+									copies: book.copies
+								}
+							)
+					})
+			}
 			)
 			.catch(
-				error => console.log(error)
+				error => {
+					console.log(error)
+				}
 			);
 	}
 
   render(){
     const {book} = this.state;
+		if(!book.book_id){
+			return (
+				<p>Loadding ..</p>
+			)
+		}
     return (
       <form onSubmit={this.handleSubmit} className="form-horizontal">
         <div className="container col-md-5 offset-md-3" id="nav-bg">

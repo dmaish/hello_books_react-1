@@ -24,9 +24,7 @@ function addBook(book) {
 }
 
 function editBook(bookData) {
-	console.log("Data is ", bookData);
-	// let book_id = this.state.book.book_id;
-	let book_id = 9675;
+	let book_id = bookData.book_id;
 	const requestOptions = {
 		method: "PUT",
 		headers: {
