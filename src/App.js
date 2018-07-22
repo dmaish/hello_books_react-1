@@ -11,7 +11,7 @@ import AdminDashboard from "./components/dashboard/adminDashboard";
 import UserDashboard from "./components/dashboard/userDashboard";
 import AddBookContainer from "./components/containers/addBookContainer";
 import SingleBook from "./components/page/singleBook";
-import EditBook from "./components/books/editComponent";
+import EditBook from "./components/containers/editContainer";
 import BorrowHistory from "./components/borrow/borrowingHistory";
 import {PrivateRoute} from "./helpers/privateRoutes";
 
@@ -40,7 +40,7 @@ class Application extends Component {
 						<PrivateRoute path="/api/v1/secret/admin/dashboard" component={AdminDashboard}></PrivateRoute>
 						<PrivateRoute path="/api/v1/secret/admin/addbook" component={AddBookContainer}></PrivateRoute>
 						<Route path="/api/v1/books/:book_id" component={SingleBook}></Route>
-						<PrivateRoute path="/api/v1/books/:book_id" component={EditBook}></PrivateRoute>
+						<PrivateRoute path="/api/v1/secret/admin/books/:book_id" component={EditBook}></PrivateRoute>
 						<PrivateRoute exact path="/api/v1/users/books" component={BorrowHistory}></PrivateRoute>
 					</div>
 				</Router>
