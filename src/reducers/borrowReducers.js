@@ -52,9 +52,9 @@ export function unReturnedBooksReducer(state = {
 	case borrowConstants.UNRETURNED_REQUEST:
 		return {...state, loading:true};
 	case borrowConstants.UNRETURNED_SUCCESS:
-		return {...state, loading:false, books:actions.books};
+		return {...state, books:actions.books, loading:false};
 	case borrowConstants.UNRETURNED_FAILURE:
-		return {...state, loading:false, error:actions.error};
+		return {...state, error:actions.error, loading:false};
 	default:
 		return state;
 	}

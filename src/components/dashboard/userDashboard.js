@@ -19,7 +19,7 @@ class UserDashboard extends Component{
     let books;
     if (this.props.books.books.all_books){
       books = this.props.books.books.all_books.map((book, index) =>
-        <tr>
+        <tr key={book.book_id}>
           <th scope="row">{index+1}</th>
           <td>{book.book_title}</td>
           <td>{book.authors}</td>
@@ -50,7 +50,7 @@ class UserDashboard extends Component{
             </li>
             <li className="nav-item dropdown">
                 <Link to="" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">Menu</Link>
+                   aria-expanded="false">Menu</ Link>
                 <div className="dropdown-menu">
                     <Link to="/api/v1/users/profile" className="dropdown-item">Return Book</Link>
                     <Link to="/api/v1/users/messages" className="dropdown-item">Messages</Link>
@@ -68,7 +68,8 @@ class UserDashboard extends Component{
     </nav>
     <div className="row" id="row-1">
     <div className="col-sm-5">
-      <BorrowHistory/>
+        <UnReturnedBooks/>
+        <BorrowHistory/>
       </div>
         <div className="col-sm-7">
           <div id="accordion">

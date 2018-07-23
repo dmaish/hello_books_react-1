@@ -50,8 +50,8 @@ function unReturnBooksHistory(){
 		borrowServices.unReturnedBooks()
 			.then(
 				books => {
+					console.log("The books are", books);
 					dispatch(receiveUnreturnHistory(books));
-					console.log("unreturned books are:", books);
 				},
 				error => {
 					dispatch(unreturnHistoryFailure(error));
@@ -63,20 +63,20 @@ function unReturnBooksHistory(){
 
 function requestUnreturnHistory(){
 	return {
-		type: borrowConstants.BORROW_HISTORY_REQUEST
+		type: borrowConstants.UNRETURNED_REQUEST
 	};
 }
 
 function receiveUnreturnHistory(books) {
 	return {
-		type: borrowConstants.BORROW_HISTORY_SUCCESS,
+		type: borrowConstants.UNRETURNED_SUCCESS,
 		books
 	};
 }
 
 function unreturnHistoryFailure(error) {
 	return {
-		type: borrowConstants.BORROW_HISTORY_FAILURE,
+		type: borrowConstants.UNRETURNED_FAILURE,
 		error
 	};
 }

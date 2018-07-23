@@ -15,16 +15,10 @@ class BorrowHistory extends Component{
       books = this.props.books.books.all_borrowed_books.map(
         (book, index) => (
           <tr key={book.book_id}>
-            <td>{index+1}</td>
+            <th scope="row">{index+1}</th>
             <td>{book.book_id}</td>
             <td>{book.borrow_id}</td>
             <td>{book.returned}</td>
-            <td>
-              <button type="button" className="btn btn-primary"
-              onClick={(e) => {e.preventDefault();this.props.returnBook(book.book_id)}}>
-              Return Book
-              </button>
-            </td>
           </tr>
         )
       )
@@ -59,8 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    returnBorrowHistory: () => dispatch(borrowHistory.returnBorrowHistory()),
-    returnBook: (book_id) => dispatch(borrowActions.returnBook(book_id))
+    returnBorrowHistory: () => dispatch(borrowHistory.returnBorrowHistory())
   }
 }
 
