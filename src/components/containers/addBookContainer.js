@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
 import {booksActions} from "../../actions/booksActions";
 import {connect} from "react-redux";
 

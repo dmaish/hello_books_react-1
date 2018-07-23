@@ -66,13 +66,7 @@ function unReturnedBooks() {
 
 function handleResponse(response) {
 	if(!response.ok) {
-		response.json().then(data=>{
-			console.log(data);
-		}).catch(err=>{
-			console.log(err);
-		});
 		return Promise.reject(response.statusText);
-
 	}
 	return response.json();
 }

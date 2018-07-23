@@ -50,7 +50,6 @@ function unReturnBooksHistory(){
 		borrowServices.unReturnedBooks()
 			.then(
 				books => {
-					console.log("The books are", books);
 					dispatch(receiveUnreturnHistory(books));
 				},
 				error => {

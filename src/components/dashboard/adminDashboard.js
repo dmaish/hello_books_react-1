@@ -13,7 +13,6 @@ class AdminDashboard extends Component{
 
   render() {
     let books;
-    const {dispatch} = this.props
     if (this.props.books.books.all_books){
       books = this.props.books.books.all_books.map((book, index) =>
         <tr>
@@ -83,25 +82,25 @@ class AdminDashboard extends Component{
               </thead>
               <tbody>
               <tr>
-                <td scope="row">1</td>
+                <td>1</td>
                 <td>Ezrqn</td>
                 <td>23</td>
                 <td>3</td>
               </tr>
               <tr>
-                <td scope="row">2</td>
+                <td>2</td>
                 <td>JohnDoe</td>
                 <td>10</td>
                 <td>1</td>
               </tr>
               <tr>
-                <td scope="row">3</td>
+                <td>3</td>
                 <td>Samjunior</td>
                 <td>2</td>
                 <td>0</td>
               </tr>
               <tr>
-                <td scope="row">4</td>
+                <td>4</td>
                 <td>Marlone</td>
                 <td>34</td>
                 <td>2</td>

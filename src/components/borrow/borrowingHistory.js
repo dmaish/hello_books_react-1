@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {borrowHistory} from "../../actions/borrowHistoryActions";
-import {borrowActions} from "../../actions/borrowActions";
 
 class BorrowHistory extends Component{
 
