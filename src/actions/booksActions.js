@@ -100,7 +100,8 @@ function getBooks() {
 		booksServices.getBooks()
 			.then(
 				books => {
-					dispatch(receiveBooks(books.all_books));
+					console.log("------->", books);
+					dispatch(receiveBooks(books));
 					dispatch(alertActions.success(books.message));
 				},
 				error => {

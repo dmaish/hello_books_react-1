@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {booksActions} from "../../actions/booksActions";
 import Nav from "./publicNav";
+import Pagination from "../common/pagination";
 
 class AllBooks extends Component {
   componentWillMount(){
@@ -14,8 +15,8 @@ class AllBooks extends Component {
       return (<p>Loading books...</p>)
     }
     let books;
-    if(this.props.books.books){
-     books = this.props.books.books.map(book=>(
+    if(this.props.books.books.all_books){
+     books = this.props.books.books.all_books.map(book=>(
        <div className="col-md-4">
          <div className="card-body" key={book.book_id}>
            <h5>{`Title: ${book.book_title}`}</h5>

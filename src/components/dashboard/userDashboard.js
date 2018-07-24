@@ -17,8 +17,8 @@ class UserDashboard extends Component{
 
   render() {
     let books;
-    if (this.props.books.books){
-      books = this.props.books.books.map((book, index) =>
+    if (this.props.books.books.all_books){
+      books = this.props.books.books.all_books.map((book, index) =>
         <tr key={book.book_id}>
           <th scope="row">{index+1}</th>
           <td>{book.book_title}</td>

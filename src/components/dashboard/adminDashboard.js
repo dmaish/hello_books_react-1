@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
 import {booksActions} from "../../actions/booksActions";
 import {userActions} from "../../actions/userActions";
+import Pagination from "../common/pagination";
 
 class AdminDashboard extends Component{
 
@@ -13,8 +14,8 @@ class AdminDashboard extends Component{
 
   render() {
     let books;
-    if (this.props.books.books){
-      books = this.props.books.books.map((book, index) =>
+    if (this.props.books.books.all_books){
+      books = this.props.books.books.all_books.map((book, index) =>
         <tr>
             <th scope="row">{index+1}</th>
             <td>{book.book_title}</td>
@@ -138,6 +139,7 @@ class AdminDashboard extends Component{
                       {books}
                     </tbody>
                 </table>
+                <Pagination/>
             </div>
         </div>
     </div>
