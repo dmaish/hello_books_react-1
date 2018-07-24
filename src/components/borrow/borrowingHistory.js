@@ -10,8 +10,8 @@ class BorrowHistory extends Component{
 
   render(){
     let books;
-    if (this.props.books.books.all_borrowed_books){
-      books = this.props.books.books.all_borrowed_books.map(
+    if (this.props.books.books){
+      books = this.props.books.books.map(
         (book, index) => (
           <tr key={book.book_id}>
             <th scope="row">{index+1}</th>

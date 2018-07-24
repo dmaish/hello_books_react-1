@@ -13,7 +13,7 @@ function returnBorrowHistory() {
 		borrowServices.borrowHistory()
 			.then(
 				books => {
-					dispatch(receiveHistory(books));
+					dispatch(receiveHistory(books.all_borrowed_books));
 					dispatch(alertActions.success(books.message));
 				},
 				error => {
@@ -52,7 +52,7 @@ function unReturnBooksHistory(){
 		borrowServices.unReturnedBooks()
 			.then(
 				books => {
-					dispatch(receiveUnreturnHistory(books));
+					dispatch(receiveUnreturnHistory(books.un_returned_books));
 					dispatch(alertActions.success(books.message));
 				},
 				error => {

@@ -55,7 +55,7 @@ function login(user) {
 				user => {
 					dispatch(successLogin(user));
 					localStorage.setItem("access_token", JSON.stringify(user.access_token));
-					history.push("/api/v1/dashboard");
+					history.push("/api/v1/secret/admin/dashboard");
 					dispatch(alertActions.success(user.message));
 				},
 				error => {
@@ -94,15 +94,10 @@ function login(user) {
 
 function logout() {
 	return dispatch => {
-		userServices.logout()
-			.then(
-				user => {
-					dispatch(logoutUser(user));
-					localStorage.removeItem("access_token");
-					history.push("/api/v1/auth/login");
-					dispatch(alertActions.success(user.message));
-				}
-			);
+		userServices.logout();
+		dispatch(logoutUser());
+		localStorage.removeItem("access_token");
+		history.push("/api/v1/auth/login");
 	};
 }
 

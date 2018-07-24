@@ -10,9 +10,8 @@ class UnReturnedBooks extends Component{
 
   render(){
     let books;
-    if (this.props.books.books.un_returned_books){
-      console.log("The props are", this.props.books.books.un_returned_books);
-      books = this.props.books.books.un_returned_books.map(
+    if (this.props.books.books){
+      books = this.props.books.books.map(
         (book, index) => (
           <tr key={book.book_id}>
             <th scope="row">{index+1}</th>
@@ -52,7 +51,6 @@ class UnReturnedBooks extends Component{
 }
 
 const mapStateToProps = (state) => {
-  console.log('unReturnedBooksReducer---->', state.unReturnedBooksReducer);
   return {
     books: state.unReturnedBooksReducer
   }
