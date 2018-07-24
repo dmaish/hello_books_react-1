@@ -72,7 +72,7 @@ function deleteBook(book_id) {
 
 function handleResponse(response) {
 	if(!response.ok) {
-		return Promise.reject(response.statusText);
+		return Promise.reject(response.json());
 
 	}
 	return response.json();

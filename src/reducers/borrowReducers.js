@@ -3,6 +3,7 @@ import {borrowConstants} from "../actions/borrowTypes";
 export function borrowReducer(state = {
 	borrowing: false,
 	book_id: "",
+	books:[],
 	error: {}
 }, actions){
 	switch(actions.type) {

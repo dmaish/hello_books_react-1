@@ -15,7 +15,7 @@ function borrow(book_id) {
 				book => {
 					dispatch(borrowSuccess(book));
 					history.push("/api/v1/dashboard");
-					dispatch(alertActions.success("You have borrowed the book successfully."));
+					dispatch(alertActions.success(book.message));
 				}
 			);
 	};
@@ -35,7 +35,7 @@ function returnBook(book_id) {
 				book => {
 					dispatch(returnSuccess(book));
 					history.push("/api/v1/dashboard");
-					dispatch(alertActions.success("You have returned the book successfully."));
+					dispatch(alertActions.success(book.message));
 				}
 			);
 	};

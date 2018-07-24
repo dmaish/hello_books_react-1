@@ -14,11 +14,13 @@ function returnBorrowHistory() {
 			.then(
 				books => {
 					dispatch(receiveHistory(books));
-
+					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					dispatch(historyFailure(error));
-					dispatch(alertActions.error(error));
+					error.then(response => {
+						dispatch(historyFailure(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -51,10 +53,13 @@ function unReturnBooksHistory(){
 			.then(
 				books => {
 					dispatch(receiveUnreturnHistory(books));
+					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					dispatch(unreturnHistoryFailure(error));
-					dispatch(alertActions.error(error));
+					error.then(response => {
+						dispatch(unreturnHistoryFailure(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};

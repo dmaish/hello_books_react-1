@@ -17,12 +17,13 @@ function register(user) {
 				user => {
 					dispatch(successRegister(user));
 					history.push("/api/v1/auth/login");
-					dispatch(alertActions.success(
-						"Registration successfull."));
+					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					dispatch(failureRegister(error));
-					dispatch(alertActions.error(error));
+					error.then(response => {
+						dispatch(failureRegister(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -55,13 +56,13 @@ function login(user) {
 					dispatch(successLogin(user));
 					localStorage.setItem("access_token", JSON.stringify(user.access_token));
 					history.push("/api/v1/dashboard");
-					dispatch(alertActions.success(
-						"You have logged in successfully."
-					));
+					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					dispatch(failureLogin(error));
-					dispatch(alertActions.error(error));
+					error.then(response => {
+						dispatch(failureLogin(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -93,13 +94,15 @@ function login(user) {
 
 function logout() {
 	return dispatch => {
-		userServices.logout();
-		dispatch(logoutUser());
-		localStorage.removeItem("access_token");
-		history.push("/api/v1/auth/login");
-		dispatch(alertActions.success(
-			"You have logged out successfully."
-		));
+		userServices.logout()
+			.then(
+				user => {
+					dispatch(logoutUser(user));
+					localStorage.removeItem("access_token");
+					history.push("/api/v1/auth/login");
+					dispatch(alertActions.success(user.message));
+				}
+			);
 	};
 }
 
