@@ -23,9 +23,11 @@ class UserDashboard extends Component{
           <th scope="row">{index+1}</th>
           <td>{book.book_title}</td>
           <td>{book.authors}</td>
+          <td>{book.book_edition}</td>
           <td>{book.publisher}</td>
           <td>{book.year}</td>
           <td>{book.book_isnb}</td>
+          <td>{book.copies}</td>
           <td>
               <button type="button" className="btn btn-info"
               onClick={ (e) => {e.preventDefault();this.props.borrow(book.book_id)}}>Borrow Book
@@ -81,9 +83,11 @@ class UserDashboard extends Component{
                     <th scope="col">#</th>
                     <th scope="col">Book Title</th>
                     <th scope="col">Authors</th>
+                    <th scope="col">Ed</th>
                     <th scope="col">Publisher</th>
                     <th scope="col">Year</th>
                     <th scope="col">ISNB</th>
+                    <th scope="col">Copies</th>
                 </tr>
                 </thead>
                 <tbody>

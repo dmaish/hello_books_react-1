@@ -19,9 +19,11 @@ class AdminDashboard extends Component{
             <th scope="row">{index+1}</th>
             <td>{book.book_title}</td>
             <td>{book.authors}</td>
+            <td>{book.book_edition}</td>
             <td>{book.publisher}</td>
             <td>{book.year}</td>
             <td>{book.book_isnb}</td>
+            <td>{book.copies}</td>
             <td>
               <Link to={`/api/v1/secret/admin/books/${book.book_id}`}>
                 <button type="button" className="btn btn-success">Edit</button>
@@ -118,9 +120,11 @@ class AdminDashboard extends Component{
                         <th scope="col">#</th>
                         <th scope="col">Book Title</th>
                         <th scope="col">Authors</th>
+                        <th scope="col">Edition</th>
                         <th scope="col">Publisher</th>
                         <th scope="col">Year</th>
                         <th scope="col">ISNB</th>
+                        <th scope="col">Copies</th>
                         <th scope="col" colspan="2">
                           <Link to="/api/v1/secret/admin/addbook">
                             <center>
