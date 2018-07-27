@@ -5,6 +5,7 @@ import logo from "../common/logo.jpg";
 import {booksActions} from "../../actions/booksActions";
 import {userActions} from "../../actions/userActions";
 import Pagination from "../common/pagination";
+import UsersList from "../containers/usersListContainer";
 
 class AdminDashboard extends Component{
 
@@ -71,46 +72,7 @@ class AdminDashboard extends Component{
         </ul>
     </nav>
     <div className="row" id="row-1">
-        <div className="col-sm-4">
-        <hr className="my-4"/>
-          <h1 className="text-center">All Users</h1>
-            <table className="table table-sm">
-              <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Username</th>
-                <th scope="col">Books Borrowed</th>
-                <th scope="col">Books Unreturned</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>1</td>
-                <td>Ezrqn</td>
-                <td>23</td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>JohnDoe</td>
-                <td>10</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Samjunior</td>
-                <td>2</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Marlone</td>
-                <td>34</td>
-                <td>2</td>
-              </tr>
-              </tbody>
-            </table>
-        </div>
+        <UsersList/>
         <div className="col-sm-8">
             <div id="accordion">
                 <hr className="my-4"/>
