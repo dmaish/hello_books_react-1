@@ -55,8 +55,15 @@ function login(user) {
 				user => {
 					dispatch(successLogin(user));
 					localStorage.setItem("access_token", JSON.stringify(user.access_token));
-					history.push("/api/v1/secret/admin/dashboard");
-					dispatch(alertActions.success(user.message));
+					if (user.email.endsWith("@hellobookslibrary.com")){
+						history.push("/api/v1/secret/admin/dashboard");
+						dispatch(alertActions.success(user.message));
+					}
+					else {
+						history.push("/api/v1/dashboard");
+						dispatch(alertActions.success(user.message));
+					}
+
 				},
 				error => {
 					error.then(response => {
