@@ -4,6 +4,7 @@ import {registration, login, logoutReducer} from "./userReducer";
 import {borrowReducer, returnBookReducer, borrowHistoryReducer, unReturnedBooksReducer} from "./borrowReducers";
 import {getBooks, addBook, gettingBook, editingBook, deletingBookReducer} from "./booksReducers";
 import {usersListReducer} from "./usersListReducers";
+import {searchReducers} from "./searchReducers";
 import {alert} from "./alertReducer";
 
 const rootReducer = combineReducers({
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
 	editingBook,
 	addBook,
 	deletingBookReducer,
-	usersListReducer
+	usersListReducer,
+	searchReducers
 });
 
 export default rootReducer;

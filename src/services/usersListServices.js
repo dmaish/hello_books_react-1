@@ -5,7 +5,7 @@ export const usersList = () => {
 		method:"GET",
 		headers: {"Authorization": `Bearer ${accessToken()["access_token"]}`}
 	};
-	return fetch("https://stark-falls-93345.herokuapp.com//admin/users/",
+	return fetch("https://stark-falls-93345.herokuapp.com/admin/users/",
 		requestOptions)
 		.then(handleResponse);
 };
