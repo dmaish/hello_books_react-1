@@ -7,12 +7,14 @@ class EditBook extends Component{
 		super(props);
 		this.state = {
 			book: {
-					book_id:"",
-					year: "",
-					edition: "",
-					publisher: "",
-					city_published:"",
-					copies:""
+				book_title: "",
+				authors: "",
+				year: "",
+				edition: "",
+				city_published: "",
+				book_isnb: "",
+				publisher: "",
+				copies: "",
 			}
 		};
 		this.handleChange = this.handleChange.bind(this);
@@ -47,9 +49,12 @@ class EditBook extends Component{
 
 					this.setState({
 							book: Object.assign({}, data.book_details,{
+									book_title: book.book_title,
+									authors: book.authors,
 									year: book.year,
 									edition: book.edition,
 									publisher: book.publisher,
+									book_isnb: book.book_isnb,
 									city_published: book.city_published,
 									copies: book.copies
 								}
@@ -76,6 +81,30 @@ class EditBook extends Component{
         <div className="container col-md-5 offset-md-3" id="nav-bg">
             <br />
             <h4 className="text-center">Fill the form to edit book</h4>
+						<div className="form-group">
+								<label htmlFor="book_title">Book Title</label>
+								<input
+										type="text"
+										onChange={this.handleChange}
+										className="form-control"
+										name="book_title"
+										id="book_title"
+										value={book.book_title}
+										placeholder="Enter book Title"
+								/>
+						</div>
+						<div className="form-group">
+								<label htmlFor="authors">Book Title</label>
+								<input
+										type="text"
+										onChange={this.handleChange}
+										className="form-control"
+										name="authors"
+										id="authors"
+										value={book.authors}
+										placeholder="Enter authors"
+								/>
+						</div>
             <div className="form-group">
               <label htmlFor="publisher">Publisher</label>
               <input
@@ -112,6 +141,18 @@ class EditBook extends Component{
                 placeholder="Enter city published"
               />
             </div>
+						<div className="form-group">
+								<label htmlFor="book_isnb">Book Title</label>
+								<input
+										type="text"
+										onChange={this.handleChange}
+										className="form-control"
+										name="book_isnb"
+										id="book_isnb"
+										value={book.book_isnb}
+										placeholder="Enter book isnb"
+								/>
+						</div>
             <div className="form-group">
               <label htmlFor="edition">Edition</label>
               <input
