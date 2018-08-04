@@ -1,3 +1,7 @@
+/**
+*  The component that displays all books
+*/
+
 import React from "react";
 import UserNav from "../borrow/nav";
 import BreakLine from "../common/break";

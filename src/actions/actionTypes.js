@@ -1,3 +1,7 @@
+/**
+*  Contains all the types actions for user, books and user lists reducers/actions
+*/
+
 export const userConstants = {
 	REGISTER_REQUEST: "USERS_REGISTER_REQUEST",
 	REGISTER_SUCCESS: "USERS_REGISTER_SUCCESS",
@@ -22,4 +26,10 @@ export const booksConstants = {
 	EDIT_BOOK_REQUEST: "EDIT_BOOK_REQUEST",
 	EDIT_BOOK_SUCCESS: "EDIT_BOOK_SUCCESS",
 	EDIT_BOOK_FAILURE: "EDIT_BOOK_FAILURE"
+};
+
+export const usersListsTypes = {
+	USERS_REQUEST: "USERS_LIST_REQUEST",
+	USERS_SUCCESS: "USERS_LIST_SUCCESS",
+	USERS_FAILURE: "USERS_LIST_FAILURE"
 };

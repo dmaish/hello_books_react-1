@@ -1,3 +1,7 @@
+/**
+* It contains registration, login, logout and reset password reducers
+*/
+
 import {userConstants} from "../actions/actionTypes";
 
 export function registration(state = {}, {type}) {

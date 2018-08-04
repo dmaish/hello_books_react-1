@@ -1,3 +1,7 @@
+/**
+*  The container containing books that are recently borrowed
+*/
+
 import React from "react";
 import cottage from "../../assets/images/cottage.jpg";
 import eight from "../../assets/images/eight.jpg";

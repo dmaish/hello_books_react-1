@@ -1,3 +1,8 @@
+/**
+*  Actions triggerred when user is registering, logging in
+* Resetting password and logging out
+*/
+
 import {userConstants} from "./actionTypes";
 import {userServices} from "../services/userServices";
 import {alertActions} from "./alertActions";
@@ -17,12 +22,13 @@ function register(user) {
 				user => {
 					dispatch(successRegister(user));
 					history.push("/api/v1/auth/login");
-					dispatch(alertActions.success(
-						"Registration successfull."));
+					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					dispatch(failureRegister(error));
-					dispatch(alertActions.error(error));
+					error.then(response => {
+						dispatch(failureRegister(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -54,14 +60,25 @@ function login(user) {
 				user => {
 					dispatch(successLogin(user));
 					localStorage.setItem("access_token", JSON.stringify(user.access_token));
-					history.push("/api/v1/secret/admin/dashboard");
-					dispatch(alertActions.success(
-						"You have logged in successfully."
-					));
+					if (user.email.endsWith("@hellobookslibrary.com")){
+						history.push("/api/v1/secret/admin/dashboard");
+						dispatch(alertActions.success(user.message));
+					}
+					else {
+						history.push("/api/v1/dashboard");
+						dispatch(alertActions.success(user.message));
+					}
+
 				},
 				error => {
-					dispatch(failureLogin(error));
-					dispatch(alertActions.error(error));
+					if (error.message == "Failed to fetch"){
+						console.log("Network Problems");
+					}
+					else(
+						error.then(response => {
+							dispatch(failureLogin(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
@@ -97,9 +114,6 @@ function logout() {
 		dispatch(logoutUser());
 		localStorage.removeItem("access_token");
 		history.push("/api/v1/auth/login");
-		dispatch(alertActions.success(
-			"You have logged out successfully."
-		));
 	};
 }
 

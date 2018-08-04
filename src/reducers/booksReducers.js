@@ -1,3 +1,9 @@
+/** 
+* It contains getting book/books, adding book, editing book
+* and delete book reducers
+*/
+
+
 import {booksConstants} from "../actions/actionTypes";
 
 export function getBooks(state = {

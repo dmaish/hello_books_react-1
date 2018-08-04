@@ -1,3 +1,8 @@
+/**
+*  The container contains navbar to be rendered in the landing page
+* Also rendered in any public urls
+*/
+
 import React from "react";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";

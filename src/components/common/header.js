@@ -1,3 +1,7 @@
+/**
+*  The headern container of the application landing page
+*/
+
 import React from "react";
 import {Link} from "react-router-dom"
 import library1 from "./library1.jpg";

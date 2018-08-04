@@ -1,3 +1,7 @@
+/**
+*  Actions triggerred when user borrow book, return book 
+*/
+
 import {borrowConstants} from "./borrowTypes";
 import {borrowServices} from "../services/borrowServices";
 import {alertActions} from "./alertActions";
@@ -13,18 +17,18 @@ function borrow(book_id) {
 		borrowServices.borrow(book_id)
 			.then(
 				book => {
-					dispatch(borrowSuccess(book));
+					dispatch(borrowSuccess(book.book_borrowed));
 					history.push("/api/v1/dashboard");
-					dispatch(alertActions.success("You have borrowed the book successfully."));
+					dispatch(alertActions.success(book.message));
 				}
 			);
 	};
 }
 
-function borrowSuccess(book_id){
+function borrowSuccess(book){
 	return {
 		type: borrowConstants.BORROW_SUCCESS,
-		book_id
+		book
 	};
 }
 
@@ -33,17 +37,17 @@ function returnBook(book_id) {
 		borrowServices.returnBook(book_id)
 			.then(
 				book => {
-					dispatch(returnSuccess(book));
+					dispatch(returnSuccess(book.book_borrowed));
 					history.push("/api/v1/dashboard");
-					dispatch(alertActions.success("You have returned the book successfully."));
+					dispatch(alertActions.success(book.message));
 				}
 			);
 	};
 }
 
-function returnSuccess(book_id){
+function returnSuccess(book){
 	return {
 		type: borrowConstants.RETURN_SUCCESS,
-		book_id
+		book
 	};
 }

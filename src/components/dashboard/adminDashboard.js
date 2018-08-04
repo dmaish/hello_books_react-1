@@ -1,9 +1,16 @@
+/**
+* Admin dashboard
+* Admin can add a book, edit a book, delete a book and get all users
+*/
+
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
 import {booksActions} from "../../actions/booksActions";
 import {userActions} from "../../actions/userActions";
+import Pagination from "../common/pagination";
+import UsersList from "../containers/usersListContainer";
 
 class AdminDashboard extends Component{
 
@@ -13,25 +20,56 @@ class AdminDashboard extends Component{
 
   render() {
     let books;
-    const {dispatch} = this.props
     if (this.props.books.books.all_books){
       books = this.props.books.books.all_books.map((book, index) =>
         <tr>
             <th scope="row">{index+1}</th>
             <td>{book.book_title}</td>
             <td>{book.authors}</td>
+            <td>{book.book_edition}</td>
             <td>{book.publisher}</td>
             <td>{book.year}</td>
             <td>{book.book_isnb}</td>
+            <td>{book.copies}</td>
             <td>
               <Link to={`/api/v1/secret/admin/books/${book.book_id}`}>
                 <button type="button" className="btn btn-success">Edit</button>
               </Link>
             </td>
             <td>
-              <button className="btn btn-danger" type="button"
-              onClick={ (e) => {e.preventDefault();this.props.deleteBook(book.book_id)} }>Delete
-              </button>
+
+
+
+
+
+            <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+              Delete
+            </button>
+
+            <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">About to delete a Book</h5>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div className="modal-body">
+                    Are you sure you want to delete this book?
+                  </div>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button className="btn btn-danger" type="button"
+                    onClick={ (e) => {e.preventDefault();this.props.deleteBook(book.book_id)} }>Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
             </td>
         </tr>
       )
@@ -69,46 +107,7 @@ class AdminDashboard extends Component{
         </ul>
     </nav>
     <div className="row" id="row-1">
-        <div className="col-sm-4">
-        <hr className="my-4"/>
-          <h1 className="text-center">All Users</h1>
-            <table className="table table-sm">
-              <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Username</th>
-                <th scope="col">Books Borrowed</th>
-                <th scope="col">Books Unreturned</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td scope="row">1</td>
-                <td>Ezrqn</td>
-                <td>23</td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td scope="row">2</td>
-                <td>JohnDoe</td>
-                <td>10</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td scope="row">3</td>
-                <td>Samjunior</td>
-                <td>2</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td scope="row">4</td>
-                <td>Marlone</td>
-                <td>34</td>
-                <td>2</td>
-              </tr>
-              </tbody>
-            </table>
-        </div>
+        <UsersList/>
         <div className="col-sm-8">
             <div id="accordion">
                 <hr className="my-4"/>
@@ -119,9 +118,11 @@ class AdminDashboard extends Component{
                         <th scope="col">#</th>
                         <th scope="col">Book Title</th>
                         <th scope="col">Authors</th>
+                        <th scope="col">Edition</th>
                         <th scope="col">Publisher</th>
                         <th scope="col">Year</th>
                         <th scope="col">ISNB</th>
+                        <th scope="col">Copies</th>
                         <th scope="col" colspan="2">
                           <Link to="/api/v1/secret/admin/addbook">
                             <center>
@@ -135,6 +136,7 @@ class AdminDashboard extends Component{
                       {books}
                     </tbody>
                 </table>
+                <Pagination/>
             </div>
         </div>
     </div>

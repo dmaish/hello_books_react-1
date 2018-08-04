@@ -1,3 +1,8 @@
+/**
+*  Actions triggerred when getting borrowing history or
+* books borrowed but yet to return
+*/
+
 import {borrowConstants} from "./borrowTypes";
 import {borrowServices} from "../services/borrowServices";
 import {alertActions} from "./alertActions";
@@ -13,11 +18,14 @@ function returnBorrowHistory() {
 		borrowServices.borrowHistory()
 			.then(
 				books => {
-					dispatch(receiveHistory(books));
+					dispatch(receiveHistory(books.all_borrowed_books));
+					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					dispatch(historyFailure(error));
-					dispatch(alertActions.error(error));
+					error.then(response => {
+						dispatch(historyFailure(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -49,11 +57,14 @@ function unReturnBooksHistory(){
 		borrowServices.unReturnedBooks()
 			.then(
 				books => {
-					dispatch(receiveUnreturnHistory(books));
+					dispatch(receiveUnreturnHistory(books.un_returned_books));
+					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					dispatch(unreturnHistoryFailure(error));
-					dispatch(alertActions.error(error));
+					error.then(response => {
+						dispatch(unreturnHistoryFailure(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -61,20 +72,20 @@ function unReturnBooksHistory(){
 
 function requestUnreturnHistory(){
 	return {
-		type: borrowConstants.BORROW_HISTORY_REQUEST
+		type: borrowConstants.UNRETURNED_REQUEST
 	};
 }
 
 function receiveUnreturnHistory(books) {
 	return {
-		type: borrowConstants.BORROW_HISTORY_SUCCESS,
+		type: borrowConstants.UNRETURNED_SUCCESS,
 		books
 	};
 }
 
 function unreturnHistoryFailure(error) {
 	return {
-		type: borrowConstants.BORROW_HISTORY_FAILURE,
+		type: borrowConstants.UNRETURNED_FAILURE,
 		error
 	};
 }

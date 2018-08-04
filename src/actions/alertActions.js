@@ -1,3 +1,7 @@
+/**
+*  Actions triggerred when alert is dispatched
+*/
+
 import {alertConstants} from "./alertTypes";
 
 export const alertActions = {

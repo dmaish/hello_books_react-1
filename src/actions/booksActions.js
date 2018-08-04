@@ -1,3 +1,7 @@
+/**
+*  Actions triggerred when book is added, edited, deleted
+* or when getting book or books
+*/
 
 import {booksServices} from "../services/booksServices";
 import {booksConstants} from "./actionTypes";
@@ -20,11 +24,13 @@ function addBook(book) {
 				book => {
 					dispatch(addedBook(book));
 					history.push("/api/v1/secret/admin/dashboard");
-					dispatch(alertActions.success("Added book successfully."));
+					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					dispatch(addedBookFailure(error));
-					dispatch(alertActions.error(error));
+					error.then(response => {
+						dispatch(addedBookFailure(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -59,11 +65,13 @@ function editBook(book) {
 				book => {
 					dispatch(editedBook(book));
 					history.push("/api/v1/secret/admin/dashboard");
-					dispatch(alertActions.success("Edited Book successfully."));
+					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					dispatch(editBookFailure(error));
-					dispatch(alertActions.error(error));
+					error.then(response => {
+						dispatch(editBookFailure(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -97,10 +105,13 @@ function getBooks() {
 			.then(
 				books => {
 					dispatch(receiveBooks(books));
+					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					dispatch(failureBooks(error));
-					dispatch(alertActions.error(error));
+					error.then(response => {
+						dispatch(failureBooks(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 
 			);
@@ -131,11 +142,13 @@ function getBook(book_id) {
 			.then(
 				book => {
 					dispatch(receiveBook(book));
-					dispatch(alertActions.success("Book was found successfully."));
+					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					dispatch(theBookNotFound(error));
-					dispatch(alertActions.error(error));
+					error.then(response => {
+						dispatch(theBookNotFound(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -165,7 +178,7 @@ function deleteBook(book_id){
 				book => {
 					dispatch(deleteBookSuccess(book));
 					history.push("/api/v1/secret/admin/dashboard");
-					dispatch(alertActions.success("Book was deleted successfully."));
+					dispatch(alertActions.success(book.message));
 				}
 			);
 	};
