@@ -1,0 +1,14 @@
+language:
+  - node_js
+node_js:
+  - stable
+cache:
+  directories:
+    - node_modules
+install:
+  - yarn install
+  - yarn install --dev coveralls
+script:
+  - yarn test --coverage
+after_success:
+  -yarn run coveralls
