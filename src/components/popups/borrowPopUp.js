@@ -1,3 +1,8 @@
+/**
+*  A pop up component for user to borrow.
+* Allow user to check on book before borrow
+*/
+
 import React, {Component} from "react";
 
 

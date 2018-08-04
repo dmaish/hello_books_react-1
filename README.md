@@ -40,7 +40,12 @@ Built with
 
 # Installation
 
+Clone Repo
+
 `git clone https://github.com/ezrqnkemboi/hello_books_react.git`
+
+Change Directory
+
 `cd hello_books_react`
 
 Install Dependancies
@@ -68,8 +73,12 @@ Link: https://ezrqnkemboi.github.io/hello_books_designs/
 # What Should be Noted
 
 Admin email should end with @hellobookslibrary.com
-If in case you need to use other emails for admin... Please change decorator in flask
-https://github.com/ezrqnkemboi/hello_books/blob/master/app/helpers/decorators.py
+
+If in case you need to use other emails for admin... 
+
+Please change decorator in flask.
+
+Link: https://github.com/ezrqnkemboi/hello_books/blob/master/app/helpers/decorators.py
 
 # Credits
 

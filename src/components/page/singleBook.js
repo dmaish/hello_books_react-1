@@ -1,3 +1,7 @@
+/**
+*  The component that all user to navigate to single book
+*/
+
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import Nav from "../containers/publicNav";

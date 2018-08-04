@@ -1,3 +1,8 @@
+/**
+*  Actions triggerred when getting borrowing history or
+* books borrowed but yet to return
+*/
+
 import {borrowConstants} from "./borrowTypes";
 import {borrowServices} from "../services/borrowServices";
 import {alertActions} from "./alertActions";

@@ -1,3 +1,8 @@
+/**
+* Creating private/protected routes
+* This protects the endpoints which need authentication
+*/
+
 import React from "react";
 import {Route, Redirect} from "react-router-dom";
 

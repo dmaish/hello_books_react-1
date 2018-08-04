@@ -1,3 +1,8 @@
+/**
+* Admin dashboard
+* Admin can add a book, edit a book, delete a book and get all users
+*/
+
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
@@ -56,7 +61,7 @@ class AdminDashboard extends Component{
                   <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button className="btn btn-danger" type="button"
-                    onClick={ (e) => { console.log('------',book.book_id); e.preventDefault();this.props.deleteBook(book.book_id)} }>Delete
+                    onClick={ (e) => {e.preventDefault();this.props.deleteBook(book.book_id)} }>Delete
                     </button>
                   </div>
                 </div>

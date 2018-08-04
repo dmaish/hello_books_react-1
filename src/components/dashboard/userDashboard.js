@@ -1,3 +1,8 @@
+/**
+* The file contains user dashboard.
+* User can see all books, history of borrow/borrow book/return book
+*/
+
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";

@@ -1,3 +1,8 @@
+/**
+* It contains all fetch requests services for add book,
+* edit book, get book, delete book and get books
+*/
+
 import {accessToken} from "../helpers/token";
 
 export const booksServices = {

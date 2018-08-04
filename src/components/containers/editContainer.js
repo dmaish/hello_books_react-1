@@ -1,3 +1,7 @@
+/**
+*  The component that allows admin to edit a book
+*/
+
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {booksActions} from "../../actions/booksActions";

@@ -1,3 +1,7 @@
+/**
+*  Component for searching a book from list of books
+*/
+
 import React from "react";
 
 const SearchButton = () => (

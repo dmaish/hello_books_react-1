@@ -1,3 +1,7 @@
+/**
+* It contains getting users in the system reducer
+*/
+
 import {usersListsTypes} from "../actions/actionTypes";
 
 export function usersListReducer(state={

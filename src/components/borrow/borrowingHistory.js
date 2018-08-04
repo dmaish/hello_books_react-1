@@ -1,3 +1,8 @@
+/**
+* Borrow history component
+* Get all books borrowed by the user
+*/
+
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {borrowHistory} from "../../actions/borrowHistoryActions";

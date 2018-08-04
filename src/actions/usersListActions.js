@@ -1,3 +1,7 @@
+/**
+*  Action triggerred when admin is getting list of all users
+*/
+
 import {usersList} from "../services/usersListServices";
 import {usersListsTypes} from "./actionTypes";
 import {alertActions} from "./alertActions";

@@ -1,3 +1,7 @@
+/**
+*  The component that allows displays books searched and returned
+*/
+
 import React, {Component} from "react";
 import {connect} from "react-redux";
 

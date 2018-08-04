@@ -1,3 +1,8 @@
+/**
+*  Actions triggerred when user is registering, logging in
+* Resetting password and logging out
+*/
+
 import {userConstants} from "./actionTypes";
 import {userServices} from "../services/userServices";
 import {alertActions} from "./alertActions";

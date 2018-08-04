@@ -1,3 +1,8 @@
+/** 
+*  Block in the landing page container
+* The landing page should contains block after couresel
+*/
+
 import React from "react";
 import {Link} from "react-router-dom";
 

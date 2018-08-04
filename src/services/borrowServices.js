@@ -1,3 +1,8 @@
+/**
+* It contains all fetch requests services for:
+* borrowing a book, returning book, get borrow history
+*/
+
 import {accessToken} from "../helpers/token";
 
 export const borrowServices = {

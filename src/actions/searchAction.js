@@ -1,3 +1,7 @@
+/**
+*  Action triggerred when searching for a book
+*/
+
 import {searchTypes} from "./searchTypes";
 import {alertActions} from "./alertActions";
 import {searchServices} from "../services/searchServices";

@@ -1,3 +1,7 @@
+/**
+*  The component that allows admin to get list of users
+*/
+
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import usersListActions from "../../actions/usersListActions";

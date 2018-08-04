@@ -1,3 +1,8 @@
+/**
+* It contains all fetch requests services for:
+* register, login, logout and reset password
+*/
+
 import {accessToken} from "../helpers/token";
 
 export const userServices = {

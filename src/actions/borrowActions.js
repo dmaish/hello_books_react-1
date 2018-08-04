@@ -1,3 +1,7 @@
+/**
+*  Actions triggerred when user borrow book, return book 
+*/
+
 import {borrowConstants} from "./borrowTypes";
 import {borrowServices} from "../services/borrowServices";
 import {alertActions} from "./alertActions";

@@ -1,3 +1,7 @@
+/**
+* It contains borrow, return, borrow history reducers
+*/
+
 import {borrowConstants} from "../actions/borrowTypes";
 
 export function borrowReducer(state = {

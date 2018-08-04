@@ -1,3 +1,6 @@
+/**
+* It contains all fetch requests services for getting all users
+*/
 import {accessToken} from "../helpers/token";
 
 export const usersList = () => {

@@ -1,5 +1,8 @@
-import {searchTypes} from "../actions/searchTypes";
+/**
+* It contains search for a book reducer
+*/
 
+import {searchTypes} from "../actions/searchTypes";
 
 export function searchReducers(state={
 	loading: false,

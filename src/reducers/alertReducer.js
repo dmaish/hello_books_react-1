@@ -1,3 +1,8 @@
+/** 
+* This is alert reducers
+* When there is any alert, this is the reducer called
+*/
+
 import {alertConstants} from "../actions/alertTypes";
 
 export function alert(state = {}, {type, message}) {

@@ -1,3 +1,8 @@
+/**
+*  The container that contains the main part of landing page
+* This excludes the nav bar and footer
+*/
+
 import React from "react";
 import RecentlyAdded from "./recentlyAdded";
 import BreakLine from "../common/break";

@@ -1,3 +1,7 @@
+/**
+* It contains all the reducers of the application
+*/
+
 import {combineReducers} from "redux";
 
 import {registration, login, logoutReducer} from "./userReducer";

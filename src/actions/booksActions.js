@@ -1,3 +1,7 @@
+/**
+*  Actions triggerred when book is added, edited, deleted
+* or when getting book or books
+*/
 
 import {booksServices} from "../services/booksServices";
 import {booksConstants} from "./actionTypes";
