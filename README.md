@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/ezrqnkemboi/hello_books_react.svg?branch=develop)](https://travis-ci.org/ezrqnkemboi/hello_books_react)
 [![Coverage Status](https://coveralls.io/repos/github/ezrqnkemboi/hello_books_react/badge.svg?branch=ch-setup-react-app-157074612)](https://coveralls.io/github/ezrqnkemboi/hello_books_react?branch=ch-setup-react-app-157074612)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d5f4245c7bba494d9ccc9b5614bce903)](https://www.codacy.com/project/ezrqnkemboi/hello_books_react/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ezrqnkemboi/hello_books_react&amp;utm_campaign=Badge_Grade_Dashboard)
 # Hello Books Library  
 
 Hello-Books is a simple application that helps manage a library and its processes
@@ -7,29 +8,68 @@ like stocking, tracking and renting books. With this application users are able
 to find and rent books. The application also has an admin section where the admin
 can do things like add books, delete books, increase the quantity of a book etc.
 
+# Features Supported
 
-# Framework used
+Admin Abilities
+
+  - Add a book
+  - Edit a book
+  - Delete a book
+  - View all users
+  - View all books
+
+Authenticated User Abilities
+
+  - View all books
+  - Borrow a book
+  - Return a book
+  - View borrow history
+  - View books borrowed and not returned
+
+General Users Abilities
+
+  - View all books
+
+
+# Technologies used
 
 Built with
 
   - ReactJS with Redux
+  - Bootstrap
 
 # Installation
 
-Clone the repository: https://github.com/ezrqnkemboi/hello_books_react.git
+`git clone https://github.com/ezrqnkemboi/hello_books_react.git`
+`cd hello_books_react`
 
-Run `npm install` to install dependencies
+Install Dependancies
 
-Run `npm start` to view the frontend UI on `localhost:3000`
+`npm install`
 
+To Run the Application
 
-## Deployment Link
+`npm start`
 
-Link: https://stark-falls-93345.herokuapp.com/
+To Run Tests
+
+`jest test`
+
+## Deployed Links
+
+Backend Link: https://stark-falls-93345.herokuapp.com/
+
+Frontend Link: https://damp-hollows-13747.herokuapp.com/
 
 ## Check Designs on Github Pages
 
 Link: https://ezrqnkemboi.github.io/hello_books_designs/
+
+# What Should be Noted
+
+Admin email should end with @hellobookslibrary.com
+If in case you need to use other emails for admin... Please change decorator in flask
+https://github.com/ezrqnkemboi/hello_books/blob/master/app/helpers/decorators.py
 
 # Credits
 

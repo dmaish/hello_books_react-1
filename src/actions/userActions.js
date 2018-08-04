@@ -66,10 +66,14 @@ function login(user) {
 
 				},
 				error => {
-					error.then(response => {
-						dispatch(failureLogin(response.message));
-						dispatch(alertActions.error(response.message));
-					});
+					if (error.message == "Failed to fetch"){
+						console.log("Network Problems");
+					}
+					else(
+						error.then(response => {
+							dispatch(failureLogin(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};

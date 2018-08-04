@@ -3,8 +3,6 @@ import React, {Component} from "react";
 
 class BorrowPopUp extends Component{
 
-
-  
   <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div className="modal-dialog" role="document">
       <div className="modal-content">
