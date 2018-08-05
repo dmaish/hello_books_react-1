@@ -38,7 +38,10 @@ body {
 }
 .log-sign-bg-col {
 }
-
+.jumbotron {
+  background-image: url(../components/common/complibrary.jpg);
+  opacity: 1.0;
+}
 #img-display-form {
   margin-left: auto;
   margin-right: auto;
@@ -50,6 +53,15 @@ body {
   content: "*";
   color: red;
 }
+#login {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#list {
+  width: 400px;
+  align-content: center;
+  margin-left: 150px;
+}
 
 .media img {
     max-width: 120px;
@@ -58,8 +70,8 @@ body {
 .carousel-caption {
     top: 200px;
 }
-.carousel-inner img {
-    height: 500px;
+.carousel-inner{
+    height: 550px;
 
 }
 .carousel-inner h1 {
@@ -102,6 +114,13 @@ body {
 #logoimg {
   width: 30px;
   height: 30px;
+}
+#h3 {
+  color: blue;
+}
+
+#para {
+  color: yellow;
 }
 
 @keyframes App-logo-spin {

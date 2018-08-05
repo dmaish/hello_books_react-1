@@ -7,110 +7,45 @@ import {Link} from "react-router-dom"
 import library1 from "./library1.jpg";
 import kids_library from "./kids_library.jpg";
 import complibrary from "./complibrary.jpg";
+import Login from "./login";
 
 
 const Header = () => (
-	<div>
-		<div
-			id="carouselExampleIndicators"
-			className="carousel slide"
-			data-ride="carousel">
-			<ol className="carousel-indicators">
-				<li
-					data-target="#carouselExampleIndicators"
-					data-slide-to={0}
-					className="active" />
-				<li
-					data-target="#carouselExampleIndicators"
-					data-slide-to={1} />
-				<li
-					data-target="#carouselExampleIndicators"
-					data-slide-to={2} />
-			</ol>
-			<div className="carousel-inner">
-				<div className="carousel-item active">
-					<img
-						id="carousel"
-						className="d-block w-100"
-						src={complibrary} alt="modern library"/>
-					<div className="carousel-caption d-none d-md-block">
-						<h1>
-							<b>
-THE BEST BOOKSTORE EVER
-							</b>
-						</h1>
-						<p>
-Hello World Library brings the latest kinds of books
-                  for you. Borrow books from our library.
-						</p>
-						<Link to="/api/v1/auth/register">
-						<button className="btn btn-info btn-lg">
-							SIGN UP NOW
-						</button>
-							</Link>
-					</div>
-				</div>
-				<div className="carousel-item">
-					<img
-					id="carousel"
-						className="d-block w-100"
-						src={kids_library} alt="kids library setting"/>
-					<div className="carousel-caption d-none d-md-block">
-						<h1>
-							<b>THE BEST BOOKSTORE EVER</b>
-						</h1>
-						<p>
-Hello World Library brings the latest
-                  kinds of books for you. Borrow books from our library.
-						</p>
-							<Link to="/api/v1/books">
-							<button className="btn btn-info btn-lg">
-							VIEW ALL BOOKS
-								</button>
-							</Link>
-					</div>
-				</div>
-				<div className="carousel-item">
-					<img 	id="carousel" className="d-block w-100" src={library1} alt="library complex"/>
-					<div className="carousel-caption d-none d-md-block">
-						<h1>
-							<b>
-THE BEST BOOKSTORE EVER
-							</b>
-						</h1>
-						<p>
-Hello World Library brings the latest kinds of books
-                  rom our library.
-						</p>
-							<Link to="/api/v1/books">
-							<button className="btn btn-info btn-lg">
-							CHECK STORE
-							</button>
-							</Link>
-					</div>
-				</div>
-			</div>
-			<a
-				className="carousel-control-prev"
-				href="#carouselExampleIndicators"
-				role="button"
-				data-slide="prev">
-				<span
-					className="carousel-control-prev-icon"
-					aria-hidden="true" />
-				<span className="sr-only">Previous</span>
-			</a>
-			<a
-				className="carousel-control-next"
-				href="#carouselExampleIndicators"
-				role="button"
-				data-slide="next">
-				<span
-					className="carousel-control-next-icon"
-					aria-hidden="true" />
-				<span className="sr-only">Next</span>
-			</a>
+	<div className="carousel-inner">
+			<div className="jumbotron">
+			<div className="row">
+			<div className="col-sm-7">
+			<h1 id="h3">Welcome to Hello Books Library</h1>
+			<ul className="list-group" id="list">
+	  <li className="list-group-item list-group-item-info">
+					<i className="material-icons">
+			accessible
+			</i>Access Thousands of Books</li>
+				  <li className="list-group-item list-group-item-info">
+					<i className="material-icons">
+			assignment_turned_in
+					</i>Ebooks Available</li>
+	  <li className="list-group-item list-group-item-info">
+						<i className="material-icons">
+				create
+				</i>It is Free to Register</li>
+	  <li className="list-group-item list-group-item-info">
+		<i className="material-icons">
+		add_alert
+		</i>14 Days Before Return</li>
+	  <li className="list-group-item list-group-item-info">
+			<i className="material-icons">
+	monetization_on
+	</i>Affordable Prices</li>
+	</ul>
 		</div>
+			<div className="col-sm-5">
+
+					<Login>
+					</Login>
+					</div>
+			</div>
+				</div>
 	</div>
 
 );
