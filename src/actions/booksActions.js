@@ -27,10 +27,14 @@ function addBook(book) {
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					error.then(response => {
-						dispatch(addedBookFailure(response.message));
-						dispatch(alertActions.error(response.message));
-					});
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else (
+						error.then(response => {
+							dispatch(addedBookFailure(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
@@ -68,10 +72,14 @@ function editBook(book) {
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					error.then(response => {
-						dispatch(editBookFailure(response.message));
-						dispatch(alertActions.error(response.message));
-					});
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(editBookFailure(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
@@ -108,10 +116,14 @@ function getBooks() {
 					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					error.then(response => {
-						dispatch(failureBooks(response.message));
-						dispatch(alertActions.error(response.message));
-					});
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(failureBooks(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 
 			);
@@ -145,10 +157,14 @@ function getBook(book_id) {
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					error.then(response => {
-						dispatch(theBookNotFound(response.message));
-						dispatch(alertActions.error(response.message));
-					});
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(theBookNotFound(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
@@ -179,6 +195,15 @@ function deleteBook(book_id){
 					dispatch(deleteBookSuccess(book));
 					history.push("/api/v1/secret/admin/dashboard");
 					dispatch(alertActions.success(book.message));
+				},
+				error => {
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(deleteBookFailure(response.message));
+						}));
 				}
 			);
 	};
@@ -189,3 +214,9 @@ function deleteBook(book_id){
 		};
 	}
 }
+
+const deleteBookFailure = () => {
+	return {
+		type: booksConstants.DELETE_BOOK_FAILURE
+	};
+};

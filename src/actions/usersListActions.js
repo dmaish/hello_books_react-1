@@ -17,10 +17,14 @@ const usersListActions = () => {
 					dispatch(alertActions.success(users.message));
 				},
 				error => {
-					error.then(response => {
-						dispatch(getUsersFailure(error));
-						dispatch(alertActions.error(response.message));
-					});
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(getUsersFailure(error));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};

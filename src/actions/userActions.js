@@ -25,10 +25,14 @@ function register(user) {
 					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					error.then(response => {
-						dispatch(failureRegister(response.message));
-						dispatch(alertActions.error(response.message));
-					});
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else (
+						error.then(response => {
+							dispatch(failureRegister(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
@@ -72,7 +76,7 @@ function login(user) {
 				},
 				error => {
 					if (error.message === "Failed to fetch"){
-						console.log("Network Problems");
+						history.push("/internetissues");
 					}
 					else(
 						error.then(response => {
@@ -110,16 +114,37 @@ function login(user) {
 
 function logout() {
 	return dispatch => {
-		userServices.logout();
-		dispatch(logoutUser());
-		localStorage.removeItem("access_token");
-		history.push("/api/v1/auth/login");
+		userServices.logout()
+			.then(
+				user => {
+					dispatch(logoutUser(user));
+					localStorage.removeItem("access_token");
+					history.push("/api/v1/auth/login");
+				},
+				error => {
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else (
+						error.then(response => {
+							dispatch(logoutError(response.message));
+						})
+					);
+				}
+			);
+
 	};
 }
 
 
-function logoutUser() {
+const logoutUser = () => {
 	return {
-		type: userConstants.LOGOUT_USER,
+		type: userConstants.LOGOUT_USER
 	};
-}
+};
+
+const logoutError = () => {
+	return {
+		type: userConstants.LOGOUT_ERROR
+	};
+};

@@ -1,5 +1,5 @@
 /**
-*  Actions triggerred when user borrow book, return book 
+*  Actions triggerred when user borrow book, return book
 */
 
 import {borrowConstants} from "./borrowTypes";
@@ -20,6 +20,17 @@ function borrow(book_id) {
 					dispatch(borrowSuccess(book.book_borrowed));
 					history.push("/api/v1/dashboard");
 					dispatch(alertActions.success(book.message));
+				},
+				error => {
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(borrowFailure(response.message));
+							dispatch(alertActions.error(error.message));
+						})
+					);
 				}
 			);
 	};
@@ -32,6 +43,12 @@ function borrowSuccess(book){
 	};
 }
 
+const borrowFailure = () => {
+	return {
+		type: borrowConstants.BORROW_FAILURE
+	};
+};
+
 function returnBook(book_id) {
 	return dispatch => {
 		borrowServices.returnBook(book_id)
@@ -40,6 +57,16 @@ function returnBook(book_id) {
 					dispatch(returnSuccess(book.book_borrowed));
 					history.push("/api/v1/dashboard");
 					dispatch(alertActions.success(book.message));
+				},
+				error => {
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(returnFailure(response.message));
+						})
+					);
 				}
 			);
 	};
@@ -51,3 +78,9 @@ function returnSuccess(book){
 		book
 	};
 }
+
+const returnFailure = () => {
+	return {
+		type: borrowConstants.RETURN_FAILURE
+	};
+};

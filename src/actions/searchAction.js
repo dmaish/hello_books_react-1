@@ -16,10 +16,14 @@ const searchAction = () => {
 					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					error.then(response => {
-						dispatch(searchError(error));
-						dispatch(alertActions.error(response.error));
-					});
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(searchError(error));
+							dispatch(alertActions.error(response.error));
+						}));
 				}
 			);
 	};

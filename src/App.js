@@ -17,6 +17,7 @@ import SingleBook from "./components/page/singleBook";
 import EditBook from "./components/containers/editContainer";
 import BorrowHistory from "./components/borrow/borrowingHistory";
 import {PrivateRoute} from "./helpers/privateRoutes";
+import InternetError from "./components/common/internetError";
 
 class Application extends Component {
 	render() {
@@ -26,6 +27,7 @@ class Application extends Component {
 					<div>
 						<Route exact path="/" component={Landing}></Route>
 						<Route path="/api/v1/auth/register" component={SignUpContainer}></Route>
+						<Route path="/internetissues" component={InternetError}></Route>
 						<Route path="/api/v1/auth/login" component={LoginContainer}></Route>
 						<Route exact path="/api/v1/books" component={AllBooks}></Route>
 						<PrivateRoute path="/api/v1/dashboard" component={UserDashboard}></PrivateRoute>

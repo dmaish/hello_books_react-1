@@ -42,13 +42,21 @@ body {
   background-image: url(../components/common/complibrary.jpg);
   opacity: 1.0;
 }
+#left {
+  margin-left: 150px;
+}
 #img-display-form {
   margin-left: auto;
   margin-right: auto;
   width: 50px;
   height: 50px;
 }
+#interneterror {
+  margin-left: 500px;
+  margin-top: 300px;
+  max-width: inherit;
 
+}
 .form-group.required .control-label:after {
   content: "*";
   color: red;

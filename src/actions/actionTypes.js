@@ -1,5 +1,6 @@
 /**
-*  Contains all the types actions for user, books and user lists reducers/actions
+*  Contains all the types actions for user, books,
+* and user lists reducers/actions
 */
 
 export const userConstants = {
@@ -10,6 +11,7 @@ export const userConstants = {
 	LOGIN_SUCCESS: "USERS_LOGIN_SUCCESS",
 	LOGIN_FAILURE: "USERS_LOGIN_FAILURE",
 	LOGOUT_USER: "USERS_LOGOUT",
+	LOGOUT_ERROR: "LOGOUT_ERROR"
 };
 
 export const booksConstants = {
@@ -23,6 +25,7 @@ export const booksConstants = {
 	SINGLE_BOOK_SUCCESS: "SINGLE_BOOK_SUCCESS",
 	SINGLE_BOOK_FAILURE: "SINGLE_BOOK_FAILURE",
 	DELETE_BOOK: "DELETE_BOOK",
+	DELETE_BOOK_FAILURE: "DELETE_BOOK_FAILURE",
 	EDIT_BOOK_REQUEST: "EDIT_BOOK_REQUEST",
 	EDIT_BOOK_SUCCESS: "EDIT_BOOK_SUCCESS",
 	EDIT_BOOK_FAILURE: "EDIT_BOOK_FAILURE"

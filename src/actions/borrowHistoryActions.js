@@ -22,10 +22,14 @@ function returnBorrowHistory() {
 					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					error.then(response => {
-						dispatch(historyFailure(response.message));
-						dispatch(alertActions.error(response.message));
-					});
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(historyFailure(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
@@ -61,10 +65,14 @@ function unReturnBooksHistory(){
 					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					error.then(response => {
-						dispatch(unreturnHistoryFailure(response.message));
-						dispatch(alertActions.error(response.message));
-					});
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(unreturnHistoryFailure(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
