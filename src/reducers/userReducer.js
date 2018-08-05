@@ -17,7 +17,7 @@ export function registration(state = {}, {type}) {
 	}
 }
 
-export function login(state = {}, {type}) {
+export function loginReducer(state = {}, {type}) {
 	switch (type) {
 	case userConstants.LOGIN_REQUEST:
 		return {

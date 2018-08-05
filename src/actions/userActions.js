@@ -71,7 +71,7 @@ function login(user) {
 
 				},
 				error => {
-					if (error.message == "Failed to fetch"){
+					if (error.message === "Failed to fetch"){
 						console.log("Network Problems");
 					}
 					else(

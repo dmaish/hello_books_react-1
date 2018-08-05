@@ -7,7 +7,6 @@ import {Router , Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Landing from "./components/landing";
 import {history} from "./helpers/history";
-import {alertActions} from "./actions/alertActions";
 import SignUpContainer from "./components/containers/signupContainer";
 import LoginContainer from "./components/containers/loginContainer";
 import AllBooks from "./components/containers/booksContainer";
@@ -20,20 +19,9 @@ import BorrowHistory from "./components/borrow/borrowingHistory";
 import {PrivateRoute} from "./helpers/privateRoutes";
 
 class Application extends Component {
-	constructor(props) {
-		super(props);
-		const {dispatch} = this.props;
-		history.listen((location, action) => {
-			dispatch(alertActions.clear());
-		});
-	}
 	render() {
-		const {alert} = this.props;
 		return (
 			<div>
-				{alert.message &&
-				<div className={`alert $ {alert.type}`}>{alert.message}
-				</div>}
 				<Router history={history}>
 					<div>
 						<Route exact path="/" component={Landing}></Route>
@@ -53,13 +41,4 @@ class Application extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	const {alert} = state;
-	return {
-		alert
-	};
-}
-
-const App = connect(mapStateToProps)(Application);
-
-export default App;
+export default Application;

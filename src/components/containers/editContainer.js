@@ -4,6 +4,7 @@
 
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import {booksActions} from "../../actions/booksActions";
 
 class EditBook extends Component{
@@ -81,8 +82,9 @@ class EditBook extends Component{
 			)
 		}
     return (
+			<div id= "login_signup" className="log-sign-bg-col">
       <form onSubmit={this.handleSubmit} className="form-horizontal">
-        <div className="container col-md-5 offset-md-3" id="nav-bg">
+        <div className="container col-md-5 offset-md-3" id="top-line">
             <br />
             <h4 className="text-center">Fill the form to edit book</h4>
 						<div className="form-group">
@@ -181,12 +183,23 @@ class EditBook extends Component{
                 placeholder="Enter book title"
               />
             </div>
-            <div className="d-inline mx-auto center">
-            <button type="submit" className="btn btn-primary">Submit</button>
-    				</div>
+						<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
+						aria-label="Toolbar with button groups">
+						  <div className="btn-group mr-2" role="group" aria-label="First group">
+							<button type="submit" className="btn btn-primary">Submit</button>
+						  </div>
+						  <div className="btn-group" role="group" aria-label="Third group">
+							<Link to="/api/v1/secret/admin/dashboard">
+							<button type="button" className="btn btn-secondary"
+							data-dismiss="modal">Cancel
+							</button>
+							</Link>
+						  </div>
+						</div>
     				<br/>
         </div>
       </form>
+			</div>
     )
   }
 }

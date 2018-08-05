@@ -3,6 +3,7 @@
 */
 
 import React, {Component} from "react";
+import {Link} from "react-router-dom";
 import {booksActions} from "../../actions/booksActions";
 import {connect} from "react-redux";
 
@@ -47,13 +48,14 @@ class AddBookContainer extends Component{
     const {addingBook} = this.props
     const {book} = this.state;
     return (
+			<div id= "login_signup" className="log-sign-bg-col">
       <form onSubmit={this.handleSubmit}
       className="form-horizontal">
-      <div className="container col-md-5 offset-md-3" id="nav-bg">
+      <div className="container col-md-5 offset-md-3" id="top-line">
         <br />
         <h4 className="text-center">Please fill book details here: </h4>
-        <div className="form-group">
-          <label htmlFor="booktitle">Book Title</label>
+        <div className="form-group required">
+          <label className="control-label" htmlFor="booktitle">Book Title</label>
           <input
             type="text"
             onChange={this.handleChange}
@@ -64,8 +66,8 @@ class AddBookContainer extends Component{
             placeholder="Enter book title"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="authors">Authors</label>
+        <div className="form-group required">
+          <label className="control-label" htmlFor="authors">Authors</label>
           <input
             type="text"
             onChange={this.handleChange}
@@ -148,13 +150,24 @@ class AddBookContainer extends Component{
             placeholder="Enter number of copies"
           />
         </div>
-				<div className="d-inline mx-auto center">
-        <button type="submit" className="btn btn-primary">Submit</button>
-        {addingBook}
+				<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
+				aria-label="Toolbar with button groups">
+				  <div className="btn-group mr-2" role="group" aria-label="First group">
+					<button type="submit" className="btn btn-primary">Submit</button>
+					{addingBook}
+				  </div>
+				  <div className="btn-group" role="group" aria-label="Third group">
+					<Link to="/api/v1/secret/admin/dashboard">
+					<button type="button" className="btn btn-secondary"
+					data-dismiss="modal">Cancel
+					</button>
+					</Link>
+				  </div>
 				</div>
 				<br/>
         </div>
       </form>
+			</div>
     );
   }
 }
