@@ -5,6 +5,7 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import {Link} from "react-router-dom";
+import logo from "../common/logo.jpg"
 import {userActions} from "../../actions/userActions";
 
 class LoginContainer extends Component {
@@ -42,13 +43,25 @@ class LoginContainer extends Component {
 		const {loggingin} = this.props;
 		const {user} = this.state;
 		return(
+			<div className="container-fluid">
+			<div id= "login_signup" className="log-sign-bg-col">
 			<form onSubmit={this.handleSubmit} className="form-horizontal">
-				<div className="container col-md-5 offset-md-3" id="nav-bg">
-					<h4 className="text-center">Please Log In Here: </h4>
-					<div className="form-group">
-						<label htmlFor="exampleInputEmail1">Email address:</label>
+				<div className="container col-md-5 offset-md-3" id="top-line">
+				<br/>
+				<div id="bg-colo">
+				<img
+					src={logo}
+					id="img-display-form"
+					className="mx-auto d-block"
+					alt="logo" />
+
+					<h4 className="text-center">Hello Books</h4>
+					</div>
+						<br/>
+					<div className="form-group required">
+						<label className="control-label" htmlFor="exampleInputEmail1">Email:</label>
 						<input
-							required
+							required="true"
 							type="email"
 							onChange={this.handleChange}
 							className="form-control"
@@ -56,19 +69,20 @@ class LoginContainer extends Component {
 							value={user.email}
 							id="exampleInputEmail1"
 							aria-describedby="emailHelp"
-							placeholder="Enter email" />
+							placeholder="Please enter your email" />
 					</div>
 					<div>
-						<div className="form-group">
-							<label htmlFor="exampleInputPassword1">Password:</label>
+						<div className="form-group required">
+							<label className="control-label" htmlFor="exampleInputPassword1">Password:</label>
 							<input
+								required="true"
 								type="password"
 								onChange={this.handleChange}
 								className="form-control"
 								id="exampleInputPassword1"
 								name="password"
 								value={user.password}
-								placeholder="Password" />
+								placeholder="Please enter your password" />
 						</div>
 						<div className="d-inline mx-auto center">
 						<button type="submit" className="btn btn-primary">Log In</button>
@@ -83,6 +97,8 @@ class LoginContainer extends Component {
 
 				</div>
 			</form>
+			</div>
+			</div>
 		);
 	}
 }

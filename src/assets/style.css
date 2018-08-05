@@ -16,6 +16,18 @@ body {
 #nav-bg {
     background-color: #e3f2fd;
 }
+#bg-colo {
+    background-color: #E0EAF1;
+}
+#top-line {
+  background-color: #DBE2E7;
+}
+#login_signup {
+  margin-top: 130px;
+  padding-left: 200px;
+  padding-right: 200px;
+  margin-bottom: 130px;
+}
 .d-inline.mx-auto.center {
     text-align: center !important;
     display: block !important;
@@ -24,6 +36,21 @@ body {
     background-color: #F5F27F;
     color: black;
 }
+.log-sign-bg-col {
+}
+
+#img-display-form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50px;
+  height: 50px;
+}
+
+.form-group.required .control-label:after {
+  content: "*";
+  color: red;
+}
+
 .media img {
     max-width: 120px;
     height: auto;
