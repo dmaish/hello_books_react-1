@@ -8,7 +8,7 @@ import {accessToken} from "../helpers/token";
 export const userServices = {
 	register,
 	login,
-	logout
+	logout,
 };
 
 function register(user) {
@@ -47,7 +47,7 @@ function logout() {
 		.then(handleResponse);
 }
 
-function resetpassword(user) {
+export const resetPassword = (user) => {
 	const requestOptions = {
 		method: "POST",
 		headers: {"Content-Type": "application/json"},
@@ -56,7 +56,7 @@ function resetpassword(user) {
 	return fetch("https://stark-falls-93345.herokuapp.com/auth/reset-password",
 		requestOptions)
 		.then(handleResponse);
-}
+};
 
 function handleResponse(response) {
 	if (!response.ok) {

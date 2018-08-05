@@ -43,3 +43,20 @@ export function logoutReducer(state = {
 
 	}
 }
+
+export function resetPasswordReducer(state = {
+	loading: false,
+	user: {},
+	error: {}
+}, actions){
+	switch (actions.type){
+	case userConstants.RESET_PASSWORD_REQUEST:
+		return {...state, loading:true};
+	case userConstants.RESET_PASSWORD_SUCCESS:
+		return {...state, user:actions.user, loading:false};
+	case userConstants.RESET_PASSWORD_FAILURE:
+		return {...state, error:actions.error, loading:false};
+	default:
+		return state;
+	}
+}

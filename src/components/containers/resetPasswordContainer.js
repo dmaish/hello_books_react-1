@@ -1,5 +1,6 @@
 /**
-*  The component that allows users to login to the system
+*  The component that allows users to reset password
+*  when they forget
 */
 
 import React, {Component} from "react";
@@ -9,6 +10,7 @@ import logo from "../common/logo.jpg";
 import {alertActions} from "../../actions/alertActions";
 import {history} from "../../helpers/history";
 import {userActions} from "../../actions/userActions";
+import {resetPasswordAction} from "../../actions/userActions";
 
 class ResetPasswordContainer extends Component {
 	constructor(props){
@@ -44,11 +46,11 @@ class ResetPasswordContainer extends Component {
 		this.setState({submitted: true});
 		const {user} = this.state;
 		const {dispatch} = this.props;
-		dispatch(userActions.login(user));
+		dispatch(resetPasswordAction(user));
 	}
 	render(){
 		const {alert} = this.props;
-		const {loggingin} = this.props;
+		const {resetting} = this.props;
 		const {user} = this.state;
 		return(
 			<div className="container-fluid">
@@ -92,12 +94,9 @@ class ResetPasswordContainer extends Component {
 								value={user.password}
 								placeholder="Please enter your password" />
 						</div>
-						{alert.message &&
-						<div className={`alert alert-danger $ alert $ {alert.type}`}>{alert.message}
-						</div>}
 						<div className="d-inline mx-auto center">
 						<button type="submit" className="btn btn-primary">Reset Password</button>
-							{loggingin}
+							{resetting}
 						</div>
 						<br/>
 						<br/>
@@ -114,7 +113,7 @@ class ResetPasswordContainer extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		user: state.loginReducer,
+		user: state.resetPasswordReducer,
 		alert: state.alert
 	};
 };

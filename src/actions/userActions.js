@@ -5,6 +5,7 @@
 
 import {userConstants} from "./actionTypes";
 import {userServices} from "../services/userServices";
+import {resetPassword} from "../services/userServices";
 import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
 
@@ -111,6 +112,50 @@ function login(user) {
 		};
 	}
 }
+
+export const resetPasswordAction = (user) => {
+	return dispatch => {
+		dispatch(resetPasswordRequest(user));
+		resetPassword(user)
+			.then(
+				user => {
+					dispatch(resetPasswordSuccess(user));
+					history.push("/api/v1/auth/login");
+				},
+				error => {
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(resetPasswordFailure(response.message));
+						})
+					);
+				}
+			);
+	};
+};
+
+const resetPasswordRequest = (user) => {
+	return {
+		type: userConstants.RESET_PASSWORD_REQUEST,
+		user
+	};
+};
+
+const resetPasswordSuccess = (user) => {
+	return {
+		type: userConstants.RESET_PASSWORD_SUCCESS,
+		user
+	};
+};
+
+const resetPasswordFailure = (error) => {
+	return {
+		type: userConstants.RESET_PASSWORD_FAILURE,
+		error
+	};
+};
 
 function logout() {
 	return dispatch => {

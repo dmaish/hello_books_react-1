@@ -96,9 +96,6 @@ class LoginContainer extends Component {
 								value={user.password}
 								placeholder="Please enter your password" />
 						</div>
-						{alert.message &&
-						<div className={`alert alert-danger $ alert $ {alert.type}`}>{alert.message}
-						</div>}
 						<div className="d-inline mx-auto center">
 						<button type="submit" className="btn btn-primary">Log In</button>
 							{loggingin}
