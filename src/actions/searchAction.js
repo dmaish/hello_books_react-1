@@ -5,6 +5,7 @@
 import {searchTypes} from "./searchTypes";
 import {alertActions} from "./alertActions";
 import {searchServices} from "../services/searchServices";
+import {history} from "../helpers/history";
 
 const searchAction = () => {
 	return dispatch => {

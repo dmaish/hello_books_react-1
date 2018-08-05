@@ -5,7 +5,7 @@
 import {usersList} from "../services/usersListServices";
 import {usersListsTypes} from "./actionTypes";
 import {alertActions} from "./alertActions";
-
+import {history} from "../helpers/history";
 
 const usersListActions = () => {
 	return dispatch => {

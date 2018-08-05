@@ -10,7 +10,7 @@ import {alertActions} from "../../actions/alertActions";
 import {history} from "../../helpers/history";
 import {userActions} from "../../actions/userActions";
 
-class LoginContainer extends Component {
+class ResetPasswordContainer extends Component {
 	constructor(props){
 		super(props);
 		const {dispatch} = this.props;
@@ -48,7 +48,6 @@ class LoginContainer extends Component {
 	}
 	render(){
 		const {alert} = this.props;
-		console.log("---->", alert.message);
 		const {loggingin} = this.props;
 		const {user} = this.state;
 		return(
@@ -80,12 +79,9 @@ class LoginContainer extends Component {
 							aria-describedby="emailHelp"
 							placeholder="Please enter your email" />
 					</div>
-
-
-
 					<div>
 						<div className="form-group required">
-							<label className="control-label" htmlFor="exampleInputPassword1">Password:</label>
+							<label className="control-label" htmlFor="exampleInputPassword1">New Password:</label>
 							<input
 								required="true"
 								type="password"
@@ -100,12 +96,10 @@ class LoginContainer extends Component {
 						<div className={`alert alert-danger $ alert $ {alert.type}`}>{alert.message}
 						</div>}
 						<div className="d-inline mx-auto center">
-						<button type="submit" className="btn btn-primary">Log In</button>
+						<button type="submit" className="btn btn-primary">Reset Password</button>
 							{loggingin}
 						</div>
 						<br/>
-						<p align="center">Forgot password? <Link to="/reset-password">Reset Password</Link></p>
-						<p align="center">Are you new? <Link to="/api/v1/auth/register">Register</Link></p>
 						<br/>
 						<br/>
 					</div>
@@ -126,4 +120,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps)(LoginContainer);
+export default connect(mapStateToProps)(ResetPasswordContainer);
