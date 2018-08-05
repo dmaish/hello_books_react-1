@@ -43,7 +43,7 @@ class UserDashboard extends Component{
     }
     return(
       <div className="container-fluid">
-    <nav className="navbar navbar-light" id="nav-bg">
+    <nav className="navbar navbar-light" id="top-line">
         <Link to="/api/v1/dashboard" className="navbar-brand">
             <img src={logo} width="30" height="30" className="d-inline-block align-top"
                  alt="hello books logo"/>

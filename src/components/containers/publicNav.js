@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
 
 const Nav = () => (
-    <nav className="navbar navbar-light" id="nav-bg">
+    <nav className="navbar navbar-light" id="top-line">
         <Link to="/" className="navbar-brand">
             <img src={logo} width="30" height="30" className="d-inline-block align-top"
                  alt="hello books logo"/>

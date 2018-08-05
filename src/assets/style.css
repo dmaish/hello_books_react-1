@@ -63,11 +63,15 @@ body {
 
 }
 .carousel-inner h1 {
-    color: #00FFFF;
+    color: #070808;
     font-weight: 600;
 }
 .App {
   text-align: center;
+}
+
+#carousel {
+  opacity: 1.0;
 }
 
 .App-header {

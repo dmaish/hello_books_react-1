@@ -77,7 +77,7 @@ class AdminDashboard extends Component{
 
     return(
   <div className="container-fluid">
-    <nav className="navbar navbar-light" id="nav-bg">
+    <nav className="navbar navbar-light" id="top-line">
         <Link to ="/api/v1/secret/admin/dashboard" className="navbar-brand">
             <img src={logo} id="logoimg" className="d-inline-block align-top"
                  alt="hello books logo"/>

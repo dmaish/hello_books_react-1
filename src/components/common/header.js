@@ -30,6 +30,7 @@ const Header = () => (
 			<div className="carousel-inner">
 				<div className="carousel-item active">
 					<img
+						id="carousel"
 						className="d-block w-100"
 						src={complibrary} alt="modern library"/>
 					<div className="carousel-caption d-none d-md-block">
@@ -42,13 +43,16 @@ THE BEST BOOKSTORE EVER
 Hello World Library brings the latest kinds of books
                   for you. Borrow books from our library.
 						</p>
+						<Link to="/api/v1/auth/register">
 						<button className="btn btn-info btn-lg">
-							<Link to="/api/v1/auth/register">SIGN UP NOW</Link>
+							SIGN UP NOW
 						</button>
+							</Link>
 					</div>
 				</div>
 				<div className="carousel-item">
 					<img
+					id="carousel"
 						className="d-block w-100"
 						src={kids_library} alt="kids library setting"/>
 					<div className="carousel-caption d-none d-md-block">
@@ -59,13 +63,15 @@ Hello World Library brings the latest kinds of books
 Hello World Library brings the latest
                   kinds of books for you. Borrow books from our library.
 						</p>
-						<button className="btn btn-info btn-lg">
-							<Link to="/api/v1/books">VIEW ALL BOOKS</Link>
-						</button>
+							<Link to="/api/v1/books">
+							<button className="btn btn-info btn-lg">
+							VIEW ALL BOOKS
+								</button>
+							</Link>
 					</div>
 				</div>
 				<div className="carousel-item">
-					<img className="d-block w-100" src={library1} alt="library complex"/>
+					<img 	id="carousel" className="d-block w-100" src={library1} alt="library complex"/>
 					<div className="carousel-caption d-none d-md-block">
 						<h1>
 							<b>
@@ -76,9 +82,11 @@ THE BEST BOOKSTORE EVER
 Hello World Library brings the latest kinds of books
                   rom our library.
 						</p>
-						<button className="btn btn-info btn-lg">
-							<Link to="/api/v1/books">CHECK STORE</Link>
-						</button>
+							<Link to="/api/v1/books">
+							<button className="btn btn-info btn-lg">
+							CHECK STORE
+							</button>
+							</Link>
 					</div>
 				</div>
 			</div>
