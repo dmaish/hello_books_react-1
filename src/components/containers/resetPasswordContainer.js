@@ -99,6 +99,7 @@ class ResetPasswordContainer extends Component {
 							{resetting}
 						</div>
 						<br/>
+						<p align="center">Need to go back? <Link to="/api/v1/auth/login">Click here</Link></p>
 						<br/>
 						<br/>
 					</div>

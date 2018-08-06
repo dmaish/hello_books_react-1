@@ -12,8 +12,7 @@ export const booksActions = {
 	getBooks,
 	addBook,
 	getBook,
-	editBook,
-	deleteBook
+	editBook
 };
 
 function addBook(book) {
@@ -187,8 +186,9 @@ function getBook(book_id) {
 	}
 }
 
-function deleteBook(book_id){
+export const deleteBookAction = (book_id) => {
 	return dispatch => {
+		deleteBookRequest(book_id);
 		booksServices.deleteBook(book_id)
 			.then(
 				book => {
@@ -207,16 +207,26 @@ function deleteBook(book_id){
 				}
 			);
 	};
-	function deleteBookSuccess(book_id){
-		return {
-			type: booksConstants.DELETE_BOOK,
-			book_id
-		};
-	}
-}
 
-const deleteBookFailure = () => {
+};
+
+const deleteBookSuccess = (book_id) => {
 	return {
-		type: booksConstants.DELETE_BOOK_FAILURE
+		type: booksConstants.DELETE_BOOK,
+		book_id
+	};
+};
+
+const deleteBookRequest = (book_id) => {
+	return {
+		type: booksConstants.DELETE_BOOK_REQUEST,
+		book_id
+	};
+};
+
+const deleteBookFailure = (error) => {
+	return {
+		type: booksConstants.DELETE_BOOK_FAILURE,
+		error
 	};
 };

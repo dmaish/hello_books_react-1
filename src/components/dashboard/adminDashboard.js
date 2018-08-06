@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
 import {booksActions} from "../../actions/booksActions";
+import {deleteBookAction} from "../../actions/booksActions";
 import {userActions} from "../../actions/userActions";
 import Pagination from "../common/pagination";
 import UsersList from "../containers/usersListContainer";
@@ -38,35 +39,9 @@ class AdminDashboard extends Component{
             </td>
             <td>
 
-
-
-
-
-            <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-              Delete
+            <button className="btn btn-danger" type="button"
+            onClick={ (e) => {e.preventDefault();this.props.deleteBookAction(book.book_id)} }>Delete
             </button>
-
-            <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">About to delete a Book</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div className="modal-body">
-                    Are you sure you want to delete this book?
-                  </div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button className="btn btn-danger" type="button"
-                    onClick={ (e) => {e.preventDefault();this.props.deleteBook(book.book_id)} }>Delete
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
 
 
@@ -84,19 +59,13 @@ class AdminDashboard extends Component{
             Hello Books
         </Link>
         <ul className="nav justify-content-end">
-            <li className="nav-item">
-                <button type="button" className="btn btn-primary">
-                    Messages <span className="badge badge-light">4</span>
-                </button>
-            </li>
             <li className="nav-item dropdown">
                 <Link to="/" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">Menu</Link>
                 <div className="dropdown-menu">
-                    <Link to="/api/v1/admin/messages" className="dropdown-item">Messages</Link>
                     <Link to="/api/v1/secret/admin/addbook" className="dropdown-item">Add Book</Link>
                     <div className="dropdown-divider"></div>
-                    <Link to="/api/v1/users" className="dropdown-item bg-success">All Users</Link>
+                    <Link to="/admin/users" className="dropdown-item bg-success">All Users</Link>
                 </div>
             </li>
             <li className="nav-item">
@@ -155,7 +124,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteBook: (bookId) => dispatch(booksActions.deleteBook(bookId)),
+    deleteBookAction: (bookId) => dispatch(deleteBookAction(bookId)),
     getBooks: () => dispatch(booksActions.getBooks()),
     logout: () => dispatch(userActions.logout())
   }

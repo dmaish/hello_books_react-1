@@ -18,6 +18,7 @@ import EditBook from "./components/containers/editContainer";
 import BorrowHistory from "./components/borrow/borrowingHistory";
 import {PrivateRoute} from "./helpers/privateRoutes";
 import InternetError from "./components/common/internetError";
+import UsersList from "./components/containers/usersListContainer";
 import ResetPasswordContainer from "./components/containers/resetPasswordContainer";
 
 class Application extends Component {
@@ -37,6 +38,7 @@ class Application extends Component {
 						<Route path="/api/v1/books/:book_id" component={SingleBook}></Route>
 						<PrivateRoute path="/api/v1/secret/admin/books/:book_id" component={EditBook}></PrivateRoute>
 						<PrivateRoute exact path="/api/v1/users/books" component={BorrowHistory}></PrivateRoute>
+						<PrivateRoute path="/admin/users" component={UsersList}></PrivateRoute>
 						<Route path="/reset-password" component={ResetPasswordContainer}></Route>
 					</div>
 				</Router>

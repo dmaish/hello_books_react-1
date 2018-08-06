@@ -127,12 +127,23 @@ class SignUpContainer extends Component {
 						/>
 					</div>
 
-					<div className="d-inline mx-auto center">
-						<button type="submit" className="btn btn-primary">Sign Up</button>
+					<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
+					aria-label="Toolbar with button groups">
+						<div className="btn-group mr-2" role="group" aria-label="First group">
+						<button type="submit" className="btn btn-primary">Register</button>
 						{registering}
+						</div>
+						<div className="btn-group" role="group" aria-label="Third group">
+						<Link to="/">
+						<button type="button" className="btn btn-secondary"
+						data-dismiss="modal">Go Back
+						</button>
+						</Link>
+						</div>
 					</div>
 					<br/>
 					<p align="center">Already have an account? <Link to="/api/v1/auth/login">Login here</Link></p>
+
 					<br/>
 				</div>
 			</form>

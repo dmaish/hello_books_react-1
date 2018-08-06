@@ -50,20 +50,13 @@ class UserDashboard extends Component{
             Hello Books
         </Link>
         <ul className="nav justify-content-end">
-            <li className="nav-item">
-                <button type="button" className="btn btn-primary">
-                    Messages <span className="badge badge-light">4</span>
-                </button>
-            </li>
             <li className="nav-item dropdown">
                 <Link to="" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">Menu</ Link>
                 <div className="dropdown-menu">
-                    <Link to="/api/v1/users/profile" className="dropdown-item">Return Book</Link>
-                    <Link to="/api/v1/users/messages" className="dropdown-item">Messages</Link>
+                    <Link to="/api/v1/books" className="dropdown-item">All Books</Link>
                     <Link to="/api/v1/users/books" className="dropdown-item">Books Borrowed</Link>
                     <div className="dropdown-divider"></div>
-                    <Link to="/api/v1/users/books" className="dropdown-item bg-success">Borrow Book</Link>
                 </div>
             </li>
             <li className="nav-item">

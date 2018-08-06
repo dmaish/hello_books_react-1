@@ -188,8 +188,9 @@ const logoutUser = () => {
 	};
 };
 
-const logoutError = () => {
+const logoutError = (error) => {
 	return {
-		type: userConstants.LOGOUT_ERROR
+		type: userConstants.LOGOUT_ERROR,
+		error
 	};
 };

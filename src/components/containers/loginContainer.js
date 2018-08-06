@@ -80,9 +80,6 @@ class LoginContainer extends Component {
 							aria-describedby="emailHelp"
 							placeholder="Please enter your email" />
 					</div>
-
-
-
 					<div>
 						<div className="form-group required">
 							<label className="control-label" htmlFor="exampleInputPassword1">Password:</label>
@@ -96,14 +93,28 @@ class LoginContainer extends Component {
 								value={user.password}
 								placeholder="Please enter your password" />
 						</div>
-						<div className="d-inline mx-auto center">
-						<button type="submit" className="btn btn-primary">Log In</button>
+						<div className="bg bg-danger">
+						{alert.message &&
+						<div className={`alert $ {alert.type}`}>{alert.message}
+						</div>}
+						</div>
+						<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
+						aria-label="Toolbar with button groups">
+						  <div className="btn-group mr-2" role="group" aria-label="First group">
+							<button type="submit" className="btn btn-primary">Login</button>
 							{loggingin}
+						  </div>
+						  <div className="btn-group" role="group" aria-label="Third group">
+							<Link to="/">
+							<button type="button" className="btn btn-secondary"
+							data-dismiss="modal">Go Back
+							</button>
+							</Link>
+						  </div>
 						</div>
 						<br/>
 						<p align="center">Forgot password? <Link to="/reset-password">Reset Password</Link></p>
 						<p align="center">Are you new? <Link to="/api/v1/auth/register">Register</Link></p>
-						<br/>
 						<br/>
 					</div>
 
