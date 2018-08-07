@@ -38,7 +38,7 @@ class BorrowPopUp extends Component{
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-info"
+              <button data-dismiss="modal" type="button" className="btn btn-info"
               onClick={this.handleBorrow}>Borrow Book
               </button>
             </div>

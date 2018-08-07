@@ -43,7 +43,7 @@ render(){
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary"
             data-dismiss="modal">Close</button>
-            <button className="btn btn-primary" type="button"
+            <button data-dismiss="modal" className="btn btn-primary" type="button"
             onClick={this.handleReturn}>Return Book
             </button>
           </div>
