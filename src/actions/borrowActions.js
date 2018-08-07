@@ -8,13 +8,12 @@ import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
 
 export const borrowActions = {
-	borrow,
 	returnBook
 };
 
-function borrow(book_id) {
+export const borrow = (bookId) => {
 	return dispatch => {
-		borrowServices.borrow(book_id)
+		borrowServices.borrow(bookId)
 			.then(
 				book => {
 					dispatch(borrowSuccess(book.book_borrowed));
@@ -34,14 +33,14 @@ function borrow(book_id) {
 				}
 			);
 	};
-}
+};
 
-function borrowSuccess(book){
+const borrowSuccess = (book) => {
 	return {
 		type: borrowConstants.BORROW_SUCCESS,
 		book
 	};
-}
+};
 
 const borrowFailure = () => {
 	return {
@@ -49,9 +48,9 @@ const borrowFailure = () => {
 	};
 };
 
-function returnBook(book_id) {
+const returnBook = (bookId) => {
 	return dispatch => {
-		borrowServices.returnBook(book_id)
+		borrowServices.returnBook(bookId)
 			.then(
 				book => {
 					dispatch(returnSuccess(book.book_borrowed));
@@ -70,14 +69,14 @@ function returnBook(book_id) {
 				}
 			);
 	};
-}
+};
 
-function returnSuccess(book){
+const returnSuccess = (book) => {
 	return {
 		type: borrowConstants.RETURN_SUCCESS,
 		book
 	};
-}
+};
 
 const returnFailure = () => {
 	return {

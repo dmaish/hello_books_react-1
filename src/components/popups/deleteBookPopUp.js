@@ -17,8 +17,7 @@ class DeletePopUp extends Component{
   }
 
   handleClick (e) {
-    // e.preventDefault()
-    console.log(this.props);
+    e.preventDefault()
     this.props.deleteBookAction(this.props.bookId)
   }
 
@@ -40,7 +39,7 @@ class DeletePopUp extends Component{
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button className="btn btn-danger" type="button"
+            <button className="btn btn-danger" type="submit"
             onClick={this.handleClick}>Delete
             </button>
           </div>

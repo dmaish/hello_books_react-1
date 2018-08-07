@@ -12,6 +12,7 @@ import {borrowActions} from "../../actions/borrowActions";
 import BorrowHistory from "../borrow/borrowingHistory";
 import UnReturnedBooks from "../borrow/unReturned"
 import {userActions} from "../../actions/userActions";
+import BorrowPopUp from "../popups/borrowPopUp";
 
 
 class UserDashboard extends Component{
@@ -34,10 +35,10 @@ class UserDashboard extends Component{
           <td>{book.book_isnb}</td>
           <td>{book.copies}</td>
           <td>
-              <button type="button" className="btn btn-info"
-              onClick={ (e) => {e.preventDefault();this.props.borrow(book.book_id)}}>Borrow Book
-              </button>
+          <button type="button" className="btn btn-info" data-toggle="modal"
+          data-target={`#borrowModal${book.book_id}`}>Borrow</button>
           </td>
+          <BorrowPopUp key={book.book_id} bookId={book.book_id}/>
       </tr>
     )
     }

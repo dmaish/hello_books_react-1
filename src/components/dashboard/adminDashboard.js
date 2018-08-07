@@ -25,7 +25,6 @@ class AdminDashboard extends Component{
     let books;
     if (this.props.books.books.all_books){
       books = this.props.books.books.all_books.map((book, index) => {
-        console.log(book.book_id);
         return (
         <tr key={book.book_id}>
             <th scope="row">{index+1}</th>
