@@ -6,7 +6,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {borrowHistory} from "../../actions/borrowHistoryActions";
-import {borrowActions} from "../../actions/borrowActions";
+import {returnBook} from "../../actions/borrowActions";
+import ReturnBookModal from "../popups/returnBookPopUp";
 
 class UnReturnedBooks extends Component{
   componentWillMount(){
@@ -24,11 +25,10 @@ class UnReturnedBooks extends Component{
             <td>{book.borrow_id}</td>
             <td>{book.user_id}</td>
             <td>
-              <button type="button" className="btn btn-primary"
-              onClick={(e) => {e.preventDefault();this.props.returnBook(book.book_id)}}>
-              Return Book
-              </button>
+              <button className="btn btn-primary" type="button" data-toggle="modal"
+              data-target={`#returnModal${book.book_id}`}>Return</button>
             </td>
+            <ReturnBookModal key={book.book_id} bookId={book.book_id}/>
           </tr>
         )
       )
@@ -64,7 +64,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     unReturnBooksHistory: () => dispatch(borrowHistory.unReturnBooksHistory()),
-    returnBook: (book_id) => dispatch(borrowActions.returnBook(book_id))
   }
 }
 

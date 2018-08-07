@@ -103,14 +103,12 @@ class UserDashboard extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    books: state.getBooks,
-    book_id: state.borrowReducer
+    books: state.getBooks
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    borrow: (bookId) => dispatch(borrowActions.borrow(bookId)),
     getBooks: () => dispatch(booksActions.getBooks()),
     logout: () => dispatch(userActions.logout())
   }

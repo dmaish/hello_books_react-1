@@ -7,10 +7,6 @@ import {borrowServices} from "../services/borrowServices";
 import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
 
-export const borrowActions = {
-	returnBook
-};
-
 export const borrow = (bookId) => {
 	return dispatch => {
 		borrowServices.borrow(bookId)
@@ -48,7 +44,7 @@ const borrowFailure = () => {
 	};
 };
 
-const returnBook = (bookId) => {
+export const returnBook = (bookId) => {
 	return dispatch => {
 		borrowServices.returnBook(bookId)
 			.then(

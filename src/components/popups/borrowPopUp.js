@@ -17,6 +17,7 @@ class BorrowPopUp extends Component{
   }
 
   handleBorrow(e){
+    e.preventDefault()
     this.props.borrowBook(this.props.bookId)
   }
 
