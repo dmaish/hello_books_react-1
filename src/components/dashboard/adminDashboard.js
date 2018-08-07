@@ -12,6 +12,7 @@ import {deleteBookAction} from "../../actions/booksActions";
 import {userActions} from "../../actions/userActions";
 import Pagination from "../common/pagination";
 import UsersList from "../containers/usersListContainer";
+import DeletePopUp from "../popups/deleteBookPopUp";
 
 class AdminDashboard extends Component{
 
@@ -20,10 +21,13 @@ class AdminDashboard extends Component{
   }
 
   render() {
+
     let books;
     if (this.props.books.books.all_books){
-      books = this.props.books.books.all_books.map((book, index) =>
-        <tr>
+      books = this.props.books.books.all_books.map((book, index) => {
+        console.log(book.book_id);
+        return (
+        <tr key={book.book_id}>
             <th scope="row">{index+1}</th>
             <td>{book.book_title}</td>
             <td>{book.authors}</td>
@@ -39,19 +43,19 @@ class AdminDashboard extends Component{
             </td>
             <td>
 
-            <button className="btn btn-danger" type="button"
-            onClick={ (e) => {e.preventDefault();this.props.deleteBookAction(book.book_id)} }>Delete
-            </button>
-
-
-
+            <button type="button" className="btn btn-danger" data-toggle="modal"
+            data-target={`#deleteModal${book.book_id}`}>Delete</button>
             </td>
-        </tr>
+            <DeletePopUp key={book.book_id} bookId={book.book_id}/>
+        </tr>)
+      }
       )
     }
 
     return(
+
   <div className="container-fluid">
+
     <nav className="navbar navbar-light" id="top-line">
         <Link to ="/api/v1/secret/admin/dashboard" className="navbar-brand">
             <img src={logo} id="logoimg" className="d-inline-block align-top"
@@ -117,14 +121,12 @@ class AdminDashboard extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    books: state.getBooks,
-    book_id: state.deletingBookReducer
+    books: state.getBooks
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteBookAction: (bookId) => dispatch(deleteBookAction(bookId)),
     getBooks: () => dispatch(booksActions.getBooks()),
     logout: () => dispatch(userActions.logout())
   }

@@ -93,11 +93,12 @@ class LoginContainer extends Component {
 								value={user.password}
 								placeholder="Please enter your password" />
 						</div>
-						<div className="bg bg-danger">
-						{alert.message &&
-						<div className={`alert $ {alert.type}`}>{alert.message}
-						</div>}
-						</div>
+						{
+  alert.message === 'Wrong password.' ?
+  <div className = "bg bg-danger">
+    { alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+  </div > : null
+}
 						<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
 						aria-label="Toolbar with button groups">
 						  <div className="btn-group mr-2" role="group" aria-label="First group">

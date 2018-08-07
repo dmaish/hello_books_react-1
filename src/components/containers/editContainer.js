@@ -31,12 +31,10 @@ class EditBook extends Component{
 				[e.target.name]:e.target.value
 			})
 		});
-		console.log(this.state);
 	}
 	handleSubmit(e){
 		e.preventDefault();
     const {book} = this.state;
-		console.log(book.edition);
 		this.props.editBook(book)
 	}
 
@@ -78,7 +76,7 @@ class EditBook extends Component{
     const {book} = this.state;
 		if(!book.book_id){
 			return (
-				<p>Loadding ..</p>
+				<p>Loading ..</p>
 			)
 		}
     return (
