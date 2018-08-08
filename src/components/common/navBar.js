@@ -1,10 +1,14 @@
+/**
+*  The application navbar container
+*/
+
 import React from "react";
 import logo from "./logo.jpg";
 import { Link } from "react-router-dom";
 
 const NavBar = () =>  (
 	<div>
-		<nav className="navbar navbar-light" id="nav-bg">
+		<nav className="navbar navbar-light" id="top-line">
 			<Link to="/" className="navbar-brand">
 				<img
 					src={logo}

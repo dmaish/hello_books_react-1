@@ -1,3 +1,7 @@
+/**
+* The landing page component
+*/
+
 import React, { Component } from "react";
 import "../assets/style.css";
 import Footer from "./common/footer";

@@ -1,3 +1,7 @@
+/**
+*  Actions triggerred when book is added, edited, deleted
+* or when getting book or books
+*/
 
 import {booksServices} from "../services/booksServices";
 import {booksConstants} from "./actionTypes";
@@ -8,8 +12,7 @@ export const booksActions = {
 	getBooks,
 	addBook,
 	getBook,
-	editBook,
-	deleteBook
+	editBook
 };
 
 function addBook(book) {
@@ -20,11 +23,17 @@ function addBook(book) {
 				book => {
 					dispatch(addedBook(book));
 					history.push("/api/v1/secret/admin/dashboard");
-					dispatch(alertActions.success("Added book successfully."));
+					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					dispatch(addedBookFailure(error));
-					dispatch(alertActions.error(error));
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else (
+						error.then(response => {
+							dispatch(addedBookFailure(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
@@ -59,11 +68,17 @@ function editBook(book) {
 				book => {
 					dispatch(editedBook(book));
 					history.push("/api/v1/secret/admin/dashboard");
-					dispatch(alertActions.success("Edited Book successfully."));
+					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					dispatch(editBookFailure(error));
-					dispatch(alertActions.error(error));
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(editBookFailure(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
@@ -97,10 +112,17 @@ function getBooks() {
 			.then(
 				books => {
 					dispatch(receiveBooks(books));
+					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					dispatch(failureBooks(error));
-					dispatch(alertActions.error(error));
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(failureBooks(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 
 			);
@@ -131,11 +153,17 @@ function getBook(book_id) {
 			.then(
 				book => {
 					dispatch(receiveBook(book));
-					dispatch(alertActions.success("Book was found successfully."));
+					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					dispatch(theBookNotFound(error));
-					dispatch(alertActions.error(error));
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(theBookNotFound(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
@@ -158,21 +186,47 @@ function getBook(book_id) {
 	}
 }
 
-function deleteBook(book_id){
+export const deleteBookAction = (book_id) => {
 	return dispatch => {
+		deleteBookRequest(book_id);
 		booksServices.deleteBook(book_id)
 			.then(
 				book => {
 					dispatch(deleteBookSuccess(book));
 					history.push("/api/v1/secret/admin/dashboard");
-					dispatch(alertActions.success("Book was deleted successfully."));
+					dispatch(alertActions.success(book.message));
+				},
+				error => {
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(deleteBookFailure(response.message));
+						}));
 				}
 			);
 	};
-	function deleteBookSuccess(book_id){
-		return {
-			type: booksConstants.DELETE_BOOK,
-			book_id
-		};
-	}
-}
+
+};
+
+const deleteBookSuccess = (book_id) => {
+	return {
+		type: booksConstants.DELETE_BOOK,
+		book_id
+	};
+};
+
+const deleteBookRequest = (book_id) => {
+	return {
+		type: booksConstants.DELETE_BOOK_REQUEST,
+		book_id
+	};
+};
+
+const deleteBookFailure = (error) => {
+	return {
+		type: booksConstants.DELETE_BOOK_FAILURE,
+		error
+	};
+};

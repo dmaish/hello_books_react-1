@@ -1,3 +1,7 @@
+/** 
+*  The footer container of the application landing page
+*/
+
 import React from "react";
 import {Link} from "react-router-dom";
 import heiroffire from "./heiroffire.jpg"

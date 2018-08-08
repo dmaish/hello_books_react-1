@@ -1,3 +1,9 @@
+/**
+* It contains getting book/books, adding book, editing book
+* and delete book reducers
+*/
+
+
 import {booksConstants} from "../actions/actionTypes";
 
 export function getBooks(state = {
@@ -34,14 +40,18 @@ export function gettingBook(state = {
 	}
 }
 
-export function addBook(state = {}, {type}){
-	switch(type){
+export function addBook(state = {
+	loading: false,
+	book: {},
+	error: {}
+}, actions){
+	switch(actions.type){
 	case booksConstants.ADD_BOOK_REQUEST:
-		return {};
+		return {...state, loading:true};
 	case booksConstants.ADD_BOOK_SUCCESS:
-		return {};
+		return {...state, loading:false, book:actions.book};
 	case booksConstants.ADD_BOOK_FAILURE:
-		return {};
+		return {...state, loading:false, book:actions.error};
 	default:
 		return state;
 	}
@@ -67,11 +77,18 @@ export function editingBook(state = {
 export function deletingBookReducer(state = {
 	loading: false,
 	book_id: "",
+	books: [],
 	error: {}
 }, action){
 	switch (action.type){
+		case booksConstants.DELETE_BOOK_REQUEST:
+			return {...state, loading:true}
 		case booksConstants.DELETE_BOOK_SUCCESS:
 			return {...state, loading:false, book_id:action.book_id};
+		case booksConstants.DELETE_BOOK_FAILURE:
+			return {...state, loading:false, error:action.error};
+		case booksConstants.BOOKS_SUCCESS:
+			return {...state, books: [...state.books, action.book]}
 		default:
 			return state;
 	}

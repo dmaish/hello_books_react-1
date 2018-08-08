@@ -1,49 +1,99 @@
+/**
+*  Actions triggerred when user borrow book, return book
+*/
+
 import {borrowConstants} from "./borrowTypes";
 import {borrowServices} from "../services/borrowServices";
 import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
 
-export const borrowActions = {
-	borrow,
-	returnBook
+export const borrow = (bookId) => {
+	return dispatch => {
+		dispatch(borrowRequest(bookId));
+		borrowServices.borrow(bookId)
+			.then(
+				book => {
+					dispatch(borrowSuccess(book.book_borrowed));
+					history.push("/api/v1/dashboard");
+					dispatch(alertActions.success(book.message));
+				},
+				error => {
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(borrowFailure(response.message));
+							dispatch(alertActions.error(error.message));
+						})
+					);
+				}
+			);
+	};
 };
 
-function borrow(book_id) {
-	return dispatch => {
-		borrowServices.borrow(book_id)
-			.then(
-				book => {
-					dispatch(borrowSuccess(book));
-					history.push("/api/v1/dashboard");
-					dispatch(alertActions.success("You have borrowed the book successfully."));
-				}
-			);
+const borrowRequest = (bookId) => {
+	return {
+		type: borrowConstants.BORROW_REQUEST,
+		bookId
 	};
-}
+};
 
-function borrowSuccess(book_id){
+const borrowSuccess = (bookId) => {
 	return {
 		type: borrowConstants.BORROW_SUCCESS,
-		book_id
+		bookId
 	};
-}
+};
 
-function returnBook(book_id) {
+const borrowFailure = (error) => {
+	return {
+		type: borrowConstants.BORROW_FAILURE,
+		error
+	};
+};
+
+export const returnBook = (bookId) => {
 	return dispatch => {
-		borrowServices.returnBook(book_id)
+		dispatch(returnRequest(bookId));
+		borrowServices.returnBook(bookId)
 			.then(
 				book => {
-					dispatch(returnSuccess(book));
+					dispatch(returnSuccess(book.book_borrowed));
 					history.push("/api/v1/dashboard");
-					dispatch(alertActions.success("You have returned the book successfully."));
+					dispatch(alertActions.success(book.message));
+				},
+				error => {
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(returnFailure(response.message));
+						})
+					);
 				}
 			);
 	};
-}
+};
 
-function returnSuccess(book_id){
+const returnRequest = (bookId) => {
+	return {
+		type: borrowConstants.RETURN_REQUEST,
+		bookId
+	};
+};
+
+const returnSuccess = (bookId) => {
 	return {
 		type: borrowConstants.RETURN_SUCCESS,
-		book_id
+		bookId
 	};
-}
+};
+
+const returnFailure = (error) => {
+	return {
+		type: borrowConstants.RETURN_FAILURE,
+		error
+	};
+};

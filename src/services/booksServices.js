@@ -1,3 +1,8 @@
+/**
+* It contains all fetch requests services for add book,
+* edit book, get book, delete book and get books
+*/
+
 import {accessToken} from "../helpers/token";
 
 export const booksServices = {
@@ -24,9 +29,7 @@ function addBook(book) {
 }
 
 function editBook(bookData) {
-	console.log("Data is ", bookData);
-	// let book_id = this.state.book.book_id;
-	let book_id = 9675;
+	let book_id = bookData.book_id;
 	const requestOptions = {
 		method: "PUT",
 		headers: {
@@ -74,12 +77,7 @@ function deleteBook(book_id) {
 
 function handleResponse(response) {
 	if(!response.ok) {
-		response.json().then(data=>{
-			console.log(data);
-		}).catch(err=>{
-			console.log(err);
-		});
-		return Promise.reject(response.statusText);
+		return Promise.reject(response.json());
 
 	}
 	return response.json();

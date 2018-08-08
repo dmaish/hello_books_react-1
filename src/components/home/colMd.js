@@ -1,3 +1,7 @@
+/**
+*  The container for column containing mostly borrowed books 
+*/
+
 import React from "react";
 
 const ColMd = () => (
@@ -97,7 +101,7 @@ Sign Up to Borrow
 			</ul>
 		</nav>
 	</div>
-			
+
 );
 
 export default ColMd;

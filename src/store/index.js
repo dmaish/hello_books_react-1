@@ -1,3 +1,7 @@
+/**
+* Creating the store of the aplication
+*/
+
 import {createStore, applyMiddleware} from "redux";
 import thunkMiddleware from "redux-thunk";
 import {createLogger} from "redux-logger";
