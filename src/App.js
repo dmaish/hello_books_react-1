@@ -1,9 +1,12 @@
+/**
+* Setting the routes of the application
+*/
+
 import React, { Component } from "react";
 import {Router , Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Landing from "./components/landing";
 import {history} from "./helpers/history";
-import {alertActions} from "./actions/alertActions";
 import SignUpContainer from "./components/containers/signupContainer";
 import LoginContainer from "./components/containers/loginContainer";
 import AllBooks from "./components/containers/booksContainer";
@@ -14,26 +17,19 @@ import SingleBook from "./components/page/singleBook";
 import EditBook from "./components/containers/editContainer";
 import BorrowHistory from "./components/borrow/borrowingHistory";
 import {PrivateRoute} from "./helpers/privateRoutes";
+import InternetError from "./components/common/internetError";
+import UsersList from "./components/containers/usersListContainer";
+import ResetPasswordContainer from "./components/containers/resetPasswordContainer";
 
 class Application extends Component {
-	constructor(props) {
-		super(props);
-		const {dispatch} = this.props;
-		history.listen((location, action) => {
-			dispatch(alertActions.clear());
-		});
-	}
 	render() {
-		const {alert} = this.props;
 		return (
 			<div>
-				{alert.message &&
-				<div className={`alert $ {alert.type}`}>{alert.message}
-				</div>}
 				<Router history={history}>
 					<div>
 						<Route exact path="/" component={Landing}></Route>
 						<Route path="/api/v1/auth/register" component={SignUpContainer}></Route>
+						<Route path="/internetissues" component={InternetError}></Route>
 						<Route path="/api/v1/auth/login" component={LoginContainer}></Route>
 						<Route exact path="/api/v1/books" component={AllBooks}></Route>
 						<PrivateRoute path="/api/v1/dashboard" component={UserDashboard}></PrivateRoute>
@@ -42,6 +38,8 @@ class Application extends Component {
 						<Route path="/api/v1/books/:book_id" component={SingleBook}></Route>
 						<PrivateRoute path="/api/v1/secret/admin/books/:book_id" component={EditBook}></PrivateRoute>
 						<PrivateRoute exact path="/api/v1/users/books" component={BorrowHistory}></PrivateRoute>
+						<PrivateRoute path="/admin/users" component={UsersList}></PrivateRoute>
+						<Route path="/reset-password" component={ResetPasswordContainer}></Route>
 					</div>
 				</Router>
 			</div>
@@ -49,13 +47,4 @@ class Application extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	const {alert} = state;
-	return {
-		alert
-	};
-}
-
-const App = connect(mapStateToProps)(Application);
-
-export default App;
+export default Application;

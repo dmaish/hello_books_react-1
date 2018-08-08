@@ -1,11 +1,22 @@
+/**
+*  The component that allows users to registering
+*/
+
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import logo from "../common/logo.jpg"
 import {userActions} from "../../actions/userActions";
+import {alertActions} from "../../actions/alertActions";
+import {history} from "../../helpers/history";
 
 class SignUpContainer extends Component {
 	constructor(props) {
 		super(props);
+		const {dispatch} = this.props
+		history.listen((location, action) => {
+				dispatch(alertActions.clear());
+		})
 		this.state = {
 			user: {
 				email: "",
@@ -38,16 +49,26 @@ class SignUpContainer extends Component {
 		dispatch(userActions.register(user));
 	}
 	render(){
+		const {alert} = this.props;
 		const {registering} = this.props;
 		const {user} = this.state;
 		return (
+			<div id= "login_signup" className="log-sign-bg-col">
 			<form onSubmit={this.handleSubmit}
 				className="form-horizontal">
-				<div className="container col-md-5 offset-md-3" id="nav-bg">
+				<div className="container col-md-5 offset-md-3" id="top-line">
 					<br />
-					<h4 className="text-center">Please Sign Up Here: </h4>
-					<div className="form-group">
-						<label htmlFor="exampleInputEmail1">Email: </label>
+					<div id="bg-colo">
+					<img
+						src={logo}
+						id="img-display-form"
+						className="mx-auto d-block"
+						alt="logo" />
+					<h4 className="text-center">Hello Books</h4>
+					</div>
+					<br/>
+					<div className="form-group required">
+						<label className="control-label" htmlFor="exampleInputEmail1">Email: </label>
 						<input
 							type="email"
 							onChange={this.handleChange}
@@ -56,11 +77,19 @@ class SignUpContainer extends Component {
 							name = "email"
 							value={user.email}
 							aria-describedby="emailHelp"
-							placeholder="Enter email"
+							placeholder="Please enter your email"
+							required="true"
 						/>
 					</div>
-          <div className="form-group">
-						<label htmlFor="formGroupExampleInput">First Name: </label>
+					{
+						alert.message === 'Please provide a valid email!'
+						|| alert.message === "The user is already registered." ?
+						<div className = "bg bg-danger">
+							{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+						</div > : null
+					}
+          <div className="form-group required">
+						<label className="control-label" htmlFor="formGroupExampleInput">First Name: </label>
 						<input
 							type="text"
 							onChange={this.handleChange}
@@ -68,11 +97,12 @@ class SignUpContainer extends Component {
 							className="form-control"
 							id="formGroupExampleInput"
 							value={user.first_name}
-							placeholder="Enter your first name"
+							placeholder="Please enter your first name"
+							required="true"
 						/>
 					</div>
-          <div className="form-group">
-						<label htmlFor="formGroupExampleInput">Last Name: </label>
+          <div className="form-group required">
+						<label className="control-label" htmlFor="formGroupExampleInput">Last Name: </label>
 						<input
 							type="text"
 							onChange={this.handleChange}
@@ -80,11 +110,12 @@ class SignUpContainer extends Component {
 							className="form-control"
 							id="formGroupExampleInput"
 							value={user.last_name}
-							placeholder="Enter your last name"
+							placeholder="please enter your last name"
+							required="true"
 						/>
 					</div>
-					<div className="form-group">
-						<label htmlFor="formGroupExampleInput">Username: </label>
+					<div className="form-group required">
+						<label className="control-label" htmlFor="formGroupExampleInput">Username: </label>
 						<input
 							type="text"
 							onChange={this.handleChange}
@@ -92,11 +123,19 @@ class SignUpContainer extends Component {
 							className="form-control"
 							id="formGroupExampleInput"
 							value={user.username}
-							placeholder="Enter username"
+							placeholder="Please enter your username"
+							required="true"
 						/>
 					</div>
-					<div className="form-group">
-						<label htmlFor="exampleInputPassword1">Password: </label>
+					{
+						alert.message === 'Username need to be more than 4 characters!'
+						|| alert.message === "The username is already taken!" ?
+						<div className = "bg bg-danger">
+							{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+						</div > : null
+					}
+					<div className="form-group required">
+						<label className="control-label" htmlFor="exampleInputPassword1">Password: </label>
 						<input
 							type="password"
 							onChange={this.handleChange}
@@ -104,18 +143,37 @@ class SignUpContainer extends Component {
 							name="password"
 							value={user.password}
 							id="exampleInputPassword1"
-							placeholder="Password" />
+							placeholder="Please enter your password"
+							required="true"
+						/>
 					</div>
-
-					<div className="d-inline mx-auto center">
-						<button type="submit" className="btn btn-primary">Sign Up</button>
+					{
+						alert.message === 'Password is short!' ?
+						<div className = "bg bg-danger">
+							{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+						</div > : null
+					}
+					<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
+					aria-label="Toolbar with button groups">
+						<div className="btn-group mr-2" role="group" aria-label="First group">
+						<button type="submit" className="btn btn-primary">Register</button>
 						{registering}
+						</div>
+						<div className="btn-group" role="group" aria-label="Third group">
+						<Link to="/">
+						<button type="button" className="btn btn-secondary"
+						data-dismiss="modal">Go Back
+						</button>
+						</Link>
+						</div>
 					</div>
 					<br/>
-					<p>Already have an account? <Link to="/api/v1/auth/login">Login here</Link></p>
+					<p align="center">Already have an account? <Link to="/api/v1/auth/login">Login here</Link></p>
+
 					<br/>
 				</div>
 			</form>
+			</div>
 		);
 	}
 }
@@ -124,7 +182,8 @@ class SignUpContainer extends Component {
 const mapStateToProps = (state) => {
 	const {registering} = state.registration;
 	return {
-		registering
+		registering,
+		alert: state.alert
 	};
 };
 

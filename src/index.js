@@ -1,3 +1,7 @@
+/**
+* The root store of the application is called here and run
+*/
+
 import React from 'react';
 import ReactDom from 'react-dom';
 import {Provider} from "react-redux";

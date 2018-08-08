@@ -1,3 +1,8 @@
+/**
+* It contains all fetch requests services for:
+* borrowing a book, returning book, get borrow history
+*/
+
 import {accessToken} from "../helpers/token";
 
 export const borrowServices = {
@@ -40,11 +45,10 @@ function borrowHistory() {
 	const requestOptions = {
 		method: "GET",
 		headers: {
-			"Content-Type": "application/json",
 			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		}
 	};
-	return fetch("https://stark-falls-93345.herokuapp.com/users/books",
+	return fetch("https://stark-falls-93345.herokuapp.com/users/books/",
 		requestOptions)
 		.then(
 			handleResponse
@@ -55,7 +59,6 @@ function unReturnedBooks() {
 	const requestOptions = {
 		method: "GET",
 		headers: {
-			"Content-Type": "application/json",
 			"Authorization": `Bearer ${accessToken()["access_token"]}`
 		}
 	};
@@ -68,13 +71,7 @@ function unReturnedBooks() {
 
 function handleResponse(response) {
 	if(!response.ok) {
-		response.json().then(data=>{
-			console.log(data);
-		}).catch(err=>{
-			console.log(err);
-		});
-		return Promise.reject(response.statusText);
-
+		return Promise.reject(response.json());
 	}
 	return response.json();
 }

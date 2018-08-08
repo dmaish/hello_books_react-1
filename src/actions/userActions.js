@@ -1,5 +1,11 @@
+/**
+*  Actions triggerred when user is registering, logging in
+* Resetting password and logging out
+*/
+
 import {userConstants} from "./actionTypes";
 import {userServices} from "../services/userServices";
+import {resetPassword} from "../services/userServices";
 import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
 
@@ -17,12 +23,17 @@ function register(user) {
 				user => {
 					dispatch(successRegister(user));
 					history.push("/api/v1/auth/login");
-					dispatch(alertActions.success(
-						"Registration successfull."));
+					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					dispatch(failureRegister(error));
-					dispatch(alertActions.error(error));
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else (
+						error.then(response => {
+							dispatch(failureRegister(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
@@ -54,14 +65,25 @@ function login(user) {
 				user => {
 					dispatch(successLogin(user));
 					localStorage.setItem("access_token", JSON.stringify(user.access_token));
-					history.push("/api/v1/secret/admin/dashboard");
-					dispatch(alertActions.success(
-						"You have logged in successfully."
-					));
+					if (user.email.endsWith("@hellobookslibrary.com")){
+						history.push("/api/v1/secret/admin/dashboard");
+						dispatch(alertActions.success(user.message));
+					}
+					else {
+						history.push("/api/v1/dashboard");
+						dispatch(alertActions.success(user.message));
+					}
+
 				},
 				error => {
-					dispatch(failureLogin(error));
-					dispatch(alertActions.error(error));
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(failureLogin(response.message));
+							dispatch(alertActions.error(response.message));
+						}));
 				}
 			);
 	};
@@ -91,21 +113,84 @@ function login(user) {
 	}
 }
 
+export const resetPasswordAction = (user) => {
+	return dispatch => {
+		dispatch(resetPasswordRequest(user));
+		resetPassword(user)
+			.then(
+				user => {
+					dispatch(resetPasswordSuccess(user));
+					history.push("/api/v1/auth/login");
+				},
+				error => {
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else(
+						error.then(response => {
+							dispatch(resetPasswordFailure(response.message));
+						})
+					);
+				}
+			);
+	};
+};
+
+const resetPasswordRequest = (user) => {
+	return {
+		type: userConstants.RESET_PASSWORD_REQUEST,
+		user
+	};
+};
+
+const resetPasswordSuccess = (user) => {
+	return {
+		type: userConstants.RESET_PASSWORD_SUCCESS,
+		user
+	};
+};
+
+const resetPasswordFailure = (error) => {
+	return {
+		type: userConstants.RESET_PASSWORD_FAILURE,
+		error
+	};
+};
+
 function logout() {
 	return dispatch => {
-		userServices.logout();
-		dispatch(logoutUser());
-		localStorage.removeItem("access_token");
-		history.push("/api/v1/auth/login");
-		dispatch(alertActions.success(
-			"You have logged out successfully."
-		));
+		userServices.logout()
+			.then(
+				user => {
+					dispatch(logoutUser(user));
+					localStorage.removeItem("access_token");
+					history.push("/api/v1/auth/login");
+				},
+				error => {
+					if (error.message === "Failed to fetch"){
+						history.push("/internetissues");
+					}
+					else (
+						error.then(response => {
+							dispatch(logoutError(response.message));
+						})
+					);
+				}
+			);
+
 	};
 }
 
 
-function logoutUser() {
+const logoutUser = () => {
 	return {
-		type: userConstants.LOGOUT_USER,
+		type: userConstants.LOGOUT_USER
 	};
-}
+};
+
+const logoutError = (error) => {
+	return {
+		type: userConstants.LOGOUT_ERROR,
+		error
+	};
+};

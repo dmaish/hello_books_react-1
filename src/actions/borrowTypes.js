@@ -1,3 +1,8 @@
+/**
+*  Contains all the types for borrow/authenticated user actions
+* This constains borrow, return and history action types
+*/
+
 export const borrowConstants = {
 	BORROW_REQUEST: "USERS_BORROW_REQUEST",
 	BORROW_SUCCESS: "USERS_BORROW_SUCCESS",

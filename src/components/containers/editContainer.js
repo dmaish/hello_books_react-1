@@ -1,5 +1,10 @@
+/**
+*  The component that allows admin to edit a book
+*/
+
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import {booksActions} from "../../actions/booksActions";
 
 class EditBook extends Component{
@@ -7,12 +12,14 @@ class EditBook extends Component{
 		super(props);
 		this.state = {
 			book: {
-					book_id:"",
-					year: "",
-					edition: "",
-					publisher: "",
-					city_published:"",
-					copies:""
+				book_title: "",
+				authors: "",
+				year: "",
+				edition: "",
+				city_published: "",
+				book_isnb: "",
+				publisher: "",
+				copies: "",
 			}
 		};
 		this.handleChange = this.handleChange.bind(this);
@@ -20,53 +27,88 @@ class EditBook extends Component{
 	}
 	handleChange(e){
 		this.setState({
-        ...this.state.book,
-        [e.target.name]: e.target.value
-		}
-		);
+			book:  Object.assign({}, this.state.book,{
+				[e.target.name]:e.target.value
+			})
+		});
 	}
 	handleSubmit(e){
 		e.preventDefault();
     const {book} = this.state;
-		console.log("the book is ", book)
 		this.props.editBook(book)
 	}
 
-	componentDidMount(){
+	componentWillMount(){
 		let bookId = this.props.match.params.book_id
-		console.log("The id is ", bookId);
 		fetch(`https://stark-falls-93345.herokuapp.com/books/${bookId}`)
 			.then(
-				res => res.json()
+				res => {
+					return res.json()
+				}
 			).then(
 				data => {
-					const {book} = this.props
-					console.log("here is the data state", data.book_details);
-					console.log("The details to be updated are:", book);
+
+					const book = data.book_details
+
 					this.setState({
-					book: Object.assign({}, data.book_details,
-						{
-							year: book.year,
-							edition: book.edition,
-							publisher: book.publisher,
-							city_published: book.city_published,
-							copies: book.copies
-						}
-					)
-				})}
+							book: Object.assign({}, data.book_details,{
+									book_title: book.book_title,
+									authors: book.authors,
+									year: book.year,
+									edition: book.edition,
+									publisher: book.publisher,
+									book_isnb: book.book_isnb,
+									city_published: book.city_published,
+									copies: book.copies
+								}
+							)
+					})
+			}
 			)
 			.catch(
-				error => console.log(error)
+				error => {
+					console.log(error)
+				}
 			);
 	}
 
   render(){
     const {book} = this.state;
+		if(!book.book_id){
+			return (
+				<p>Loading ..</p>
+			)
+		}
     return (
+			<div id= "login_signup" className="log-sign-bg-col">
       <form onSubmit={this.handleSubmit} className="form-horizontal">
-        <div className="container col-md-5 offset-md-3" id="nav-bg">
+        <div className="container col-md-5 offset-md-3" id="top-line">
             <br />
             <h4 className="text-center">Fill the form to edit book</h4>
+						<div className="form-group">
+								<label htmlFor="book_title">Book Title</label>
+								<input
+										type="text"
+										onChange={this.handleChange}
+										className="form-control"
+										name="book_title"
+										id="book_title"
+										value={book.book_title}
+										placeholder="Enter book Title"
+								/>
+						</div>
+						<div className="form-group">
+								<label htmlFor="authors">Book Title</label>
+								<input
+										type="text"
+										onChange={this.handleChange}
+										className="form-control"
+										name="authors"
+										id="authors"
+										value={book.authors}
+										placeholder="Enter authors"
+								/>
+						</div>
             <div className="form-group">
               <label htmlFor="publisher">Publisher</label>
               <input
@@ -103,6 +145,18 @@ class EditBook extends Component{
                 placeholder="Enter city published"
               />
             </div>
+						<div className="form-group">
+								<label htmlFor="book_isnb">Book Title</label>
+								<input
+										type="text"
+										onChange={this.handleChange}
+										className="form-control"
+										name="book_isnb"
+										id="book_isnb"
+										value={book.book_isnb}
+										placeholder="Enter book isnb"
+								/>
+						</div>
             <div className="form-group">
               <label htmlFor="edition">Edition</label>
               <input
@@ -127,12 +181,23 @@ class EditBook extends Component{
                 placeholder="Enter book title"
               />
             </div>
-            <div className="d-inline mx-auto center">
-            <button type="submit" className="btn btn-primary">Submit</button>
-    				</div>
+						<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
+						aria-label="Toolbar with button groups">
+						  <div className="btn-group mr-2" role="group" aria-label="First group">
+							<button type="submit" className="btn btn-primary">Submit</button>
+						  </div>
+						  <div className="btn-group" role="group" aria-label="Third group">
+							<Link to="/api/v1/secret/admin/dashboard">
+							<button type="button" className="btn btn-secondary"
+							data-dismiss="modal">Cancel
+							</button>
+							</Link>
+						  </div>
+						</div>
     				<br/>
         </div>
       </form>
+			</div>
     )
   }
 }

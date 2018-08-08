@@ -1,10 +1,15 @@
+/**
+*  Block in the landing page container
+* The landing page should contains block after couresel
+*/
+
 import React from "react";
 import {Link} from "react-router-dom";
 
 const BlockDiv = () => (
 	<div
 		className="container-fluid offer pt-3 pb-3 d-none d-md-block"
-		id="nav-bg1">
+		id="top-line">
 		<div className="container">
 			<h1 className="text-center">
 WHY PEOPLE CHOOSE US
