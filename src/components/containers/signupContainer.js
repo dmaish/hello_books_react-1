@@ -7,10 +7,16 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import logo from "../common/logo.jpg"
 import {userActions} from "../../actions/userActions";
+import {alertActions} from "../../actions/alertActions";
+import {history} from "../../helpers/history";
 
 class SignUpContainer extends Component {
 	constructor(props) {
 		super(props);
+		const {dispatch} = this.props
+		history.listen((location, action) => {
+				dispatch(alertActions.clear());
+		})
 		this.state = {
 			user: {
 				email: "",
@@ -43,6 +49,7 @@ class SignUpContainer extends Component {
 		dispatch(userActions.register(user));
 	}
 	render(){
+		const {alert} = this.props;
 		const {registering} = this.props;
 		const {user} = this.state;
 		return (
@@ -74,6 +81,13 @@ class SignUpContainer extends Component {
 							required="true"
 						/>
 					</div>
+					{
+						alert.message === 'Please provide a valid email!'
+						|| alert.message === "The user is already registered." ?
+						<div className = "bg bg-danger">
+							{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+						</div > : null
+					}
           <div className="form-group required">
 						<label className="control-label" htmlFor="formGroupExampleInput">First Name: </label>
 						<input
@@ -113,6 +127,13 @@ class SignUpContainer extends Component {
 							required="true"
 						/>
 					</div>
+					{
+						alert.message === 'Username need to be more than 4 characters!'
+						|| alert.message === "The username is already taken!" ?
+						<div className = "bg bg-danger">
+							{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+						</div > : null
+					}
 					<div className="form-group required">
 						<label className="control-label" htmlFor="exampleInputPassword1">Password: </label>
 						<input
@@ -126,7 +147,12 @@ class SignUpContainer extends Component {
 							required="true"
 						/>
 					</div>
-
+					{
+						alert.message === 'Password is short!' ?
+						<div className = "bg bg-danger">
+							{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+						</div > : null
+					}
 					<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
 					aria-label="Toolbar with button groups">
 						<div className="btn-group mr-2" role="group" aria-label="First group">
@@ -156,7 +182,8 @@ class SignUpContainer extends Component {
 const mapStateToProps = (state) => {
 	const {registering} = state.registration;
 	return {
-		registering
+		registering,
+		alert: state.alert
 	};
 };
 

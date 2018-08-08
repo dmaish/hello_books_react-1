@@ -11,8 +11,12 @@ export function borrowReducer(state = {
 	error: {}
 }, actions){
 	switch(actions.type) {
+	case borrowConstants.BORROW_REQUEST:
+		return {...state, borrowing:true}
 	case borrowConstants.BORROW_SUCCESS:
 		return {...state, borrowing:false, book_id:actions.book_id};
+	case borrowConstants.BORROW_FAILURE:
+		return {...state, borrowing:false, error:actions.error}
 	default:
 		return state;
 	}
@@ -21,11 +25,16 @@ export function borrowReducer(state = {
 export function returnBookReducer(state = {
 	returning: false,
 	book_id: "",
+	books: [],
 	error: {}
 }, actions) {
 	switch(actions.type) {
+	case borrowConstants.RETURN_REQUEST:
+		return {...state, returning:true}
 	case borrowConstants.RETURN_SUCCESS:
 		return {...state, returning:false, book_id:actions.book_id};
+	case borrowConstants.RETURN_FAILURE:
+		return {...state, returning:false, error:actions.error}
 	default:
 		return state;
 	}
@@ -46,7 +55,7 @@ export function borrowHistoryReducer(state = {
 	case borrowConstants.BORROW_SUCCESS:
 		return {...state, books: [...state.books, actions.book]}
 	case borrowConstants.RETURN_SUCCESS:
-		return {...state, returning:false, book_id:actions.book_id};
+		return {...state, returning:false, book_id:[...state.books, actions.book_id]};
 	default:
 		return state;
 	}

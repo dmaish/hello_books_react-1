@@ -9,6 +9,7 @@ import {history} from "../helpers/history";
 
 export const borrow = (bookId) => {
 	return dispatch => {
+		dispatch(borrowRequest(bookId));
 		borrowServices.borrow(bookId)
 			.then(
 				book => {
@@ -31,21 +32,30 @@ export const borrow = (bookId) => {
 	};
 };
 
-const borrowSuccess = (book) => {
+const borrowRequest = (bookId) => {
 	return {
-		type: borrowConstants.BORROW_SUCCESS,
-		book
+		type: borrowConstants.BORROW_REQUEST,
+		bookId
 	};
 };
 
-const borrowFailure = () => {
+const borrowSuccess = (bookId) => {
 	return {
-		type: borrowConstants.BORROW_FAILURE
+		type: borrowConstants.BORROW_SUCCESS,
+		bookId
+	};
+};
+
+const borrowFailure = (error) => {
+	return {
+		type: borrowConstants.BORROW_FAILURE,
+		error
 	};
 };
 
 export const returnBook = (bookId) => {
 	return dispatch => {
+		dispatch(returnRequest(bookId));
 		borrowServices.returnBook(bookId)
 			.then(
 				book => {
@@ -67,15 +77,23 @@ export const returnBook = (bookId) => {
 	};
 };
 
-const returnSuccess = (book) => {
+const returnRequest = (bookId) => {
 	return {
-		type: borrowConstants.RETURN_SUCCESS,
-		book
+		type: borrowConstants.RETURN_REQUEST,
+		bookId
 	};
 };
 
-const returnFailure = () => {
+const returnSuccess = (bookId) => {
 	return {
-		type: borrowConstants.RETURN_FAILURE
+		type: borrowConstants.RETURN_SUCCESS,
+		bookId
+	};
+};
+
+const returnFailure = (error) => {
+	return {
+		type: borrowConstants.RETURN_FAILURE,
+		error
 	};
 };

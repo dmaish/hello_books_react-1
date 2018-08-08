@@ -79,9 +79,12 @@ class Login extends Component {
 							aria-describedby="emailHelp"
 							placeholder="Please enter your email" />
 					</div>
-
-
-
+					{
+						alert.message === 'This user email is not registered. Please register.' ?
+						<div className = "bg bg-danger">
+							{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+						</div > : null
+					}
 					<div>
 						<div className="form-group required">
 							<label className="control-label" htmlFor="exampleInputPassword1">Password:</label>
@@ -95,9 +98,12 @@ class Login extends Component {
 								value={user.password}
 								placeholder="Please enter your password" />
 						</div>
-						{alert.message &&
-						<div className={`alert alert-danger $ alert $ {alert.type}`}>{alert.message}
-						</div>}
+						{
+							alert.message === 'Wrong password.' ?
+							<div className = "bg bg-danger">
+								{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+							</div > : null
+						}
 						<div className="d-inline mx-auto center">
 						<button type="submit" className="btn btn-primary">Log In</button>
 							{loggingin}

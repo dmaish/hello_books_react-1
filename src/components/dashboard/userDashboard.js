@@ -61,7 +61,7 @@ class UserDashboard extends Component{
                 </div>
             </li>
             <li className="nav-item">
-                <button type="button" className="btn btn-warning"
+                <button type="button" className="btn btn-secondary"
                 onClick={ (e) => {e.preventDefault(); this.props.logout()}}
                 >Logout</button>
             </li>

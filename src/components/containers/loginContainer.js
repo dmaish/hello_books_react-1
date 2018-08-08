@@ -40,7 +40,6 @@ class LoginContainer extends Component {
 	}
 	handleSubmit (e) {
 		e.preventDefault();
-		e.stopPropagation()
 		this.setState({submitted: true});
 		const {user} = this.state;
 		const {dispatch} = this.props;
@@ -48,7 +47,6 @@ class LoginContainer extends Component {
 	}
 	render(){
 		const {alert} = this.props;
-		console.log("---->", alert.message);
 		const {loggingin} = this.props;
 		const {user} = this.state;
 		return(
@@ -80,6 +78,12 @@ class LoginContainer extends Component {
 							aria-describedby="emailHelp"
 							placeholder="Please enter your email" />
 					</div>
+					{
+						alert.message === 'This user email is not registered. Please register.' ?
+						<div className = "bg bg-danger">
+							{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+						</div > : null
+					}
 					<div>
 						<div className="form-group required">
 							<label className="control-label" htmlFor="exampleInputPassword1">Password:</label>
@@ -93,12 +97,12 @@ class LoginContainer extends Component {
 								value={user.password}
 								placeholder="Please enter your password" />
 						</div>
-						{
-  alert.message === 'Wrong password.' ?
-  <div className = "bg bg-danger">
-    { alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
-  </div > : null
-}
+							{
+							  alert.message === 'Wrong password.' ?
+							  <div className = "bg bg-danger">
+							    { alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+							  </div > : null
+							}
 						<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
 						aria-label="Toolbar with button groups">
 						  <div className="btn-group mr-2" role="group" aria-label="First group">
