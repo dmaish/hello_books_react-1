@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BreakLine from "../components/common/break";
+import InternetError from "../../../components/common/internetError";
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<BreakLine />, div);
+  ReactDOM.render(<InternetError />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

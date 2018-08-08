@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BreakLine from "../components/common/break";
+import SearchButton from "../../../components/common/searchButton";
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<BreakLine />, div);
+  ReactDOM.render(<SearchButton />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

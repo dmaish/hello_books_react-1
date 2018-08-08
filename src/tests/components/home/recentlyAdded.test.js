@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BreakLine from "../components/common/break";
+import RecentlyAdded from "../../../components/home/recentlyAdded";
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<BreakLine />, div);
+  ReactDOM.render(<RecentlyAdded />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

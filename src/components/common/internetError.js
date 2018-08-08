@@ -7,7 +7,7 @@ import React, {Component} from "react";
 const InternetError = () => {
   return(
     <div className="container-fluid" id="interneterror">
-    <p id="left"><i class="material-icons">
+    <p id="left"><i className="material-icons">
       network_check
     </i>
     </p>
