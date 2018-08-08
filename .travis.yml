@@ -4,7 +4,8 @@ node_js:
   - "node"
 install:
   - npm install
+  - npm install --dev coveralls
 script:
   - npm test -- --coverage
 after_success:
-  - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
+  - npm run coveralls
