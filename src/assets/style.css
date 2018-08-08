@@ -1,0 +1,137 @@
+/**
+*Contains all css for the application
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#root {
+  min-height: 100%;
+  width: 100%;
+  background-color: white;
+}
+#nav-bg {
+    background-color: #e3f2fd;
+}
+#bg-colo {
+    background-color: #E0EAF1;
+}
+#top-line {
+  background-color: #DBE2E7;
+}
+#login_signup {
+  margin-top: 130px;
+  padding-left: 200px;
+  padding-right: 200px;
+  margin-bottom: 130px;
+}
+.d-inline.mx-auto.center {
+    text-align: center !important;
+    display: block !important;
+}
+#nav-bg1 {
+    background-color: #F5F27F;
+    color: black;
+}
+.log-sign-bg-col {
+}
+.jumbotron {
+  background-image: url(../components/common/complibrary.jpg);
+  opacity: 1.0;
+}
+#left {
+  margin-left: 150px;
+}
+#img-display-form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50px;
+  height: 50px;
+}
+#interneterror {
+  margin-left: 500px;
+  margin-top: 300px;
+  max-width: inherit;
+
+}
+.form-group.required .control-label:after {
+  content: "*";
+  color: red;
+}
+#login {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#list {
+  width: 400px;
+  align-content: center;
+  margin-left: 150px;
+}
+
+.media img {
+    max-width: 120px;
+    height: auto;
+}
+.carousel-caption {
+    top: 200px;
+}
+.carousel-inner{
+    height: 550px;
+
+}
+.carousel-inner h1 {
+    color: #070808;
+    font-weight: 600;
+}
+.App {
+  text-align: center;
+}
+
+#carousel {
+  opacity: 1.0;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+#bookimgs {
+  width: 18rem;
+  height: 500px;
+}
+
+#userdashboardimg {
+   width: 18rem;
+   height: 40px;
+}
+
+#logoimg {
+  width: 30px;
+  height: 30px;
+}
+#h3 {
+  color: #295ADD;
+}
+
+#para {
+  color: yellow;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

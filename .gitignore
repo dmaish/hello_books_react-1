@@ -20,10 +20,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-
-# Just ignore
-
-.config
-scripts/
-config/
+# Any complation
 .vscode/
+
+# Test Runners and configs
+config/
+scripts/

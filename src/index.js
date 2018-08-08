@@ -1,8 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+/**
+* The root store of the application is called here and run
+*/
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import React from 'react';
+import ReactDom from 'react-dom';
+import {Provider} from "react-redux";
+import store from "./store";
+import App from './App';
+
+ReactDom.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'));
