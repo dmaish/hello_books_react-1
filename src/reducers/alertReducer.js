@@ -1,4 +1,4 @@
-/** 
+/**
 * This is alert reducers
 * When there is any alert, this is the reducer called
 */
