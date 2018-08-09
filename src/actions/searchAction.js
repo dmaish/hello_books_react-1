@@ -10,7 +10,7 @@ import {history} from "../helpers/history";
 const searchAction = () => {
 	return dispatch => {
 		dispatch(searchRequest());
-		dispatch(searchServices())
+		searchServices()
 			.then(
 				books => {
 					dispatch(searchSuccess(books));
