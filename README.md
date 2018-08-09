@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/ezrqnkemboi/hello_books_react.svg?branch=develop)](https://travis-ci.org/ezrqnkemboi/hello_books_react)
-[![Coverage Status](https://coveralls.io/repos/github/ezrqnkemboi/hello_books_react/badge.svg?branch=ch-setup-react-app-157074612)](https://coveralls.io/github/ezrqnkemboi/hello_books_react?branch=ch-setup-react-app-157074612)
+[![Coverage Status](https://coveralls.io/repos/github/ezrqnkemboi/hello_books_react/badge.svg?branch=master)](https://coveralls.io/github/ezrqnkemboi/hello_books_react?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d5f4245c7bba494d9ccc9b5614bce903)](https://www.codacy.com/project/ezrqnkemboi/hello_books_react/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ezrqnkemboi/hello_books_react&amp;utm_campaign=Badge_Grade_Dashboard)
 # Hello Books Library  
 
