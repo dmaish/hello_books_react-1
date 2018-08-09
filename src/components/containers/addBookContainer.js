@@ -52,6 +52,8 @@ class AddBookContainer extends Component{
 	}
   render(){
 		const {alert} = this.props;
+		console.log("--------->", alert);
+		console.log("-------alert msg---->", alert.year);
     const {addingBook} = this.props;
     const {book} = this.state;
     return (

@@ -20,7 +20,6 @@ const Main = () => (
 			<SearchButton/>
 			<BreakLine/>
 	</div>
-
 );
 
 export default Main;
