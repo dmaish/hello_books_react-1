@@ -146,9 +146,9 @@ function getBooks() {
 	}
 }
 
-function getBook(book_id) {
+function getBook(bookId) {
 	return dispatch => {
-		dispatch(getBookRequest(book_id));
+		dispatch(getBookRequest(bookId));
 		booksServices.getBook()
 			.then(
 				book => {
@@ -167,15 +167,16 @@ function getBook(book_id) {
 				}
 			);
 	};
-	function getBookRequest(){
+	function getBookRequest(bookId){
 		return {
 			type: booksConstants.SINGLE_BOOK_REQUEST,
+			bookId
 		};
 	}
-	function receiveBook(book_id) {
+	function receiveBook(bookId) {
 		return {
 			type: booksConstants.SINGLE_BOOK_SUCCESS,
-			book_id
+			bookId
 		};
 	}
 	function theBookNotFound(error) {

@@ -4,6 +4,7 @@
 
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 import Nav from "../containers/publicNav";
 
 
@@ -18,9 +19,9 @@ class SingleBook extends Component{
     };
 	}
 
-	componentDidMount(){
-
-		fetch(`https://stark-falls-93345.herokuapp.com/books/${this.props.match.params.book_id}`)
+	componentWillMount(){
+		let bookId = this.props.match.params.book_id;
+		fetch(`https://stark-falls-93345.herokuapp.com/books/${bookId}`)
 			.then(
 				res => res.json()
 			).then(
@@ -51,5 +52,10 @@ class SingleBook extends Component{
 	}
 }
 
+const mapStateToProps = (state) => {
+	return {
+		book: state.gettingBook
+	}
+}
 
-export default SingleBook;
+export default connect(mapStateToProps)(SingleBook);

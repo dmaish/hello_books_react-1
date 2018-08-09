@@ -11,10 +11,12 @@ import Main from "./home/main"
 class Landing extends Component {
 	render() {
 		return (
+			<div>
 			<div className="App">
 				<NavBar />
 				<Main />
 				<Footer />
+			</div>
 			</div>
 		);
 	}
