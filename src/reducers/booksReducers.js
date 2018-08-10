@@ -51,7 +51,7 @@ export function addBook(state = {
 	case booksConstants.ADD_BOOK_SUCCESS:
 		return {...state, loading:false, book:actions.book};
 	case booksConstants.ADD_BOOK_FAILURE:
-		return {...state, loading:false, book:actions.error};
+		return {...state, loading:false, error:actions.error};
 	default:
 		return state;
 	}
@@ -87,8 +87,6 @@ export function deletingBookReducer(state = {
 			return {...state, loading:false, book_id:action.book_id};
 		case booksConstants.DELETE_BOOK_FAILURE:
 			return {...state, loading:false, error:action.error};
-		case booksConstants.BOOKS_SUCCESS:
-			return {...state, books: [...state.books, action.book]}
 		default:
 			return state;
 	}

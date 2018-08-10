@@ -13,7 +13,7 @@ export const borrow = (bookId) => {
 		borrowServices.borrow(bookId)
 			.then(
 				book => {
-					dispatch(borrowSuccess(book.book_borrowed));
+					dispatch(borrowSuccess(book.message));
 					history.push("/api/v1/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
@@ -59,7 +59,7 @@ export const returnBook = (bookId) => {
 		borrowServices.returnBook(bookId)
 			.then(
 				book => {
-					dispatch(returnSuccess(book.book_borrowed));
+					dispatch(returnSuccess(book.message));
 					history.push("/api/v1/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
