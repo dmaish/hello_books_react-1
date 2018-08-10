@@ -16,10 +16,10 @@ class UnReturnedBooks extends Component{
 
   render(){
     let books;
-    if (this.props.books.books){
-      books = this.props.books.books.map(
+    if (this.props.books.books.un_returned_books){
+      books = this.props.books.books.un_returned_books.map(
         (book, index) => (
-          <tr>
+          <tr key={book.book_id}>
             <th scope="row">{index+1}</th>
             <td>{book.book_id}</td>
             <td>{book.borrow_id}</td>
