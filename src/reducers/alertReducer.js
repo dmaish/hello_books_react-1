@@ -5,7 +5,9 @@
 
 import {alertConstants} from "../actions/alertTypes";
 
-export function alert(state = {}, {type, message}) {
+export function alert(state = {
+	
+}, {type, message}) {
 	switch (type) {
 	case alertConstants.SUCCESS:
 		return {
