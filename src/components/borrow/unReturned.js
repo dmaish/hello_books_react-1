@@ -23,7 +23,11 @@ class UnReturnedBooks extends Component{
             <th scope="row">{index+1}</th>
             <td>{book.book_id}</td>
             <td>{book.borrow_id}</td>
-            <td>{book.user_id}</td>
+            <td>{book.book_title}</td>
+            <td>{book.authors}</td>
+            <td>{book.book_isnb}</td>
+            <td>{book.date_borrowed}</td>
+            <td>{book.due_date}</td>
             <td>
               <button className="btn btn-primary" type="button" data-toggle="modal"
               data-target={`#returnModal${book.book_id}`}>Return</button>
@@ -43,7 +47,11 @@ class UnReturnedBooks extends Component{
                 <th scope="col">#</th>
                 <th scope="col">Book id</th>
                 <th scope="col">Borrow Id</th>
-                <th scope="col">user id</th>
+                <th scope="col">Book Title</th>
+                <th scope="col">Authors</th>
+                <th scope="col">Book Isnb</th>
+                <th scope="col">Date Borrowed</th>
+                <th scope="col">Due Date</th>
             </tr>
           </thead>
           <tbody>
