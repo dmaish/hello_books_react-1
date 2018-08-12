@@ -2,6 +2,10 @@
   "name": "hello_books_react",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "6.2.0",
+    "node": "8.11.3"
+  },
   "dependencies": {
     "history": "^4.7.2",
     "jest-dom": "^1.12.0",
