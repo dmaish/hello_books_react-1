@@ -15,6 +15,7 @@ class BorrowHistory extends Component{
 
   render(){
     let books;
+    console.log("-----status-->", this.props.books.books.all_borrowed_books);
     if (this.props.books.books.all_borrowed_books){
       books = this.props.books.books.all_borrowed_books.map(
         (book, index) => (
@@ -27,7 +28,7 @@ class BorrowHistory extends Component{
             <td>{book.book_isnb}</td>
             <td>{book.date_borrowed}</td>
             <td>{book.due_date}</td>
-            <td>{book.returned}</td>
+            <td>{book.returned.toString()}</td>
           </tr>
         )
       )
@@ -47,7 +48,7 @@ class BorrowHistory extends Component{
                 <th scope="col">Book Isnb</th>
                 <th scope="col">Date Borrowed</th>
                 <th scope="col">Due Date</th>
-                <th scope="col">Status</th>
+                <th scope="col">Returned</th>
             </tr>
           </thead>
           <tbody>
