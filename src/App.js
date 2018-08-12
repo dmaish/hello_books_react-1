@@ -7,7 +7,7 @@ import {Router , Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Landing from "./components/landing";
 import {history} from "./helpers/history";
-import SignUpContainer from "./components/containers/signUpContainer";
+import SignUpContainer from "./components/containers/signupContainer";
 import LoginContainer from "./components/containers/loginContainer";
 import AllBooks from "./components/containers/booksContainer";
 import AdminDashboard from "./components/dashboard/adminDashboard";
