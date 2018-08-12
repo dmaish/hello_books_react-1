@@ -6,6 +6,7 @@ import React, {Component} from "react";
 import { connect } from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "./logo.jpg";
+import loading from "../../assets/images/loading.gif";
 import {alertActions} from "../../actions/alertActions";
 import {history} from "../../helpers/history";
 import {userActions} from "../../actions/userActions";
@@ -40,7 +41,6 @@ class Login extends Component {
 	}
 	handleSubmit (e) {
 		e.preventDefault();
-		e.stopPropagation()
 		this.setState({submitted: true});
 		const {user} = this.state;
 		const {dispatch} = this.props;
@@ -106,7 +106,7 @@ class Login extends Component {
 						}
 						<div className="d-inline mx-auto center">
 						<button type="submit" className="btn btn-primary">Log In</button>
-							{loggingin}
+							{loggingin && <img id="loading-img" alt="loading img" src={loading}/>}
 						</div>
 						<br/>
 						<p align="center">Forgot password? <Link to="/reset-password">Reset Password</Link></p>
@@ -123,8 +123,9 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
+	const {loggingin} = state.loginReducer
 	return {
-		user: state.loginReducer,
+		loggingin,
 		alert: state.alert
 	};
 };

@@ -51,7 +51,7 @@ export function resetPasswordReducer(state = {
 }, actions){
 	switch (actions.type){
 	case userConstants.RESET_PASSWORD_REQUEST:
-		return {...state, loading:true};
+		return {...state, loading:true, resetting:true};
 	case userConstants.RESET_PASSWORD_SUCCESS:
 		return {...state, user:actions.user, loading:false};
 	case userConstants.RESET_PASSWORD_FAILURE:

@@ -47,7 +47,7 @@ export function addBook(state = {
 }, actions){
 	switch(actions.type){
 	case booksConstants.ADD_BOOK_REQUEST:
-		return {...state, loading:true};
+		return {...state, loading:true, addingBook:true};
 	case booksConstants.ADD_BOOK_SUCCESS:
 		return {...state, loading:false, book:actions.book};
 	case booksConstants.ADD_BOOK_FAILURE:
@@ -64,7 +64,7 @@ export function editingBook(state = {
 }, action){
 	switch(action.type){
 		case booksConstants.EDIT_BOOK_REQUEST:
-			return {...state, loading:true};
+			return {...state, loading:true, editing:true};
 		case booksConstants.EDIT_BOOK_SUCCESS:
 			return {...state, loading:false, book:action.book};
 		case booksConstants.EDIT_BOOK_FAILURE:

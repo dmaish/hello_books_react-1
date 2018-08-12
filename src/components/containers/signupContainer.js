@@ -5,7 +5,8 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import logo from "../common/logo.jpg"
+import logo from "../common/logo.jpg";
+import loading from "../../assets/images/loading.gif";
 import {userActions} from "../../actions/userActions";
 import {alertActions} from "../../actions/alertActions";
 import {history} from "../../helpers/history";
@@ -157,7 +158,7 @@ class SignUpContainer extends Component {
 					aria-label="Toolbar with button groups">
 						<div className="btn-group mr-2" role="group" aria-label="First group">
 						<button type="submit" className="btn btn-primary">Register</button>
-						{registering}
+						{registering && <img id="loading-img" alt="loading img" src={loading}/>}
 						</div>
 						<div className="btn-group" role="group" aria-label="Third group">
 						<Link to="/">

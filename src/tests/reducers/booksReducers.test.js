@@ -93,7 +93,8 @@ describe("Books reducers", () => {
 			type: booksConstants.ADD_BOOK_REQUEST,
 			loading:true
 		})).toEqual({
-			loading:true
+			loading:true,
+			addingBook: true
 		});
 	});
 	it("adds book should handle booksConstants.ADD_BOOK_SUCCESS", () => {
@@ -129,9 +130,11 @@ describe("Books reducers", () => {
 	it("edit a book and should handle booksConstants.EDIT_BOOK_REQUEST", () => {
 		expect(editingBook([], {
 			type: booksConstants.EDIT_BOOK_REQUEST,
-			loading:true
+			loading:true,
+			editing:true
 		})).toEqual({
-			loading:true
+			loading:true,
+			editing: true
 		});
 	});
 	it("edit a book should handle booksConstants.EDIT_BOOK_SUCCESS", () => {
