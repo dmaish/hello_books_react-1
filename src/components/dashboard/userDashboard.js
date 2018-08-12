@@ -36,7 +36,7 @@ class UserDashboard extends Component{
           <td>{book.copies}</td>
           <td>
           <button type="button" className="btn btn-info" data-toggle="modal"
-          data-target={`#borrowModal${book.book_id}`}>Borrow</button>
+           disabled={book.copies === 0} data-target={`#borrowModal${book.book_id}`}>Borrow</button>
           </td>
           <BorrowPopUp key={book.book_id} bookId={book.book_id}/>
       </tr>
