@@ -164,7 +164,7 @@ function logout() {
 				user => {
 					dispatch(logoutUser(user));
 					localStorage.removeItem("access_token");
-					history.push("/api/v1/auth/login");
+					history.push("/");
 				},
 				error => {
 					if (error.message === "Failed to fetch"){

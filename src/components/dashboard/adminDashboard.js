@@ -62,15 +62,6 @@ class AdminDashboard extends Component{
             Hello Books
         </Link>
         <ul className="nav justify-content-end">
-            <li className="nav-item dropdown">
-                <Link to="/" className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">Menu</Link>
-                <div className="dropdown-menu">
-                    <Link to="/api/v1/secret/admin/addbook" className="dropdown-item">Add Book</Link>
-                    <div className="dropdown-divider"></div>
-                    <Link to="/admin/users" className="dropdown-item bg-success">All Users</Link>
-                </div>
-            </li>
             <li className="nav-item">
                 <button type="button" className="btn btn-secondary"
                 onClick={(e) => {e.preventDefault(); this.props.logout()}}
@@ -78,39 +69,56 @@ class AdminDashboard extends Component{
             </li>
         </ul>
     </nav>
-    <div className="row" id="row-1">
-        <UsersList/>
-        <div className="col-sm-8">
-            <div id="accordion">
-                <hr className="my-4"/>
-                <h1 className="text-center">All Library Books</h1>
-                <table className="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Book Title</th>
-                        <th scope="col">Authors</th>
-                        <th scope="col">Edition</th>
-                        <th scope="col">Publisher</th>
-                        <th scope="col">Year</th>
-                        <th scope="col">ISNB</th>
-                        <th scope="col">Copies</th>
-                        <th scope="col" colspan="2">
-                          <Link to="/api/v1/secret/admin/addbook">
-                            <center>
-                            <button type="button" className="btn btn-primary">Add Book</button>
-                            </center>
-                          </Link>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                      {books}
-                    </tbody>
-                </table>
-                <Pagination/>
-            </div>
-        </div>
+
+    <div className="container">
+    <hr className="my-4"/>
+    <nav>
+    <div className="nav nav-tabs" id="nav-tab" role="tablist">
+      <a className="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+      href="#nav-home" role="tab" aria-controls="nav-home"
+      aria-selected="true">Library Books</a>
+      <a className="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
+      href="#nav-profile" role="tab" aria-controls="nav-profile"
+      aria-selected="false">List of Users</a>
+    </div>
+    </nav>
+    <div className="tab-content" id="nav-tabContent">
+      <div className="tab-pane fade show active" id="nav-home"
+      role="tabpanel" aria-labelledby="nav-home-tab">
+      <hr className="my-4"/>
+      <h1 className="text-center">All Library Books</h1>
+      <table className="table table-bordered">
+          <thead>
+          <tr>
+              <th scope="col">#</th>
+              <th scope="col">Book Title</th>
+              <th scope="col">Authors</th>
+              <th scope="col">Edition</th>
+              <th scope="col">Publisher</th>
+              <th scope="col">Year</th>
+              <th scope="col">ISNB</th>
+              <th scope="col">Copies</th>
+              <th scope="col" colspan="2">
+                <Link to="/api/v1/secret/admin/addbook">
+                  <center>
+                  <button type="button" className="btn btn-primary">Add Book</button>
+                  </center>
+                </Link>
+              </th>
+          </tr>
+          </thead>
+          <tbody>
+            {books}
+          </tbody>
+      </table>
+      <Pagination/>
+      </div>
+      <div className="tab-pane fade" id="nav-profile"
+      role="tabpanel" aria-labelledby="nav-profile-tab">
+      <hr className="my-4"/>
+      <UsersList/>
+      </div>
+    </div>
     </div>
     </div>
 
