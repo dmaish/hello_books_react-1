@@ -11,7 +11,9 @@ body {
   max-width: 100px;
   max-height: 100px;
 }
-
+#card-body {
+  margin-top: 100px;
+}
 #root {
   min-height: 100%;
   width: 100%;

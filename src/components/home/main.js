@@ -8,7 +8,6 @@ import RecentlyAdded from "./recentlyAdded";
 import BreakLine from "../common/break";
 import Header from "../common/header";
 import BlockDiv from "../common/block";
-import SearchButton from "../common/searchButton";
 
 const Main = () => (
 	<div>
@@ -17,7 +16,6 @@ const Main = () => (
 			<BreakLine/>
 			<RecentlyAdded/>
 			<BreakLine/>
-			<SearchButton/>
 			<BreakLine/>
 	</div>
 );

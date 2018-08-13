@@ -62,6 +62,14 @@ function getBook(book_id) {
 		.then(handleResponse);
 }
 
+export const allBooksService = () => {
+	const requestOptions = {
+		method:"GET"
+	};
+	return fetch("https://stark-falls-93345.herokuapp.com/allbooks", requestOptions)
+		.then(handleResponse);
+};
+
 function deleteBook(book_id) {
 	const requestOptions = {
 		method: "DELETE",

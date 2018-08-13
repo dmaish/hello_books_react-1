@@ -3,7 +3,7 @@
 * or when getting book or books
 */
 
-import {booksServices} from "../services/booksServices";
+import {booksServices, allBooksService} from "../services/booksServices";
 import {booksConstants} from "./actionTypes";
 import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
@@ -127,24 +127,44 @@ function getBooks(page = 1) {
 
 			);
 	};
-	function requestBooks(){
-		return {
-			type: booksConstants.BOOKS_REQUEST
-		};
-	}
-	function receiveBooks(books) {
-		return {
-			type: booksConstants.BOOKS_SUCCESS,
-			books
-		};
-	}
-	function failureBooks(error) {
-		return {
-			type: booksConstants.BOOKS_FAILURE,
-			error
-		};
-	}
 }
+
+export const getAllBooksAction = () => {
+	return dispatch => {
+		dispatch(requestBooks());
+		allBooksService()
+			.then(
+				books => {
+					dispatch(receiveBooks(books));
+					dispatch(alertActions.success(books.message));
+				},
+				error => {
+					error.then(response => {
+						dispatch(failureBooks(response.message));
+						dispatch(alertActions.error(response.message));
+					});
+				}
+			);
+	};
+};
+
+const requestBooks = () => {
+	return {
+		type: booksConstants.BOOKS_REQUEST
+	};
+};
+const receiveBooks = (books) => {
+	return {
+		type: booksConstants.BOOKS_SUCCESS,
+		books
+	};
+};
+const failureBooks = (error) => {
+	return {
+		type: booksConstants.BOOKS_FAILURE,
+		error
+	};
+};
 
 function getBook(bookId) {
 	return dispatch => {
