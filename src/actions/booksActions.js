@@ -3,7 +3,7 @@
 * or when getting book or books
 */
 
-import {booksServices, allBooksService} from "../services/booksServices";
+import {booksServices, allBooksService, featuredbooksService} from "../services/booksServices";
 import {booksConstants} from "./actionTypes";
 import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
@@ -133,6 +133,25 @@ export const getAllBooksAction = () => {
 	return dispatch => {
 		dispatch(requestBooks());
 		allBooksService()
+			.then(
+				books => {
+					dispatch(receiveBooks(books));
+					dispatch(alertActions.success(books.message));
+				},
+				error => {
+					error.then(response => {
+						dispatch(failureBooks(response.message));
+						dispatch(alertActions.error(response.message));
+					});
+				}
+			);
+	};
+};
+
+export const featuredBooksAction = () => {
+	return dispatch => {
+		dispatch(requestBooks());
+		featuredbooksService()
 			.then(
 				books => {
 					dispatch(receiveBooks(books));

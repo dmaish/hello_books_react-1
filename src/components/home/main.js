@@ -4,7 +4,7 @@
 */
 
 import React from "react";
-import RecentlyAdded from "./recentlyAdded";
+import Featured from "./featured";
 import BreakLine from "../common/break";
 import Header from "../common/header";
 import BlockDiv from "../common/block";
@@ -14,7 +14,7 @@ const Main = () => (
 			<Header/>
 			<BlockDiv/>
 			<BreakLine/>
-			<RecentlyAdded/>
+			<Featured/>
 			<BreakLine/>
 			<BreakLine/>
 	</div>

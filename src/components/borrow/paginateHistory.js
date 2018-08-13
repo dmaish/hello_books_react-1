@@ -22,7 +22,7 @@ class PaginateHistory extends Component{
           }
           </li>
           {Array(number_of_pages).fill().map((x, i) => {
-              let page = i + 1;
+              const page = i + 1;
               return (
                 <li className="page-item">
                     <a className="page-link" href="#"
