@@ -26,7 +26,7 @@ class Pagination extends Component {
           }
           </li>
           {Array(total_pages).fill().map((x, i) => {
-              const page = i + 1; 
+              const page = i + 1;
              return (<li className="page-item">
                  <a className="page-link" href="#" onClick={ () => this.props.getBooks(page) }>{page}</a>
              </li>)

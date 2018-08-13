@@ -6,6 +6,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {borrowHistory} from "../../actions/borrowHistoryActions";
+import PaginateHistory from "./paginateHistory";
 
 class BorrowHistory extends Component{
 
@@ -54,6 +55,7 @@ class BorrowHistory extends Component{
               {books}
           </tbody>
         </table>
+        <PaginateHistory/>
       </div>
     )
   }

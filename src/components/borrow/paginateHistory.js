@@ -7,31 +7,37 @@ class PaginateHistory extends Component{
     this.props.borrowHistory()
   }
   render() {
-    const {totalPages} = this.props.books.all_borrowed_books;
-    console.log("---->", totalPages);
-    let nextPage = this.props.books.next_page;
-    let prevPage = this.props.books.prev_page;
+    const { number_of_pages } = this.props.books.books;
+    let nextPage = this.props.books.books.next_page;
+    let prevPage = this.props.books.books.previous_page;
     return (
       <nav aria-label="Page navigation example">
-        <ul className="pagination">
+        <ul className="pagination justify-content-center">
+        <li className="page-item">
           {
             prevPage !== null?
-            <li className="page-item">
               <a className="page-link" href="#"
               onClick={() => this.props.borrowHistory(prevPage)}>Previous</a>
-            </li>: null
+              : null
           }
-          <li className="page-item">
-            <a className="page-link" href="#"
-              onClick={() => this.props.borrowHistory()}>1</a>
           </li>
+          {Array(number_of_pages).fill().map((x, i) => {
+              let page = i + 1;
+              return (
+                <li className="page-item">
+                    <a className="page-link" href="#"
+                    onClick={ () => this.props.borrowHistory(page) }>{page}</a>
+                </li>
+              )
+            })}
+          <li className="page-item">
           {
             nextPage !== null?
-            <li className="page-item">
               <a className="page-link" href="#"
               onClick={() => this.props.borrowHistory(nextPage)}>Next</a>
-            </li>: null
+              : null
           }
+            </li>
         </ul>
       </nav>
     )
@@ -46,8 +52,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    borrowHistory: (page) => dispatch(borrowHistory.borrowHistory(page))
+    borrowHistory: (page) => dispatch(borrowHistory.returnBorrowHistory(page))
   }
 }
 
-export default (mapStateToProps, mapDispatchToProps)(PaginateHistory);
+export default connect(mapStateToProps, mapDispatchToProps)(PaginateHistory);
