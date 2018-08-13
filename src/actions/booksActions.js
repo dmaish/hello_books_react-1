@@ -105,10 +105,10 @@ function editBookFailure(error) {
 	};
 }
 
-function getBooks() {
+function getBooks(page = 1) {
 	return dispatch => {
 		dispatch(requestBooks());
-		booksServices.getBooks()
+		booksServices.getBooks(page)
 			.then(
 				books => {
 					dispatch(receiveBooks(books));

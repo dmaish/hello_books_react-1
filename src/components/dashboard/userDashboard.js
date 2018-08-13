@@ -13,6 +13,7 @@ import BorrowHistory from "../borrow/borrowingHistory";
 import UnReturnedBooks from "../borrow/unReturned"
 import {userActions} from "../../actions/userActions";
 import BorrowPopUp from "../popups/borrowPopUp";
+import Pagination from "../common/pagination";
 
 
 class UserDashboard extends Component{
@@ -93,6 +94,7 @@ class UserDashboard extends Component{
       {books}
     </tbody>
   </table>
+  <Pagination/>
   </div>
   <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
   <hr className="my-4"/>

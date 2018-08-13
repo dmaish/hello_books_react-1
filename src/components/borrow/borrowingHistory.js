@@ -15,7 +15,6 @@ class BorrowHistory extends Component{
 
   render(){
     let books;
-    console.log("-----status-->", this.props.books.books.all_borrowed_books);
     if (this.props.books.books.all_borrowed_books){
       books = this.props.books.books.all_borrowed_books.map(
         (book, index) => (

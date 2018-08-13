@@ -44,11 +44,11 @@ function editBook(bookData) {
 		.then(handleResponse);
 }
 
-function getBooks() {
+function getBooks(page) {
 	const requestOptions = {
 		method: "GET"
 	};
-	return fetch("http://stark-falls-93345.herokuapp.com/books",
+	return fetch("http://stark-falls-93345.herokuapp.com/books?page=" + page,
 		requestOptions)
 		.then(handleResponse);
 }

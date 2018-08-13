@@ -13,10 +13,10 @@ export const borrowHistory = {
 	unReturnBooksHistory
 };
 
-function returnBorrowHistory() {
+function returnBorrowHistory(page = 1) {
 	return dispatch => {
 		dispatch(requestHistory());
-		borrowServices.borrowHistory()
+		borrowServices.borrowHistory(page)
 			.then(
 				books => {
 					dispatch(receiveHistory(books));
