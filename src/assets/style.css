@@ -45,7 +45,7 @@ body {
 .log-sign-bg-col {
 }
 .jumbotron {
-  background-image: url(../components/common/complibrary.jpg);
+  /* background-image: url(../components/common/complibrary.jpg); */
   opacity: 1.0;
 }
 #left {
@@ -76,7 +76,9 @@ body {
   align-content: center;
   margin-left: 150px;
 }
-
+.position-relative {
+  max-height: 500px;
+}
 .media img {
     max-width: 120px;
     height: auto;
@@ -93,9 +95,8 @@ body {
     font-weight: 600;
 }
 .App {
-  text-align: center;
+  text-align: left;
 }
-
 #carousel {
   opacity: 1.0;
 }

@@ -15,20 +15,24 @@ class Featured extends Component{
 		let books;
 		if(this.props.books.books.books){
      books = this.props.books.books.books.map((book, index)=>(
-       <div className="col-md-3">
+       <div className="col-sm-3">
+			 <div className="card">
          <div className="card-body" key={book.book_id}>
-           <h5>{`Title: ${book.book_title}`}</h5>
-           <h6>{`Author: ${book.authors}`}</h6>
-           <h6>{`Edition: ${book.book_edition}`}</h6>
-           <h6>{`Book Isnb: ${book.book_isnb}`}</h6>
-           <h6>{`Copies: ${book.copies}`}</h6>
-           <Link to={"/api/v1/books/" + book.book_id}><button className="btn btn-info">Check Book</button></Link>
+           <p className="card-text"><b>Book Title:</b> {book.book_title}</p>
+           <p className="card-text"><b>Author:</b> {book.authors}</p>
+           <p className="card-text"><b>Edition:</b> {book.book_edition}</p>
+           <p className="card-text"><b>Book Isnb:</b> {book.book_isnb}</p>
+           <p className="card-text"><b>Copies:</b> {book.copies}</p>
+           <Link to={"/api/v1/books/" + book.book_id}><button className="btn btn-primary">Check Book</button></Link>
          </div>
+			</div>
+			<hr className="my-4"/>
        </div>
+
       ))
     }
 		return (
-			<div className="container-fluid bg-light">
+			<div className="container-fluid">
 				<div className="container pt-5">
 					<div className="row">
 						<h3 id="featured">

@@ -60,6 +60,7 @@ export function borrowHistoryReducer(state = {
 export function unReturnedBooksReducer(state = {
 	loading: false,
 	books: [],
+	book_id: "",
 	error: {}
 }, actions) {
 	switch(actions.type){
@@ -69,6 +70,10 @@ export function unReturnedBooksReducer(state = {
 		return {...state, books:actions.books, loading:false};
 	case borrowConstants.UNRETURNED_FAILURE:
 		return {...state, error:actions.error, loading:false};
+	case borrowConstants.RETURN_SUCCESS:
+		return {...state, returning:false, book_id:[...state.books, actions.book_id]};
+	case borrowConstants.BORROW_SUCCESS:
+		return {...state, borrowing:false, book_id:[...state.books, actions.book_id]};
 	default:
 		return state;
 	}

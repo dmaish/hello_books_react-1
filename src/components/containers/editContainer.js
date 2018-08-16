@@ -76,11 +76,6 @@ class EditBook extends Component{
   render(){
     const {book} = this.state;
 		const {editing} = this.props;
-		if(!book.book_id){
-			return (
-				<p>Loading ..</p>
-			)
-		}
     return (
 			<div id= "login_signup" className="log-sign-bg-col">
       <form onSubmit={this.handleSubmit} className="form-horizontal">

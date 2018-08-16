@@ -7,13 +7,10 @@ import React from "react";
 import Featured from "./featured";
 import BreakLine from "../common/break";
 import Header from "../common/header";
-import BlockDiv from "../common/block";
 
 const Main = () => (
 	<div>
 			<Header/>
-			<BlockDiv/>
-			<BreakLine/>
 			<Featured/>
 			<BreakLine/>
 			<BreakLine/>
