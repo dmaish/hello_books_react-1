@@ -14,13 +14,6 @@ class UnReturnedBooks extends Component{
     this.props.unReturnBooksHistory()
   }
 
-  componentWillUpdate(nextProps, nextState){
-    if (nextState.books){
-      this.props.unReturnBooksHistory();
-    }
-  }
-
-
   render(){
     let books;
     if (this.props.books.books.un_returned_books){
