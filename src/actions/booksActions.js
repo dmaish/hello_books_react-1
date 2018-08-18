@@ -112,7 +112,6 @@ function getBooks(page = 1) {
 			.then(
 				books => {
 					dispatch(receiveBooks(books));
-					dispatch(alertActions.success(books.message));
 				},
 				error => {
 					if (error.message === "Failed to fetch"){
@@ -155,12 +154,10 @@ export const featuredBooksAction = () => {
 			.then(
 				books => {
 					dispatch(receiveBooks(books));
-					dispatch(alertActions.success(books.message));
 				},
 				error => {
 					error.then(response => {
 						dispatch(failureBooks(response.message));
-						dispatch(alertActions.error(response.message));
 					});
 				}
 			);
@@ -192,7 +189,6 @@ function getBook(bookId) {
 			.then(
 				book => {
 					dispatch(receiveBook(book));
-					dispatch(alertActions.success(book.message));
 				},
 				error => {
 					if (error.message === "Failed to fetch"){
@@ -201,7 +197,6 @@ function getBook(bookId) {
 					else(
 						error.then(response => {
 							dispatch(theBookNotFound(response.message));
-							dispatch(alertActions.error(response.message));
 						}));
 				}
 			);
@@ -226,13 +221,13 @@ function getBook(bookId) {
 	}
 }
 
-export const deleteBookAction = (book_id) => {
+export const deleteBookAction = (bookId) => {
 	return dispatch => {
-		deleteBookRequest(book_id);
-		booksServices.deleteBook(book_id)
+		deleteBookRequest(bookId);
+		booksServices.deleteBook(bookId)
 			.then(
 				book => {
-					dispatch(deleteBookSuccess(book));
+					dispatch(deleteBookSuccess(book.message, bookId));
 					history.push("/api/v1/secret/admin/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
@@ -243,6 +238,7 @@ export const deleteBookAction = (book_id) => {
 					else(
 						error.then(response => {
 							dispatch(deleteBookFailure(response.message));
+							dispatch(alertActions.error(response.message));
 						}));
 				}
 			);
@@ -250,17 +246,18 @@ export const deleteBookAction = (book_id) => {
 
 };
 
-const deleteBookSuccess = (book_id) => {
+const deleteBookSuccess = (book, bookId) => {
 	return {
-		type: booksConstants.DELETE_BOOK,
-		book_id
+		type: booksConstants.DELETE_BOOK_SUCCESS,
+		bookId,
+		book
 	};
 };
 
-const deleteBookRequest = (book_id) => {
+const deleteBookRequest = (bookId) => {
 	return {
 		type: booksConstants.DELETE_BOOK_REQUEST,
-		book_id
+		bookId
 	};
 };
 

@@ -13,7 +13,7 @@ export const borrow = (bookId) => {
 		borrowServices.borrow(bookId)
 			.then(
 				book => {
-					dispatch(borrowSuccess(book.message));
+					dispatch(borrowSuccess(book.book_borrowed));
 					history.push("/api/v1/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
@@ -39,10 +39,10 @@ const borrowRequest = (bookId) => {
 	};
 };
 
-const borrowSuccess = (bookId) => {
+const borrowSuccess = (book) => {
 	return {
 		type: borrowConstants.BORROW_SUCCESS,
-		bookId
+		book
 	};
 };
 
@@ -59,7 +59,7 @@ export const returnBook = (bookId) => {
 		borrowServices.returnBook(bookId)
 			.then(
 				book => {
-					dispatch(returnSuccess(book.message));
+					dispatch(returnSuccess(book.message, bookId));
 					history.push("/api/v1/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
@@ -84,9 +84,10 @@ const returnRequest = (bookId) => {
 	};
 };
 
-const returnSuccess = (bookId) => {
+const returnSuccess = (book, bookId) => {
 	return {
 		type: borrowConstants.RETURN_SUCCESS,
+		book,
 		bookId
 	};
 };

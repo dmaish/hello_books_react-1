@@ -38,6 +38,11 @@ body {
     text-align: center !important;
     display: block !important;
 }
+#alertsize {
+  width: 200px;
+  margin-top: auto;
+  margin-left: 1080px;
+}
 #nav-bg1 {
     background-color: #F5F27F;
     color: black;

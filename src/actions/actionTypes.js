@@ -3,6 +3,8 @@
 * and user lists reducers/actions
 */
 
+// Constansts actions types regarding the user functionalities
+// Register, login, logout and reset password action types
 export const userConstants = {
 	REGISTER_REQUEST: "USERS_REGISTER_REQUEST",
 	REGISTER_SUCCESS: "USERS_REGISTER_SUCCESS",
@@ -17,6 +19,7 @@ export const userConstants = {
 	RESET_PASSWORD_FAILURE: "RESET_PASSWORD_FAILURE"
 };
 
+// Action types for add, edit, delete, get books and get book
 export const booksConstants = {
 	BOOKS_REQUEST: "GET_BOOKS_REQUEST",
 	BOOKS_SUCCESS: "GET_BOOKS_SUCCESS",
@@ -28,13 +31,14 @@ export const booksConstants = {
 	SINGLE_BOOK_SUCCESS: "SINGLE_BOOK_SUCCESS",
 	SINGLE_BOOK_FAILURE: "SINGLE_BOOK_FAILURE",
 	DELETE_BOOK_REQUEST: "DELETE_BOOK_REQUEST",
-	DELETE_BOOK: "DELETE_BOOK",
+	DELETE_BOOK_SUCCESS: "DELETE_BOOK_SUCCESS",
 	DELETE_BOOK_FAILURE: "DELETE_BOOK_FAILURE",
 	EDIT_BOOK_REQUEST: "EDIT_BOOK_REQUEST",
 	EDIT_BOOK_SUCCESS: "EDIT_BOOK_SUCCESS",
 	EDIT_BOOK_FAILURE: "EDIT_BOOK_FAILURE"
 };
 
+// Action types for getting list of users
 export const usersListsTypes = {
 	USERS_REQUEST: "USERS_LIST_REQUEST",
 	USERS_SUCCESS: "USERS_LIST_SUCCESS",

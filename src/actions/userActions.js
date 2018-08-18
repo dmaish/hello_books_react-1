@@ -22,8 +22,8 @@ function register(user) {
 			.then(
 				user => {
 					dispatch(successRegister(user));
-					history.push("/api/v1/auth/login");
 					dispatch(alertActions.success(user.message));
+					history.push("/api/v1/auth/login");
 				},
 				error => {
 					if (error.message === "Failed to fetch"){
@@ -67,13 +67,11 @@ function login(user) {
 					localStorage.setItem("access_token", JSON.stringify(user.access_token));
 					if (user.email.endsWith("@hellobookslibrary.com")){
 						history.push("/api/v1/secret/admin/dashboard");
-						dispatch(alertActions.success(user.message));
 					}
 					else {
 						history.push("/api/v1/dashboard");
-						dispatch(alertActions.success(user.message));
 					}
-
+					dispatch(alertActions.success(user.message));
 				},
 				error => {
 					if (error.message === "Failed to fetch"){
@@ -121,6 +119,7 @@ export const resetPasswordAction = (user) => {
 				user => {
 					dispatch(resetPasswordSuccess(user));
 					history.push("/api/v1/auth/login");
+					dispatch(alertActions.success(user.message));
 				},
 				error => {
 					if (error.message === "Failed to fetch"){
@@ -129,6 +128,7 @@ export const resetPasswordAction = (user) => {
 					else(
 						error.then(response => {
 							dispatch(resetPasswordFailure(response.message));
+							dispatch(alertActions.error(response.message));
 						})
 					);
 				}
@@ -165,6 +165,7 @@ function logout() {
 					dispatch(logoutUser(user));
 					localStorage.removeItem("access_token");
 					history.push("/");
+					dispatch(alertActions.success(user.message));
 				},
 				error => {
 					if (error.message === "Failed to fetch"){
@@ -173,6 +174,7 @@ function logout() {
 					else (
 						error.then(response => {
 							dispatch(logoutError(response.message));
+							dispatch(alertActions.error(response.message));
 						})
 					);
 				}

@@ -7,7 +7,6 @@ import {borrowConstants} from "../actions/borrowTypes";
 export function borrowReducer(state = {
 	borrowing: false,
 	book_id: "",
-	books:[],
 	error: {}
 }, actions){
 	switch(actions.type) {
@@ -25,7 +24,6 @@ export function borrowReducer(state = {
 export function returnBookReducer(state = {
 	returning: false,
 	book_id: "",
-	books: [],
 	error: {}
 }, actions) {
 	switch(actions.type) {
@@ -62,6 +60,8 @@ export function unReturnedBooksReducer(state = {
 	books: [],
 	error: {}
 }, actions) {
+	const currentUnreturnedBooks = state.books.un_returned_books || state.books;
+	let newUnreturnedBooks = {...state.books};
 	switch(actions.type){
 	case borrowConstants.UNRETURNED_REQUEST:
 		return {...state, loading:true};
@@ -70,9 +70,16 @@ export function unReturnedBooksReducer(state = {
 	case borrowConstants.UNRETURNED_FAILURE:
 		return {...state, error:actions.error, loading:false};
 	case borrowConstants.RETURN_SUCCESS:
-		return {...state, returning:false, books:[...state.books, actions.book]};
+		// remove book from unreturned books list
+		newUnreturnedBooks.un_returned_books =  currentUnreturnedBooks.filter(
+			book => book.book_id != actions.bookId
+		);
+		return {...state, books:newUnreturnedBooks};
 	case borrowConstants.BORROW_SUCCESS:
-		return {...state, books:[...state.books, actions.book]};
+		// update unreturnd book with newly borrowed book
+		newUnreturnedBooks.un_returned_books =  [...currentUnreturnedBooks, actions.book];
+		// return new state with new list of unreturned books
+		return {...state, books:newUnreturnedBooks};
 	default:
 		return state;
 	}

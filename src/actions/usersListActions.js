@@ -14,7 +14,6 @@ const usersListActions = () => {
 			.then(
 				users => {
 					dispatch(getUsersSuccess(users));
-					dispatch(alertActions.success(users.message));
 				},
 				error => {
 					if (error.message === "Failed to fetch"){
@@ -22,8 +21,7 @@ const usersListActions = () => {
 					}
 					else(
 						error.then(response => {
-							dispatch(getUsersFailure(error));
-							dispatch(alertActions.error(response.message));
+							dispatch(getUsersFailure(response.message));
 						}));
 				}
 			);

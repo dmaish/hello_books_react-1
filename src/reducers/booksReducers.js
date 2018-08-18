@@ -6,23 +6,6 @@
 
 import {booksConstants} from "../actions/actionTypes";
 
-export function getBooks(state = {
-	loading:false,
-	books:[],
-	errors:{}
-}, actions){
-	switch(actions.type) {
-	case booksConstants.BOOKS_REQUEST:
-		return {...state, loading:true};
-	case booksConstants.BOOKS_SUCCESS:
-		return {...state, books:actions.books, loading:false};
-	case booksConstants.BOOKS_FAILURE:
-		return {...state, loading:false, errors:actions.error};
-	default:
-		return state;
-	}
-}
-
 export function gettingBook(state = {
 	loading:false,
 	book:{},
@@ -49,9 +32,9 @@ export function addBook(state = {
 	case booksConstants.ADD_BOOK_REQUEST:
 		return {...state, loading:true, addingBook:true};
 	case booksConstants.ADD_BOOK_SUCCESS:
-		return {...state, loading:false, book:actions.book};
+		return {...state, loading:false, book:actions.book, addingBook:false};
 	case booksConstants.ADD_BOOK_FAILURE:
-		return {...state, loading:false, error:actions.error};
+		return {...state, loading:false, error:actions.error, addingBook:false};
 	default:
 		return state;
 	}
@@ -66,9 +49,9 @@ export function editingBook(state = {
 		case booksConstants.EDIT_BOOK_REQUEST:
 			return {...state, loading:true, editing:true};
 		case booksConstants.EDIT_BOOK_SUCCESS:
-			return {...state, loading:false, book:action.book};
+			return {...state, loading:false, book:action.book, editing:false};
 		case booksConstants.EDIT_BOOK_FAILURE:
-			return {...state, loading:false, error:action.error}
+			return {...state, loading:false, error:action.error, editing:false}
 		default:
 			return state;
 	}
@@ -77,7 +60,6 @@ export function editingBook(state = {
 export function deletingBookReducer(state = {
 	loading: false,
 	book_id: "",
-	books: [],
 	error: {}
 }, action){
 	switch (action.type){
@@ -89,5 +71,27 @@ export function deletingBookReducer(state = {
 			return {...state, loading:false, error:action.error};
 		default:
 			return state;
+	}
+}
+
+export function getBooks(state = {
+	loading:false,
+	books:[],
+	errors:{}
+}, actions){
+	const currentBooks = state.books.all_books || state.books;
+	let newBooks = {...state.books};
+	switch(actions.type) {
+	case booksConstants.BOOKS_REQUEST:
+		return {...state, loading:true};
+	case booksConstants.BOOKS_SUCCESS:
+		return {...state, books:actions.books, loading:false};
+	case booksConstants.BOOKS_FAILURE:
+		return {...state, loading:false, errors:actions.error};
+	case booksConstants.DELETE_BOOK_SUCCESS:
+		newBooks.all_books = currentBooks.filter(book => book.book_id != actions.bookId);
+		return {...state, books:newBooks};
+	default:
+		return state;
 	}
 }

@@ -6,7 +6,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {borrowHistory} from "../../actions/borrowHistoryActions";
-import {returnBook} from "../../actions/borrowActions";
+import {returnBook, borrow} from "../../actions/borrowActions";
 import ReturnBookModal from "../popups/returnBookPopUp";
 
 class UnReturnedBooks extends Component{

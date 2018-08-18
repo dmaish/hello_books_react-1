@@ -6,6 +6,7 @@ import React, { Component } from "react";
 import {Router , Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Landing from "./components/landing";
+import {alertActions} from "./actions/alertActions";
 import {history} from "./helpers/history";
 import SignUpContainer from "./components/containers/signupContainer";
 import LoginContainer from "./components/containers/loginContainer";
@@ -22,11 +23,27 @@ import UsersList from "./components/containers/usersListContainer";
 import ResetPasswordContainer from "./components/containers/resetPasswordContainer";
 
 class Application extends Component {
+	// Define constructor that allow disptch of alert
+	// In case of any alert dispatched at any endpoint
+	// Alert is displayed
+	constructor(props){
+		super(props)
+		const {dispatch} = this.props
+		history.listen((location, action) => {
+			// Clear the notify message
+			dispatch(alertActions.clear())
+		})
+	}
 	render() {
+		// Get alert from the props passed
+		const {alert} = this.props
 		return (
 			<div>
 				<Router history={history}>
 					<div>
+					{alert.message &&
+					<div id="alertsize" className={`alert ${alert.type}`}>{alert.message}</div>
+				}
 						<Route exact path="/" component={Landing}></Route>
 						<Route path="/api/v1/auth/register" component={SignUpContainer}></Route>
 						<Route path="/internetissues" component={InternetError}></Route>
@@ -47,4 +64,10 @@ class Application extends Component {
 	}
 }
 
-export default Application;
+const mapStateToProps = (state) => {
+	const {alert} = state
+	return {
+		alert
+	}
+}
+export default connect(mapStateToProps)(Application);
