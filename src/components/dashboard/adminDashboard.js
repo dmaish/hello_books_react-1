@@ -8,7 +8,6 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
 import {getBooks} from "../../actions/booksActions";
-import {deleteBookAction} from "../../actions/booksActions";
 import {userActions} from "../../actions/userActions";
 import Pagination from "../common/pagination";
 import UsersList from "../containers/usersListContainer";
@@ -98,7 +97,7 @@ class AdminDashboard extends Component{
               <th scope="col">Year</th>
               <th scope="col">ISNB</th>
               <th scope="col">Copies</th>
-              <th scope="col" colspan="2">
+              <th scope="col" colSpan="2">
                 <Link to="/secret/admin/addbook">
                   <center>
                   <button type="button" className="btn btn-primary">Add Book</button>

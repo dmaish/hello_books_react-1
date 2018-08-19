@@ -8,7 +8,6 @@ describe("Borrow reducers", () => {
 			{
 				borrowing: false,
 				book_id: "",
-				books:[],
 				error: {}
 			}
 		);
@@ -47,7 +46,6 @@ describe("Borrow reducers", () => {
 			{
 				returning: false,
 				book_id: "",
-				books: [],
 				error: {}
 			}
 		);
@@ -64,9 +62,9 @@ describe("Borrow reducers", () => {
 		expect(returnBookReducer([], {
 			type: borrowConstants.RETURN_SUCCESS,
 			returning:false,
-			book_id: 1234
+			book_id: ""
 		})).toEqual({
-			book_id:1234,
+			book_id:"",
 			returning:false
 		});
 	});
@@ -127,33 +125,5 @@ describe("Borrow reducers", () => {
 				error: {}
 			}
 		);
-	});
-	it("unreturn books and should handle borrowConstants.UNRETURNED_REQUEST", () => {
-		expect(unReturnedBooksReducer([], {
-			type: borrowConstants.UNRETURNED_REQUEST,
-			loading:true
-		})).toEqual({
-			loading:true
-		});
-	});
-	it("unreturn books should handle borrowConstants.UNRETURNED_SUCCESS", () => {
-		expect(unReturnedBooksReducer([], {
-			type: borrowConstants.UNRETURNED_SUCCESS,
-			loading: false,
-			books: []
-		})).toEqual({
-			loading: false,
-			books: []
-		});
-	});
-	it("unreturn books should handle borrowConstants.UNRETURNED_FAILURE", () => {
-		expect(unReturnedBooksReducer([], {
-			type: borrowConstants.UNRETURNED_FAILURE,
-			loading:false,
-			error:{}
-		})).toEqual({
-			loading:false,
-			error:{}
-		});
 	});
 });

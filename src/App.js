@@ -18,7 +18,6 @@ import SingleBook from "./components/page/singleBook";
 import EditBook from "./components/containers/editContainer";
 import BorrowHistory from "./components/borrow/borrowingHistory";
 import {PrivateRoute} from "./helpers/privateRoutes";
-import InternetError from "./components/common/internetError";
 import UsersList from "./components/containers/usersListContainer";
 import ResetPasswordContainer from "./components/containers/resetPasswordContainer";
 
@@ -46,7 +45,6 @@ class Application extends Component {
 				}
 						<Route exact path="/" component={Landing}></Route>
 						<Route path="/auth/register" component={SignUpContainer}></Route>
-						<Route path="/internetissues" component={InternetError}></Route>
 						<Route path="/auth/login" component={LoginContainer}></Route>
 						<Route exact path="/books" component={AllBooks}></Route>
 						<PrivateRoute path="/dashboard" component={UserDashboard}></PrivateRoute>

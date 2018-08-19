@@ -18,7 +18,7 @@ class AllBooks extends Component {
     let books;
     if(this.props.books.books.all_books){
      books = this.props.books.books.all_books.map(book=>(
-       <div className="col-sm-3">
+       <div className="col-sm-3" key={book.book_id}>
        <div className="card">
          <div className="card-body" key={book.book_id}>
            <p><b>Book Title:</b> {book.book_title}</p>

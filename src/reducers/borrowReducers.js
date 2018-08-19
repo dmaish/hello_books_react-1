@@ -72,7 +72,7 @@ export function unReturnedBooksReducer(state = {
 	case borrowConstants.RETURN_SUCCESS:
 		// remove book from unreturned books list
 		newUnreturnedBooks.un_returned_books =  currentUnreturnedBooks.filter(
-			book => book.book_id != actions.bookId
+			book => book.book_id !== actions.bookId
 		);
 		return {...state, books:newUnreturnedBooks};
 	case borrowConstants.BORROW_SUCCESS:

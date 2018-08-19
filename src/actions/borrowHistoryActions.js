@@ -5,7 +5,6 @@
 
 import {borrowConstants} from "./borrowTypes";
 import {borrowServices} from "../services/borrowServices";
-import {history} from "../helpers/history";
 
 export const borrowHistory = {
 	returnBorrowHistory,

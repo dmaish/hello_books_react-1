@@ -16,7 +16,7 @@ class PaginateHistory extends Component{
         <li className="page-item">
           {
             prevPage !== null?
-              <a className="page-link" href="#"
+              <a className="page-link" href=""
               onClick={() => this.props.borrowHistory(prevPage)}>Previous</a>
               : null
           }
@@ -25,7 +25,7 @@ class PaginateHistory extends Component{
               const page = i + 1;
               return (
                 <li className="page-item">
-                    <a className="page-link" href="#"
+                    <a className="page-link" href=""
                     onClick={ () => this.props.borrowHistory(page) }>{page}</a>
                 </li>
               )
@@ -33,7 +33,7 @@ class PaginateHistory extends Component{
           <li className="page-item">
           {
             nextPage !== null?
-              <a className="page-link" href="#"
+              <a className="page-link" href=""
               onClick={() => this.props.borrowHistory(nextPage)}>Next</a>
               : null
           }

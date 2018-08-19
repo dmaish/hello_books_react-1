@@ -12,34 +12,6 @@ describe("Books reducers", () => {
 			}
 		);
 	});
-	it("get books should handle booksConstants.BOOKS_REQUEST", () => {
-		expect(getBooks([], {
-			type: booksConstants.BOOKS_REQUEST,
-			loading:true
-		})).toEqual({
-			loading:true
-		});
-	});
-	it("get books should handle booksConstants.BOOKS_SUCCESS", () => {
-		expect(getBooks([], {
-			type: booksConstants.BOOKS_SUCCESS,
-			books:[],
-			loading:false
-		})).toEqual({
-			books:[],
-			loading:false
-		});
-	});
-	it("get books should handle booksConstants.BOOKS_FAILURE", () => {
-		expect(getBooks([], {
-			type: booksConstants.BOOKS_FAILURE,
-			loading:false,
-			errors:undefined
-		})).toEqual({
-			loading:false,
-			errors:undefined
-		});
-	});
 
 	it("gets book and should return state", () => {
 		expect(gettingBook(undefined, {})).toEqual(
@@ -101,20 +73,24 @@ describe("Books reducers", () => {
 		expect(addBook([], {
 			type: booksConstants.ADD_BOOK_SUCCESS,
 			loading: false,
-			book: {}
+			book: {},
+			addingBook: false
 		})).toEqual({
 			loading: false,
-			book: {}
+			book: {},
+			addingBook: false
 		});
 	});
 	it("adds book should handle booksConstants.ADD_BOOK_FAILURE", () => {
 		expect(addBook([], {
 			type: booksConstants.ADD_BOOK_FAILURE,
 			loading:false,
-			error:{}
+			error:{},
+			addingBook: false
 		})).toEqual({
 			loading:false,
-			error:{}
+			error:{},
+			addingBook: false
 		});
 	});
 
@@ -141,20 +117,24 @@ describe("Books reducers", () => {
 		expect(editingBook([], {
 			type: booksConstants.EDIT_BOOK_SUCCESS,
 			loading: false,
-			book: {}
+			book: {},
+			editing:false
 		})).toEqual({
 			loading: false,
-			book: {}
+			book: {},
+			editing:false
 		});
 	});
 	it("edit a book should handle booksConstants.EDIT_BOOK_FAILURE", () => {
 		expect(editingBook([], {
 			type: booksConstants.EDIT_BOOK_FAILURE,
 			loading:false,
-			error:{}
+			error:{},
+			editing:false
 		})).toEqual({
 			loading:false,
-			error:{}
+			error:{},
+			editing:false
 		});
 	});
 
@@ -162,8 +142,7 @@ describe("Books reducers", () => {
 		expect(deletingBookReducer(undefined, {})).toEqual(
 			{
 				loading: false,
-				book_id: undefined,
-				books: [],
+				book_id: "",
 				error: {}
 			}
 		);
@@ -180,10 +159,10 @@ describe("Books reducers", () => {
 		expect(deletingBookReducer([], {
 			type: booksConstants.DELETE_BOOK_SUCCESS,
 			loading: false,
-			book_id: 1234
+			book_id: ""
 		})).toEqual({
 			loading: false,
-			book_id: 1234
+			book_id: ""
 		});
 	});
 	it("delete a book should handle booksConstants.DELETE_BOOK_FAILURE", () => {

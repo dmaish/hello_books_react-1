@@ -15,7 +15,7 @@ class Featured extends Component{
 		let books;
 		if(this.props.books.books.books){
      books = this.props.books.books.books.map((book, index)=>(
-       <div className="col-sm-3">
+       <div className="col-sm-3" key={book.book_id}>
 			 <div className="card">
          <div className="card-body" key={book.book_id}>
            <p className="card-text"><b>Book Title:</b> {book.book_title}</p>

@@ -89,7 +89,7 @@ export function getBooks(state = {
 	case booksConstants.BOOKS_FAILURE:
 		return {...state, loading:false, errors:actions.error};
 	case booksConstants.DELETE_BOOK_SUCCESS:
-		newBooks.all_books = currentBooks.filter(book => book.book_id != actions.bookId);
+		newBooks.all_books = currentBooks.filter(book => book.book_id !== actions.bookId);
 		return {...state, books:newBooks};
 	default:
 		return state;
