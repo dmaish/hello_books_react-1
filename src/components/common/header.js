@@ -3,12 +3,7 @@
 */
 
 import React from "react";
-import {Link} from "react-router-dom"
-import library1 from "./library1.jpg";
-import kids_library from "./kids_library.jpg";
-import complibrary from "./complibrary.jpg";
-import Login from "./login";
-
+import {Link} from "react-router-dom";
 
 const Header = () => (
 		<div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
@@ -21,12 +16,12 @@ const Header = () => (
 					<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
 					aria-label="Toolbar with button groups">
 						<div className="btn-group mr-2" role="group" aria-label="First group">
-						<Link to="/api/v1/auth/register">
+						<Link to="/auth/register">
 								<button className="btn btn-primary">Register</button>
 						</Link>
 						</div>
 						<div className="btn-group" role="group" aria-label="Third group">
-						<Link to="/api/v1/auth/login">
+						<Link to="/auth/login">
 								<button type="button" className="btn btn-secondary">Login
 						</button>
 						</Link>

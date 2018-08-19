@@ -45,18 +45,18 @@ class Application extends Component {
 					<div id="alertsize" className={`alert ${alert.type}`}>{alert.message}</div>
 				}
 						<Route exact path="/" component={Landing}></Route>
-						<Route path="/api/v1/auth/register" component={SignUpContainer}></Route>
+						<Route path="/auth/register" component={SignUpContainer}></Route>
 						<Route path="/internetissues" component={InternetError}></Route>
-						<Route path="/api/v1/auth/login" component={LoginContainer}></Route>
-						<Route exact path="/api/v1/books" component={AllBooks}></Route>
-						<PrivateRoute path="/api/v1/dashboard" component={UserDashboard}></PrivateRoute>
-						<PrivateRoute path="/api/v1/secret/admin/dashboard" component={AdminDashboard}></PrivateRoute>
-						<PrivateRoute path="/api/v1/secret/admin/addbook" component={AddBookContainer}></PrivateRoute>
-						<Route path="/api/v1/books/:book_id" component={SingleBook}></Route>
-						<PrivateRoute path="/api/v1/secret/admin/books/:book_id" component={EditBook}></PrivateRoute>
-						<PrivateRoute exact path="/api/v1/users/books" component={BorrowHistory}></PrivateRoute>
+						<Route path="/auth/login" component={LoginContainer}></Route>
+						<Route exact path="/books" component={AllBooks}></Route>
+						<PrivateRoute path="/dashboard" component={UserDashboard}></PrivateRoute>
+						<PrivateRoute path="/secret/admin/dashboard" component={AdminDashboard}></PrivateRoute>
+						<PrivateRoute path="/secret/admin/addbook" component={AddBookContainer}></PrivateRoute>
+						<Route path="/books/:book_id" component={SingleBook}></Route>
+						<PrivateRoute path="/secret/admin/books/:book_id" component={EditBook}></PrivateRoute>
+						<PrivateRoute exact path="/users/books" component={BorrowHistory}></PrivateRoute>
 						<PrivateRoute path="/admin/users" component={UsersList}></PrivateRoute>
-						<Route path="/reset-password" component={ResetPasswordContainer}></Route>
+						<Route path="/auth/reset-password" component={ResetPasswordContainer}></Route>
 					</div>
 				</Router>
 			</div>

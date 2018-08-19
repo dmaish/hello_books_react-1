@@ -14,7 +14,7 @@ export const borrow = (bookId) => {
 			.then(
 				book => {
 					dispatch(borrowSuccess(book.book_borrowed));
-					history.push("/api/v1/dashboard");
+					history.push("/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
@@ -60,7 +60,7 @@ export const returnBook = (bookId) => {
 			.then(
 				book => {
 					dispatch(returnSuccess(book.message, bookId));
-					history.push("/api/v1/dashboard");
+					history.push("/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
 				error => {

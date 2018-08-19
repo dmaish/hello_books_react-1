@@ -23,7 +23,7 @@ function register(user) {
 				user => {
 					dispatch(successRegister(user));
 					dispatch(alertActions.success(user.message));
-					history.push("/api/v1/auth/login");
+					history.push("/auth/login");
 				},
 				error => {
 					if (error.message === "Failed to fetch"){
@@ -66,10 +66,10 @@ function login(user) {
 					dispatch(successLogin(user));
 					localStorage.setItem("access_token", JSON.stringify(user.access_token));
 					if (user.email.endsWith("@hellobookslibrary.com")){
-						history.push("/api/v1/secret/admin/dashboard");
+						history.push("/secret/admin/dashboard");
 					}
 					else {
-						history.push("/api/v1/dashboard");
+						history.push("/dashboard");
 					}
 					dispatch(alertActions.success(user.message));
 				},
@@ -118,7 +118,7 @@ export const resetPasswordAction = (user) => {
 			.then(
 				user => {
 					dispatch(resetPasswordSuccess(user));
-					history.push("/api/v1/auth/login");
+					history.push("/auth/login");
 					dispatch(alertActions.success(user.message));
 				},
 				error => {

@@ -4,7 +4,7 @@
 
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {booksActions} from "../../actions/booksActions";
+import {getBooks} from "../../actions/booksActions";
 
 class Pagination extends Component {
 
@@ -53,7 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBooks: (page) => dispatch(booksActions.getBooks(page))
+    getBooks: (page) => dispatch(getBooks(page))
   }
 }
 

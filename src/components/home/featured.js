@@ -23,7 +23,7 @@ class Featured extends Component{
            <p className="card-text"><b>Edition:</b> {book.book_edition}</p>
            <p className="card-text"><b>Book Isnb:</b> {book.book_isnb}</p>
            <p className="card-text"><b>Copies:</b> {book.copies}</p>
-           <Link to={"/api/v1/books/" + book.book_id}><button className="btn btn-primary">Check Book</button></Link>
+           <Link to={"/books/" + book.book_id}><button className="btn btn-primary">Check Book</button></Link>
          </div>
 			</div>
 			<hr className="my-4"/>

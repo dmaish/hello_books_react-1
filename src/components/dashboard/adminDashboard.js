@@ -7,7 +7,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
-import {booksActions} from "../../actions/booksActions";
+import {getBooks} from "../../actions/booksActions";
 import {deleteBookAction} from "../../actions/booksActions";
 import {userActions} from "../../actions/userActions";
 import Pagination from "../common/pagination";
@@ -36,7 +36,7 @@ class AdminDashboard extends Component{
             <td>{book.book_isnb}</td>
             <td>{book.copies}</td>
             <td>
-              <Link to={`/api/v1/secret/admin/books/${book.book_id}`}>
+              <Link to={`/secret/admin/books/${book.book_id}`}>
                 <button type="button" className="btn btn-success">Edit</button>
               </Link>
             </td>
@@ -56,7 +56,7 @@ class AdminDashboard extends Component{
   <div className="container-fluid">
 
     <nav className="navbar navbar-light" id="top-line">
-        <Link to ="/api/v1/secret/admin/dashboard" className="navbar-brand">
+        <Link to ="/secret/admin/dashboard" className="navbar-brand">
             <img src={logo} id="logoimg" className="d-inline-block align-top"
                  alt="hello books logo"/>
             Hello Books
@@ -99,7 +99,7 @@ class AdminDashboard extends Component{
               <th scope="col">ISNB</th>
               <th scope="col">Copies</th>
               <th scope="col" colspan="2">
-                <Link to="/api/v1/secret/admin/addbook">
+                <Link to="/secret/admin/addbook">
                   <center>
                   <button type="button" className="btn btn-primary">Add Book</button>
                   </center>
@@ -134,7 +134,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBooks: () => dispatch(booksActions.getBooks()),
+    getBooks: () => dispatch(getBooks()),
     logout: () => dispatch(userActions.logout())
   }
 }

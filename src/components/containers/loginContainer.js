@@ -119,8 +119,8 @@ class LoginContainer extends Component {
 						  </div>
 						</div>
 						<br/>
-						<p align="center">Forgot password? <Link to="/reset-password">Reset Password</Link></p>
-						<p align="center">Are you new? <Link to="/api/v1/auth/register">Register</Link></p>
+						<p align="center">Forgot password? <Link to="/auth/reset-password">Reset Password</Link></p>
+						<p align="center">Are you new? <Link to="/auth/register">Register</Link></p>
 						<br/>
 					</div>
 

@@ -213,7 +213,7 @@ class AddBookContainer extends Component{
 					{addingBook && <img id="loading-img" alt="loading img" src={loading}/>}
 				  </div>
 				  <div className="btn-group" role="group" aria-label="Third group">
-					<Link to="/api/v1/secret/admin/dashboard">
+					<Link to="/secret/admin/dashboard">
 					<button type="button" className="btn btn-secondary"
 					data-dismiss="modal">Cancel
 					</button>

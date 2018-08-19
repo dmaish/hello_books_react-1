@@ -6,7 +6,6 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {booksActions} from "../../actions/booksActions";
-import loading from "../../assets/images/loading.gif";
 
 class EditBook extends Component{
 	constructor(props){
@@ -39,7 +38,7 @@ class EditBook extends Component{
 		this.props.editBook(book)
 	}
 
-	componentWillMount(){
+	componentDidMount(){
 		let bookId = this.props.match.params.book_id
 		fetch(`https://stark-falls-93345.herokuapp.com/books/${bookId}`)
 			.then(
@@ -48,9 +47,7 @@ class EditBook extends Component{
 				}
 			).then(
 				data => {
-
 					const book = data.book_details
-
 					this.setState({
 							book: Object.assign({}, data.book_details,{
 									book_title: book.book_title,
@@ -75,7 +72,6 @@ class EditBook extends Component{
 
   render(){
     const {book} = this.state;
-		const {editing} = this.props;
     return (
 			<div id= "login_signup" className="log-sign-bg-col">
       <form onSubmit={this.handleSubmit} className="form-horizontal">
@@ -182,7 +178,6 @@ class EditBook extends Component{
 						aria-label="Toolbar with button groups">
 						  <div className="btn-group mr-2" role="group" aria-label="First group">
 							<button type="submit" className="btn btn-primary">Submit</button>
-							{editing && <img id="loading-img" alt="loading img" src={loading}/>}
 						  </div>
 						  <div className="btn-group" role="group" aria-label="Third group">
 							<Link to="/api/v1/secret/admin/dashboard">
@@ -201,16 +196,14 @@ class EditBook extends Component{
 }
 
 const mapStateToProps = (state) => {
-	const {editing} = state.editingBook
   return {
-    editing
+    book:state.editingBook
   }
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		editBook: (bookData) => dispatch(booksActions.editBook(bookData)),
-		getBook: (bookId) => dispatch(booksActions.getBook(bookId))
+		editBook: (bookData) => dispatch(booksActions.editBook(bookData))
 	}
 }
 

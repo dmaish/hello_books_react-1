@@ -101,7 +101,7 @@ class ResetPasswordContainer extends Component {
 						</div>
 						<br/>
 						<p align="center">Need to go home? <Link to="/">Click here</Link></p>
-						<p align="center">Need to login? <Link to="/api/v1/auth/login">Click here</Link></p>
+						<p align="center">Need to login? <Link to="/auth/login">Click here</Link></p>
 						<br/>
 						<br/>
 					</div>

@@ -2,7 +2,7 @@ import expect from "expect";
 import {borrowConstants} from "../../actions/borrowTypes";
 import {borrowReducer, returnBookReducer, borrowHistoryReducer, unReturnedBooksReducer} from "../../reducers/borrowReducers";
 
-describe("Books reducers", () => {
+describe("Borrow reducers", () => {
 	it("borrow book and should return state", () => {
 		expect(borrowReducer(undefined, {})).toEqual(
 			{
@@ -24,10 +24,10 @@ describe("Books reducers", () => {
 	it("borrow book should handle borrowConstants.BORROW_SUCCESS", () => {
 		expect(borrowReducer([], {
 			type: borrowConstants.BORROW_SUCCESS,
-			book_id:[],
+			book_id:"",
 			borrowing:false
 		})).toEqual({
-			book_id:[],
+			book_id:"",
 			borrowing:false
 		});
 	});

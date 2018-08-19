@@ -3,13 +3,12 @@
 * or when getting book or books
 */
 
-import {booksServices, allBooksService, featuredbooksService} from "../services/booksServices";
+import {booksServices, featuredbooksService} from "../services/booksServices";
 import {booksConstants} from "./actionTypes";
 import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
 
 export const booksActions = {
-	getBooks,
 	addBook,
 	getBook,
 	editBook
@@ -22,7 +21,7 @@ function addBook(book) {
 			.then(
 				book => {
 					dispatch(addedBook(book));
-					history.push("/api/v1/secret/admin/dashboard");
+					history.push("/secret/admin/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
@@ -67,7 +66,7 @@ function editBook(book) {
 			.then(
 				book => {
 					dispatch(editedBook(book));
-					history.push("/api/v1/secret/admin/dashboard");
+					history.push("/secret/admin/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
@@ -84,17 +83,18 @@ function editBook(book) {
 	};
 }
 
-function requestEditBook(book) {
+function requestEditBook(bookId) {
 	return {
 		type: booksConstants.EDIT_BOOK_REQUEST,
-		book
+		bookId
 	};
 }
 
-function editedBook(book) {
+function editedBook(book, bookId) {
 	return {
 		type: booksConstants.EDIT_BOOK_SUCCESS,
-		book
+		book,
+		bookId
 	};
 }
 
@@ -105,7 +105,7 @@ function editBookFailure(error) {
 	};
 }
 
-function getBooks(page = 1) {
+export const getBooks = (page = 1) => {
 	return dispatch => {
 		dispatch(requestBooks());
 		booksServices.getBooks(page)
@@ -124,25 +124,6 @@ function getBooks(page = 1) {
 						}));
 				}
 
-			);
-	};
-}
-
-export const getAllBooksAction = () => {
-	return dispatch => {
-		dispatch(requestBooks());
-		allBooksService()
-			.then(
-				books => {
-					dispatch(receiveBooks(books));
-					dispatch(alertActions.success(books.message));
-				},
-				error => {
-					error.then(response => {
-						dispatch(failureBooks(response.message));
-						dispatch(alertActions.error(response.message));
-					});
-				}
 			);
 	};
 };
@@ -228,7 +209,7 @@ export const deleteBookAction = (bookId) => {
 			.then(
 				book => {
 					dispatch(deleteBookSuccess(book.message, bookId));
-					history.push("/api/v1/secret/admin/dashboard");
+					history.push("/secret/admin/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
 				error => {

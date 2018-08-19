@@ -169,7 +169,7 @@ class SignUpContainer extends Component {
 						</div>
 					</div>
 					<br/>
-					<p align="center">Already have an account? <Link to="/api/v1/auth/login">Login here</Link></p>
+					<p align="center">Already have an account? <Link to="/auth/login">Login here</Link></p>
 
 					<br/>
 				</div>

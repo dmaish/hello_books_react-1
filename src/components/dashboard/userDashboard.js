@@ -7,7 +7,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
-import {booksActions} from "../../actions/booksActions";
+import {getBooks} from "../../actions/booksActions";
 import {borrowActions} from "../../actions/borrowActions";
 import BorrowHistory from "../borrow/borrowingHistory";
 import UnReturnedBooks from "../borrow/unReturned"
@@ -46,7 +46,7 @@ class UserDashboard extends Component{
     return(
       <div className="container-fluid">
     <nav className="navbar navbar-light" id="top-line">
-        <Link to="/api/v1/dashboard" className="navbar-brand">
+        <Link to="/dashboard" className="navbar-brand">
             <img src={logo} width="30" height="30" className="d-inline-block align-top"
                  alt="hello books logo"/>
             Hello Books
@@ -120,7 +120,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBooks: () => dispatch(booksActions.getBooks()),
+    getBooks: () => dispatch(getBooks()),
     logout: () => dispatch(userActions.logout())
   }
 }
