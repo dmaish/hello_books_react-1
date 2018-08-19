@@ -111,7 +111,6 @@ export const getBooks = (page = 1) => {
 						dispatch(alertActions.error(response.message));
 					});
 				}
-
 			);
 	};
 };
