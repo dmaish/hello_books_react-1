@@ -21,13 +21,9 @@ function returnBorrowHistory(page = 1) {
 					dispatch(receiveHistory(books));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(historyFailure(response.message));
-						}));
+					error.then(response => {
+						dispatch(historyFailure(response.message));
+					});
 				}
 			);
 	};
@@ -62,13 +58,9 @@ function unReturnBooksHistory(){
 					dispatch(receiveUnreturnHistory(books));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(unreturnHistoryFailure(response.message));
-						}));
+					error.then(response => {
+						dispatch(unreturnHistoryFailure(response.message));
+					});
 				}
 			);
 	};

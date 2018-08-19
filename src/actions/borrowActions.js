@@ -18,15 +18,10 @@ export const borrow = (bookId) => {
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(borrowFailure(response.message));
-							dispatch(alertActions.error(error.message));
-						})
-					);
+					error.then(response => {
+						dispatch(borrowFailure(response.message));
+						dispatch(alertActions.error(error.message));
+					});
 				}
 			);
 	};
@@ -64,14 +59,9 @@ export const returnBook = (bookId) => {
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(returnFailure(response.message));
-						})
-					);
+					error.then(response => {
+						dispatch(returnFailure(response.message));
+					});
 				}
 			);
 	};

@@ -26,14 +26,10 @@ function register(user) {
 					history.push("/auth/login");
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else (
-						error.then(response => {
-							dispatch(failureRegister(response.message));
-							dispatch(alertActions.error(response.message));
-						}));
+					error.then(response => {
+						dispatch(failureRegister(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -74,14 +70,10 @@ function login(user) {
 					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(failureLogin(response.message));
-							dispatch(alertActions.error(response.message));
-						}));
+					error.then(response => {
+						dispatch(failureLogin(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -122,15 +114,10 @@ export const resetPasswordAction = (user) => {
 					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(resetPasswordFailure(response.message));
-							dispatch(alertActions.error(response.message));
-						})
-					);
+					error.then(response => {
+						dispatch(resetPasswordFailure(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -168,15 +155,10 @@ function logout() {
 					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else (
-						error.then(response => {
-							dispatch(logoutError(response.message));
-							dispatch(alertActions.error(response.message));
-						})
-					);
+					error.then(response => {
+						dispatch(logoutError(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 

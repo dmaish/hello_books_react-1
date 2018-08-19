@@ -25,14 +25,10 @@ function addBook(book) {
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else (
-						error.then(response => {
-							dispatch(addedBookFailure(response.message));
-							dispatch(alertActions.error(response.message));
-						}));
+					error.then(response => {
+						dispatch(addedBookFailure(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -70,14 +66,10 @@ function editBook(book) {
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(editBookFailure(response.message));
-							dispatch(alertActions.error(response.message));
-						}));
+					error.then(response => {
+						dispatch(editBookFailure(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -114,14 +106,10 @@ export const getBooks = (page = 1) => {
 					dispatch(receiveBooks(books));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(failureBooks(response.message));
-							dispatch(alertActions.error(response.message));
-						}));
+					error.then(response => {
+						dispatch(failureBooks(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 
 			);
@@ -172,13 +160,9 @@ function getBook(bookId) {
 					dispatch(receiveBook(book));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(theBookNotFound(response.message));
-						}));
+					error.then(response => {
+						dispatch(theBookNotFound(response.message));
+					});
 				}
 			);
 	};
@@ -213,14 +197,10 @@ export const deleteBookAction = (bookId) => {
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(deleteBookFailure(response.message));
-							dispatch(alertActions.error(response.message));
-						}));
+					error.then(response => {
+						dispatch(deleteBookFailure(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
