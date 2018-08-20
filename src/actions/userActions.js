@@ -22,8 +22,8 @@ function register(user) {
 			.then(
 				user => {
 					dispatch(successRegister(user));
-					dispatch(alertActions.success(user.message));
 					history.push("/auth/login");
+					dispatch(alertActions.success(user.message));
 				},
 				error => {
 					error.then(response => {
