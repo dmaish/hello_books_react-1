@@ -22,20 +22,20 @@ class Pagination extends Component {
           {
             prevPage !== null ?
             <a className="page-link"
-            href="" onClick={() => this.props.getBooks(prevPage)}>Previous</a>: null
+            href="#" onClick={() => this.props.getBooks(prevPage)}>Previous</a>: null
           }
           </li>
           {Array(total_pages).fill().map((x, i) => {
               const page = i + 1;
              return (<li className="page-item">
-                 <a className="page-link" href="" onClick={ () => this.props.getBooks(page) }>{page}</a>
+                 <a className="page-link" href="#" onClick={ () => this.props.getBooks(page) }>{page}</a>
              </li>)
            })}
 
           <li className="page-item">
           {
             nextPage !== null?
-            <a className="page-link" href=""
+            <a className="page-link" href="#"
             onClick={() => this.props.getBooks(nextPage)}>Next</a>: null
           }
           </li>
