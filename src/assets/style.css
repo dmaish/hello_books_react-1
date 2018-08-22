@@ -7,7 +7,13 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
-
+#loading-img {
+  max-width: 100px;
+  max-height: 100px;
+}
+#card-body {
+  margin-top: 100px;
+}
 #root {
   min-height: 100%;
   width: 100%;
@@ -32,15 +38,17 @@ body {
     text-align: center !important;
     display: block !important;
 }
+#alertsize {
+  width: 200px;
+  margin-top: auto;
+  margin-left: 1080px;
+  transition-duration: 5s;
+}
 #nav-bg1 {
     background-color: #F5F27F;
     color: black;
 }
 .log-sign-bg-col {
-}
-.jumbotron {
-  background-image: url(../components/common/complibrary.jpg);
-  opacity: 1.0;
 }
 #left {
   margin-left: 150px;
@@ -70,7 +78,9 @@ body {
   align-content: center;
   margin-left: 150px;
 }
-
+.position-relative {
+  max-height: 500px;
+}
 .media img {
     max-width: 120px;
     height: auto;
@@ -87,9 +97,8 @@ body {
     font-weight: 600;
 }
 .App {
-  text-align: center;
+  text-align: left;
 }
-
 #carousel {
   opacity: 1.0;
 }

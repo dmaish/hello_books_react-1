@@ -17,6 +17,7 @@ class UsersList extends Component{
         (user, index) => (
           <tr key={user.user_id}>
             <td>{index+1}</td>
+						<td>{user.user_id}</td>
             <td>{user.username}</td>
             <td>{user.first_name}</td>
             <td>{user.last_name}</td>
@@ -25,13 +26,14 @@ class UsersList extends Component{
       )
     }
     return (
-      <div className="col-sm-4">
+      <div>
       <hr className="my-4"/>
         <h1 className="text-center">All Users</h1>
-          <table className="table table-sm">
+          <table className="table table-bordered">
             <thead>
             <tr>
               <th scope="col">#</th>
+							<th scope="col">User Id</th>
               <th scope="col">Username</th>
               <th scope="col">First Name</th>
               <th scope="col">Last Name</th>

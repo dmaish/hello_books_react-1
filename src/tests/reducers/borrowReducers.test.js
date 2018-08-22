@@ -2,13 +2,12 @@ import expect from "expect";
 import {borrowConstants} from "../../actions/borrowTypes";
 import {borrowReducer, returnBookReducer, borrowHistoryReducer, unReturnedBooksReducer} from "../../reducers/borrowReducers";
 
-describe("Books reducers", () => {
+describe("Borrow reducers", () => {
 	it("borrow book and should return state", () => {
 		expect(borrowReducer(undefined, {})).toEqual(
 			{
 				borrowing: false,
 				book_id: "",
-				books:[],
 				error: {}
 			}
 		);
@@ -24,10 +23,10 @@ describe("Books reducers", () => {
 	it("borrow book should handle borrowConstants.BORROW_SUCCESS", () => {
 		expect(borrowReducer([], {
 			type: borrowConstants.BORROW_SUCCESS,
-			book_id:[],
+			book_id:"",
 			borrowing:false
 		})).toEqual({
-			book_id:[],
+			book_id:"",
 			borrowing:false
 		});
 	});
@@ -47,7 +46,6 @@ describe("Books reducers", () => {
 			{
 				returning: false,
 				book_id: "",
-				books: [],
 				error: {}
 			}
 		);
@@ -64,9 +62,9 @@ describe("Books reducers", () => {
 		expect(returnBookReducer([], {
 			type: borrowConstants.RETURN_SUCCESS,
 			returning:false,
-			book_id: 1234
+			book_id: ""
 		})).toEqual({
-			book_id:1234,
+			book_id:"",
 			returning:false
 		});
 	});
@@ -127,33 +125,5 @@ describe("Books reducers", () => {
 				error: {}
 			}
 		);
-	});
-	it("unreturn books and should handle borrowConstants.UNRETURNED_REQUEST", () => {
-		expect(unReturnedBooksReducer([], {
-			type: borrowConstants.UNRETURNED_REQUEST,
-			loading:true
-		})).toEqual({
-			loading:true
-		});
-	});
-	it("unreturn books should handle borrowConstants.UNRETURNED_SUCCESS", () => {
-		expect(unReturnedBooksReducer([], {
-			type: borrowConstants.UNRETURNED_SUCCESS,
-			loading: false,
-			books: []
-		})).toEqual({
-			loading: false,
-			books: []
-		});
-	});
-	it("unreturn books should handle borrowConstants.UNRETURNED_FAILURE", () => {
-		expect(unReturnedBooksReducer([], {
-			type: borrowConstants.UNRETURNED_FAILURE,
-			loading:false,
-			error:{}
-		})).toEqual({
-			loading:false,
-			error:{}
-		});
 	});
 });

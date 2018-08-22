@@ -16,13 +16,13 @@ const Nav = () => (
         </Link>
         <ul className="nav justify-content-end">
             <li className="nav-item">
-                <Link to="/api/v1/books" className="nav-link">All Books</Link>
+                <Link to="/books" className="nav-link">All Books</Link>
             </li>
             <li className="nav-item">
-                <Link to="/api/v1/auth/register" className="nav-link">Sign Up</Link>
+                <Link to="/auth/register" className="nav-link">Sign Up</Link>
             </li>
             <li className="nav-item">
-                <Link to="/api/v1/auth/login" className="nav-link">Log In</Link>
+                <Link to="/auth/login" className="nav-link">Log In</Link>
             </li>
         </ul>
     </nav>

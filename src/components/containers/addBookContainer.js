@@ -8,6 +8,7 @@ import {booksActions} from "../../actions/booksActions";
 import {connect} from "react-redux";
 import {alertActions} from "../../actions/alertActions";
 import {history} from "../../helpers/history";
+import loading from "../../assets/images/loading.gif";
 
 class AddBookContainer extends Component{
 	constructor(props){
@@ -52,8 +53,6 @@ class AddBookContainer extends Component{
 	}
   render(){
 		const {alert} = this.props;
-		console.log("--------->", alert);
-		console.log("-------alert msg---->", alert.year);
     const {addingBook} = this.props;
     const {book} = this.state;
     return (
@@ -211,10 +210,10 @@ class AddBookContainer extends Component{
 				aria-label="Toolbar with button groups">
 				  <div className="btn-group mr-2" role="group" aria-label="First group">
 					<button type="submit" className="btn btn-primary">Submit</button>
-					{addingBook}
+					{addingBook && <img id="loading-img" alt="loading img" src={loading}/>}
 				  </div>
 				  <div className="btn-group" role="group" aria-label="Third group">
-					<Link to="/api/v1/secret/admin/dashboard">
+					<Link to="/secret/admin/dashboard">
 					<button type="button" className="btn btn-secondary"
 					data-dismiss="modal">Cancel
 					</button>

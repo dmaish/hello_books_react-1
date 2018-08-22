@@ -25,6 +25,9 @@ class EditBook extends Component{
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+	// Handle any chnages and make sure that previous state/
+	// State of the book/including it details are shown in the form
+	// It then detect any chnages and changes its values
 	handleChange(e){
 		this.setState({
 			book:  Object.assign({}, this.state.book,{
@@ -32,14 +35,17 @@ class EditBook extends Component{
 			})
 		});
 	}
+	// Ensure that after submission, the book is edited
+	// And data new data send through componentDidMount
 	handleSubmit(e){
 		e.preventDefault();
     const {book} = this.state;
 		this.props.editBook(book)
 	}
 
-	componentWillMount(){
+	componentDidMount(){
 		let bookId = this.props.match.params.book_id
+		// Fetch the current book and set the its state with the current state
 		fetch(`https://stark-falls-93345.herokuapp.com/books/${bookId}`)
 			.then(
 				res => {
@@ -47,9 +53,9 @@ class EditBook extends Component{
 				}
 			).then(
 				data => {
-
+					// Get the details of the book
 					const book = data.book_details
-
+					// Assign the previous objects to the current details rendered.
 					this.setState({
 							book: Object.assign({}, data.book_details,{
 									book_title: book.book_title,
@@ -73,12 +79,8 @@ class EditBook extends Component{
 	}
 
   render(){
+		//The current book and its details
     const {book} = this.state;
-		if(!book.book_id){
-			return (
-				<p>Loading ..</p>
-			)
-		}
     return (
 			<div id= "login_signup" className="log-sign-bg-col">
       <form onSubmit={this.handleSubmit} className="form-horizontal">
@@ -210,8 +212,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		editBook: (bookData) => dispatch(booksActions.editBook(bookData)),
-		getBook: (bookId) => dispatch(booksActions.getBook(bookId))
+		editBook: (bookData) => dispatch(booksActions.editBook(bookData))
 	}
 }
 

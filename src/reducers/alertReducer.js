@@ -5,9 +5,9 @@
 
 import {alertConstants} from "../actions/alertTypes";
 
-export function alert(state = {
-	
-}, {type, message}) {
+export const alert = (state = {
+
+}, {type, message}) => {
 	switch (type) {
 	case alertConstants.SUCCESS:
 		return {
@@ -24,4 +24,4 @@ export function alert(state = {
 	default:
 		return state;
 	}
-}
+};

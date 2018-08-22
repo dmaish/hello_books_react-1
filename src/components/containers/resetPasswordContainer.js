@@ -7,9 +7,9 @@ import React, {Component} from "react";
 import { connect } from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
+import loading from "../../assets/images/loading.gif";
 import {alertActions} from "../../actions/alertActions";
 import {history} from "../../helpers/history";
-import {userActions} from "../../actions/userActions";
 import {resetPasswordAction} from "../../actions/userActions";
 
 class ResetPasswordContainer extends Component {
@@ -42,7 +42,6 @@ class ResetPasswordContainer extends Component {
 	}
 	handleSubmit (e) {
 		e.preventDefault();
-		e.stopPropagation()
 		this.setState({submitted: true});
 		const {user} = this.state;
 		const {dispatch} = this.props;
@@ -81,6 +80,12 @@ class ResetPasswordContainer extends Component {
 							aria-describedby="emailHelp"
 							placeholder="Please enter your email" />
 					</div>
+					{
+						alert.message === "The email does not exist."?
+						<div className="bg bg-danger">
+						{alert.message && <div className={`alert $ {alert.type}`}> {alert.message}</div>}
+						</div>: null
+					}
 					<div>
 						<div className="form-group required">
 							<label className="control-label" htmlFor="exampleInputPassword1">New Password:</label>
@@ -94,12 +99,19 @@ class ResetPasswordContainer extends Component {
 								value={user.password}
 								placeholder="Please enter your password" />
 						</div>
+						{
+							alert.message === "Password is short!"?
+							<div className="btn btn-danger">
+							{alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
+							</div>: null
+						}
 						<div className="d-inline mx-auto center">
 						<button type="submit" className="btn btn-primary">Reset Password</button>
-							{resetting}
+						{resetting && <img id="loading-img" alt="loading img" src={loading}/>}
 						</div>
 						<br/>
-						<p align="center">Need to go back? <Link to="/api/v1/auth/login">Click here</Link></p>
+						<p align="center">Need to go home? <Link to="/">Click here</Link></p>
+						<p align="center">Need to login? <Link to="/auth/login">Click here</Link></p>
 						<br/>
 						<br/>
 					</div>
@@ -113,8 +125,9 @@ class ResetPasswordContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
+	const {resetting} = state.resetPasswordReducer
 	return {
-		user: state.resetPasswordReducer,
+		resetting,
 		alert: state.alert
 	};
 };

@@ -4,20 +4,15 @@
 */
 
 import React from "react";
-import RecentlyAdded from "./recentlyAdded";
+import Featured from "./featured";
 import BreakLine from "../common/break";
 import Header from "../common/header";
-import BlockDiv from "../common/block";
-import SearchButton from "../common/searchButton";
 
 const Main = () => (
 	<div>
 			<Header/>
-			<BlockDiv/>
+			<Featured/>
 			<BreakLine/>
-			<RecentlyAdded/>
-			<BreakLine/>
-			<SearchButton/>
 			<BreakLine/>
 	</div>
 );

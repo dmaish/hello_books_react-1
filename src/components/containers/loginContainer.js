@@ -6,6 +6,7 @@ import React, {Component} from "react";
 import { connect } from "react-redux";
 import {Link} from "react-router-dom";
 import logo from "../common/logo.jpg";
+import loading from "../../assets/images/loading.gif";
 import {alertActions} from "../../actions/alertActions";
 import {history} from "../../helpers/history";
 import {userActions} from "../../actions/userActions";
@@ -107,7 +108,7 @@ class LoginContainer extends Component {
 						aria-label="Toolbar with button groups">
 						  <div className="btn-group mr-2" role="group" aria-label="First group">
 							<button type="submit" className="btn btn-primary">Login</button>
-							{loggingin}
+							{loggingin && <img id="loading-img" alt="loading img" src={loading}/>}
 						  </div>
 						  <div className="btn-group" role="group" aria-label="Third group">
 							<Link to="/">
@@ -118,8 +119,8 @@ class LoginContainer extends Component {
 						  </div>
 						</div>
 						<br/>
-						<p align="center">Forgot password? <Link to="/reset-password">Reset Password</Link></p>
-						<p align="center">Are you new? <Link to="/api/v1/auth/register">Register</Link></p>
+						<p align="center">Forgot password? <Link to="/auth/reset-password">Reset Password</Link></p>
+						<p align="center">Are you new? <Link to="/auth/register">Register</Link></p>
 						<br/>
 					</div>
 
@@ -132,8 +133,9 @@ class LoginContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
+	const {loggingin} = state.loginReducer
 	return {
-		user: state.loginReducer,
+		loggingin,
 		alert: state.alert
 	};
 };

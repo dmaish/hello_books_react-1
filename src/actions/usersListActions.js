@@ -4,8 +4,6 @@
 
 import {usersList} from "../services/usersListServices";
 import {usersListsTypes} from "./actionTypes";
-import {alertActions} from "./alertActions";
-import {history} from "../helpers/history";
 
 const usersListActions = () => {
 	return dispatch => {
@@ -14,17 +12,11 @@ const usersListActions = () => {
 			.then(
 				users => {
 					dispatch(getUsersSuccess(users));
-					dispatch(alertActions.success(users.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(getUsersFailure(error));
-							dispatch(alertActions.error(response.message));
-						}));
+					error.then(response => {
+						dispatch(getUsersFailure(response.message));
+					});
 				}
 			);
 	};

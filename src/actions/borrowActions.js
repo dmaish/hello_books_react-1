@@ -13,20 +13,15 @@ export const borrow = (bookId) => {
 		borrowServices.borrow(bookId)
 			.then(
 				book => {
-					dispatch(borrowSuccess(book.message));
-					history.push("/api/v1/dashboard");
+					dispatch(borrowSuccess(book.book_borrowed));
+					history.push("/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(borrowFailure(response.message));
-							dispatch(alertActions.error(error.message));
-						})
-					);
+					error.then(response => {
+						dispatch(borrowFailure(response.message));
+						dispatch(alertActions.error(error.message));
+					});
 				}
 			);
 	};
@@ -39,10 +34,10 @@ const borrowRequest = (bookId) => {
 	};
 };
 
-const borrowSuccess = (bookId) => {
+const borrowSuccess = (book) => {
 	return {
 		type: borrowConstants.BORROW_SUCCESS,
-		bookId
+		book
 	};
 };
 
@@ -59,19 +54,14 @@ export const returnBook = (bookId) => {
 		borrowServices.returnBook(bookId)
 			.then(
 				book => {
-					dispatch(returnSuccess(book.message));
-					history.push("/api/v1/dashboard");
+					dispatch(returnSuccess(book.message, bookId));
+					history.push("/dashboard");
 					dispatch(alertActions.success(book.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(returnFailure(response.message));
-						})
-					);
+					error.then(response => {
+						dispatch(returnFailure(response.message));
+					});
 				}
 			);
 	};
@@ -84,9 +74,10 @@ const returnRequest = (bookId) => {
 	};
 };
 
-const returnSuccess = (bookId) => {
+const returnSuccess = (book, bookId) => {
 	return {
 		type: borrowConstants.RETURN_SUCCESS,
+		book,
 		bookId
 	};
 };

@@ -44,11 +44,11 @@ function editBook(bookData) {
 		.then(handleResponse);
 }
 
-function getBooks() {
+function getBooks(page) {
 	const requestOptions = {
 		method: "GET"
 	};
-	return fetch("http://stark-falls-93345.herokuapp.com/books",
+	return fetch("https://stark-falls-93345.herokuapp.com/books?page=" + page,
 		requestOptions)
 		.then(handleResponse);
 }
@@ -61,6 +61,14 @@ function getBook(book_id) {
 		requestOptions)
 		.then(handleResponse);
 }
+
+export const featuredbooksService = () => {
+	const requestOptions = {
+		method: "GET"
+	};
+	return fetch("https://stark-falls-93345.herokuapp.com/books/eightbooks", requestOptions)
+		.then(handleResponse);
+};
 
 function deleteBook(book_id) {
 	const requestOptions = {

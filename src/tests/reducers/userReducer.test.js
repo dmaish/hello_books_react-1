@@ -67,7 +67,8 @@ describe("user reducer", () => {
 		expect(resetPasswordReducer([], {
 			type: userConstants.RESET_PASSWORD_REQUEST,
 		})).toEqual({
-			loading: true
+			loading: true,
+			resetting: true
 		});
 	});
 	it("reset password should handle userConstants.RESET_PASSWORD_SUCCESS", () => {

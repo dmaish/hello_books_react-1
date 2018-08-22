@@ -36,7 +36,8 @@ class SingleBook extends Component{
 		return(
 		  <div>
       <Nav/>
-		  <div className="card-body">
+			<div className="container">
+		  <div className="card-body text-center bg-light" id="card-body">
 		    <h5><b>Title:</b> {book.book_details.book_title}</h5>
 		    <h6><b>Author:</b> {book.book_details.authors}</h6>
         <h6><b>Publisher:</b> {book.book_details.publisher}</h6>
@@ -45,8 +46,9 @@ class SingleBook extends Component{
         <h6><b>ISNB:</b> {book.book_details.book_isnb}</h6>
         <h6><b>Edition:</b> {book.book_details.book_edition}</h6>
         <h6><b>Copies:</b> {book.book_details.copies}</h6>
-		    <Link to="/api/v1/auth/login"><button className="btn btn-success">Check Book</button></Link>
+		    <Link to="/"><button className="btn btn-info">Home Page</button></Link>
 		  </div>
+			</div>
 		  </div>
 		)
 	}

@@ -5,32 +5,24 @@
 
 import {borrowConstants} from "./borrowTypes";
 import {borrowServices} from "../services/borrowServices";
-import {alertActions} from "./alertActions";
-import {history} from "../helpers/history";
 
 export const borrowHistory = {
 	returnBorrowHistory,
 	unReturnBooksHistory
 };
 
-function returnBorrowHistory() {
+function returnBorrowHistory(page = 1) {
 	return dispatch => {
 		dispatch(requestHistory());
-		borrowServices.borrowHistory()
+		borrowServices.borrowHistory(page)
 			.then(
 				books => {
 					dispatch(receiveHistory(books));
-					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(historyFailure(response.message));
-							dispatch(alertActions.error(response.message));
-						}));
+					error.then(response => {
+						dispatch(historyFailure(response.message));
+					});
 				}
 			);
 	};
@@ -63,17 +55,11 @@ function unReturnBooksHistory(){
 			.then(
 				books => {
 					dispatch(receiveUnreturnHistory(books));
-					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(unreturnHistoryFailure(response.message));
-							dispatch(alertActions.error(response.message));
-						}));
+					error.then(response => {
+						dispatch(unreturnHistoryFailure(response.message));
+					});
 				}
 			);
 	};

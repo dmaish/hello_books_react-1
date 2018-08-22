@@ -6,6 +6,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {borrowHistory} from "../../actions/borrowHistoryActions";
+import PaginateHistory from "./paginateHistory";
 
 class BorrowHistory extends Component{
 
@@ -22,7 +23,12 @@ class BorrowHistory extends Component{
             <th scope="row">{index+1}</th>
             <td>{book.book_id}</td>
             <td>{book.borrow_id}</td>
-            <td>{book.returned}</td>
+            <td>{book.book_title}</td>
+            <td>{book.authors}</td>
+            <td>{book.book_isnb}</td>
+            <td>{book.date_borrowed}</td>
+            <td>{book.due_date}</td>
+            <td>{book.returned.toString()}</td>
           </tr>
         )
       )
@@ -37,13 +43,19 @@ class BorrowHistory extends Component{
                 <th scope="col">#</th>
                 <th scope="col">Book Id</th>
                 <th scope="col">Borrow Id</th>
-                <th scope="col">Status</th>
+                <th scope="col">Book Title</th>
+                <th scope="col">Authors</th>
+                <th scope="col">Book Isnb</th>
+                <th scope="col">Date Borrowed</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Returned</th>
             </tr>
           </thead>
           <tbody>
               {books}
           </tbody>
         </table>
+        <PaginateHistory/>
       </div>
     )
   }

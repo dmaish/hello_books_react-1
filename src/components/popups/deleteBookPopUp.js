@@ -24,7 +24,7 @@ class DeletePopUp extends Component{
   render(){
     return (
 
-    <div className="modal fade" id={`deleteModal${this.props.bookId}`} tabindex="-1" role="dialog"
+    <div className="modal fade" id={`deleteModal${this.props.bookId}`} tabIndex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog" role="document">
         <div className="modal-content">

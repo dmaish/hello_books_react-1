@@ -5,7 +5,6 @@
 import {searchTypes} from "./searchTypes";
 import {alertActions} from "./alertActions";
 import {searchServices} from "../services/searchServices";
-import {history} from "../helpers/history";
 
 const searchAction = () => {
 	return dispatch => {
@@ -17,14 +16,10 @@ const searchAction = () => {
 					dispatch(alertActions.success(books.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(searchError(error));
-							dispatch(alertActions.error(response.error));
-						}));
+					error.then(response => {
+						dispatch(searchError(error));
+						dispatch(alertActions.error(response.error));
+					});
 				}
 			);
 	};

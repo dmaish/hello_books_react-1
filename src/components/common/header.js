@@ -3,51 +3,32 @@
 */
 
 import React from "react";
-import {Link} from "react-router-dom"
-import library1 from "./library1.jpg";
-import kids_library from "./kids_library.jpg";
-import complibrary from "./complibrary.jpg";
-import Login from "./login";
-
+import {Link} from "react-router-dom";
 
 const Header = () => (
-	<div className="carousel-inner">
-			<div className="jumbotron">
-			<div className="row">
-			<div className="col-sm-7">
-			<h1 id="h3">Welcome to Hello Books Library</h1>
-			<ul className="list-group" id="list">
-	  <li className="list-group-item list-group-item-info">
-					<i className="material-icons">
-			accessible
-			</i>Access Thousands of Books</li>
-				  <li className="list-group-item list-group-item-info">
-					<i className="material-icons">
-			assignment_turned_in
-					</i>Ebooks Available</li>
-	  <li className="list-group-item list-group-item-info">
-						<i className="material-icons">
-				create
-				</i>It is Free to Register</li>
-	  <li className="list-group-item list-group-item-info">
-		<i className="material-icons">
-		add_alert
-		</i>14 Days Before Return</li>
-	  <li className="list-group-item list-group-item-info">
-			<i className="material-icons">
-	monetization_on
-	</i>Affordable Prices</li>
-	</ul>
-		</div>
-			<div className="col-sm-5">
-
-					<Login>
-					</Login>
+		<div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+	      <div className="col-md-5 p-lg-5 mx-auto my-5">
+	        <h1 className="display-4 font-weight-normal">Hello Books Library</h1>
+	        <p className="lead font-weight-normal">
+					This is a library management system that helps you find books and rent books easily.
+					With this system, you are able to sign up free and manage your borrowing.
+					</p>
+					<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
+					aria-label="Toolbar with button groups">
+						<div className="btn-group mr-2" role="group" aria-label="First group">
+						<Link to="/auth/register">
+								<button className="btn btn-primary">Register</button>
+						</Link>
+						</div>
+						<div className="btn-group" role="group" aria-label="Third group">
+						<Link to="/auth/login">
+								<button type="button" className="btn btn-secondary">Login
+						</button>
+						</Link>
+						</div>
 					</div>
-			</div>
-				</div>
-	</div>
-
+	      </div>
+		</div>
 );
 
 export default Header;

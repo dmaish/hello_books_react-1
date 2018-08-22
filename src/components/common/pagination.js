@@ -3,9 +3,8 @@
 */
 
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {booksActions} from "../../actions/booksActions";
+import {getBooks} from "../../actions/booksActions";
 
 class Pagination extends Component {
 
@@ -13,35 +12,32 @@ class Pagination extends Component {
     this.props.getBooks()
   }
   render(){
-    let books;
-    console.log("---->", this.props.books.books);
+    const { total_pages } = this.props.books.books;
+    let nextPage = this.props.books.books.next_page;
+    let prevPage = this.props.books.books.previous_page;
     return(
       <nav aria-label="Page navigation example">
         <ul className="pagination justify-content-center">
-          <li classNam="page-item">
-            <Link to="">
-              <a className="page-link" href="#">Previous</a>
-            </Link>
-          </li>
           <li className="page-item">
-            <Link to="">
-              <a className="page-link" href="#">1</a>
-            </Link>
+          {
+            prevPage !== null ?
+            <a className="page-link"
+            href="#" onClick={() => this.props.getBooks(prevPage)}>Previous</a>: null
+          }
           </li>
+          {Array(total_pages).fill().map((x, i) => {
+              const page = i + 1;
+             return (<li className="page-item">
+                 <a className="page-link" href="#" onClick={ () => this.props.getBooks(page) }>{page}</a>
+             </li>)
+           })}
+
           <li className="page-item">
-            <Link to="">
-              <a className="page-link" href="#">2</a>
-            </Link>
-          </li>
-          <li className="page-item">
-            <Link to="">
-              <a className="page-link" href="#">3</a>
-            </Link>
-          </li>
-          <li className="page-item">
-            <Link to="">
-              <a className="page-link" href="#">Next</a>
-            </Link>
+          {
+            nextPage !== null?
+            <a className="page-link" href="#"
+            onClick={() => this.props.getBooks(nextPage)}>Next</a>: null
+          }
           </li>
         </ul>
       </nav>
@@ -57,7 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBooks: () => dispatch(booksActions.getBooks())
+    getBooks: (page) => dispatch(getBooks(page))
   }
 }
 

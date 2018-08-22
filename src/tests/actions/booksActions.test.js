@@ -7,9 +7,8 @@ import thunk from "redux-thunk";
 import fetchMock from "fetch-mock";
 import expect from "expect";
 import storage from "mock-local-storage";
-import nock from "nock";
 import {booksConstants} from "../../actions/actionTypes";
-import {booksActions, deleteBookAction} from "../../actions/booksActions";
+import {booksActions, deleteBookAction, getBooks} from "../../actions/booksActions";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -28,7 +27,7 @@ describe("Asyncs action to get books", () => {
 		];
 		const store = mockStore({books:[]}, expectedActions);
 		fetchMock.mock("*", { books: [] });
-		store.dispatch(booksActions.getBooks());
+		store.dispatch(getBooks());
 	});
 	it("Get a book", () => {
 		const book = {};

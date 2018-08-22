@@ -22,18 +22,14 @@ function register(user) {
 			.then(
 				user => {
 					dispatch(successRegister(user));
-					history.push("/api/v1/auth/login");
+					history.push("/auth/login");
 					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else (
-						error.then(response => {
-							dispatch(failureRegister(response.message));
-							dispatch(alertActions.error(response.message));
-						}));
+					error.then(response => {
+						dispatch(failureRegister(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -66,24 +62,18 @@ function login(user) {
 					dispatch(successLogin(user));
 					localStorage.setItem("access_token", JSON.stringify(user.access_token));
 					if (user.email.endsWith("@hellobookslibrary.com")){
-						history.push("/api/v1/secret/admin/dashboard");
-						dispatch(alertActions.success(user.message));
+						history.push("/secret/admin/dashboard");
 					}
 					else {
-						history.push("/api/v1/dashboard");
-						dispatch(alertActions.success(user.message));
+						history.push("/dashboard");
 					}
-
+					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(failureLogin(response.message));
-							dispatch(alertActions.error(response.message));
-						}));
+					error.then(response => {
+						dispatch(failureLogin(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -120,17 +110,14 @@ export const resetPasswordAction = (user) => {
 			.then(
 				user => {
 					dispatch(resetPasswordSuccess(user));
-					history.push("/api/v1/auth/login");
+					history.push("/auth/login");
+					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else(
-						error.then(response => {
-							dispatch(resetPasswordFailure(response.message));
-						})
-					);
+					error.then(response => {
+						dispatch(resetPasswordFailure(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 	};
@@ -164,17 +151,14 @@ function logout() {
 				user => {
 					dispatch(logoutUser(user));
 					localStorage.removeItem("access_token");
-					history.push("/api/v1/auth/login");
+					history.push("/");
+					dispatch(alertActions.success(user.message));
 				},
 				error => {
-					if (error.message === "Failed to fetch"){
-						history.push("/internetissues");
-					}
-					else (
-						error.then(response => {
-							dispatch(logoutError(response.message));
-						})
-					);
+					error.then(response => {
+						dispatch(logoutError(response.message));
+						dispatch(alertActions.error(response.message));
+					});
 				}
 			);
 

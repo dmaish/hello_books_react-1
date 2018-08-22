@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ezrqnkemboi/hello_books_react.svg?branch=develop)](https://travis-ci.org/ezrqnkemboi/hello_books_react)
+[![Build Status](https://travis-ci.org/ezrqnkemboi/hello_books_react.svg?branch=master)](https://travis-ci.org/ezrqnkemboi/hello_books_react)
 [![Coverage Status](https://coveralls.io/repos/github/ezrqnkemboi/hello_books_react/badge.svg?branch=master)](https://coveralls.io/github/ezrqnkemboi/hello_books_react?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d5f4245c7bba494d9ccc9b5614bce903)](https://www.codacy.com/project/ezrqnkemboi/hello_books_react/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ezrqnkemboi/hello_books_react&amp;utm_campaign=Badge_Grade_Dashboard)
 # Hello Books Library  
@@ -36,7 +36,12 @@ General Users Abilities
 Built with
 
   - ReactJS with Redux
-  - Bootstrap
+  - Bootstrap 4
+
+Testing
+
+  - Enzyme
+  - Jest
 
 # Installation
 
@@ -58,13 +63,13 @@ To Run the Application
 
 To Run Tests
 
-`jest test`
+`npm test`
 
 ## Deployed Links
 
 Backend Link: https://stark-falls-93345.herokuapp.com/
 
-Frontend Link: https://damp-hollows-13747.herokuapp.com/
+Frontend Link: https://radiant-mesa-35329.herokuapp.com/
 
 ## Check Designs on Github Pages
 
@@ -74,16 +79,16 @@ Link: https://ezrqnkemboi.github.io/hello_books_designs/
 
 Admin email should end with @hellobookslibrary.com
 
-If in case you need to use other emails for admin... 
+If in case you need to use other emails for admin...
 
 Please change decorator in flask.
 
 Link: https://github.com/ezrqnkemboi/hello_books/blob/master/app/helpers/decorators.py
 
-# Credits
+# Project Owner
 
 Andela Kenya
 
-# License
+# Contributor
 
 © 2018 Ezrqn Kemboi
