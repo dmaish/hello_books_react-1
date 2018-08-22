@@ -7,7 +7,6 @@ import thunk from "redux-thunk";
 import fetchMock from "fetch-mock";
 import expect from "expect";
 import storage from "mock-local-storage";
-import nock from "nock";
 import {booksConstants} from "../../actions/actionTypes";
 import {booksActions, deleteBookAction, getBooks} from "../../actions/booksActions";
 
