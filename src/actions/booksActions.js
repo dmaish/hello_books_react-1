@@ -8,6 +8,7 @@ import {booksServices, featuredbooksService} from "../services/booksServices";
 import {booksConstants} from "./actionTypes";
 import {history} from "../helpers/history";
 import {notify} from "../helpers/notify";
+import {alertActions} from "./alertActions";
 
 // Export addBook, editBook and getBook as booksActions
 export const booksActions = {
@@ -33,6 +34,7 @@ function addBook(book) {
 					// Notify user on the error response received
 					error.then(response => {
 						dispatch(addedBookFailure(response.message));
+						dispatch(alertActions.error(response.message));
 					});
 				}
 			);
@@ -78,8 +80,8 @@ function editBook(book) {
 					error.then(response => {
 						// Dispatch user failure message to the reducers
 						dispatch(editBookFailure(response.message));
-						// Notify the user what went wrong
-						notify("error", "Error", response.error);
+						// Notify the user what went wrong in forms
+						dispatch(alertActions.error(response.message));
 					});
 				}
 			);

@@ -8,6 +8,7 @@ import {userServices} from "../services/userServices";
 import {resetPassword} from "../services/userServices";
 import {history} from "../helpers/history";
 import {notify} from "../helpers/notify";
+import {alertActions} from "./alertActions";
 
 export const userActions = {
 	register,
@@ -28,7 +29,7 @@ function register(user) {
 				error => {
 					error.then(response => {
 						dispatch(failureRegister(response.message));
-						notify("error", "Error", response.message);
+						dispatch(alertActions.error(response.message));
 					});
 				}
 			);
@@ -72,7 +73,7 @@ function login(user) {
 				error => {
 					error.then(response => {
 						dispatch(failureLogin(response.message));
-						notify("error", "Error", user.message);
+						dispatch(alertActions.error(response.message));
 					});
 				}
 			);
@@ -116,7 +117,7 @@ export const resetPasswordAction = (user) => {
 				error => {
 					error.then(response => {
 						dispatch(resetPasswordFailure(response.message));
-						notify("error", "Error", response.message);
+						dispatch(alertActions.error(response.message));
 					});
 				}
 			);
