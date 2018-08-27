@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 import {featuredBooksAction} from "../../actions/booksActions";
 
 class Featured extends Component{
-	componentWillMount(){
+	componentDidMount(){
      this.props.dispatch(featuredBooksAction())
   }
 	render(){

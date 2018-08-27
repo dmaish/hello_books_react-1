@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {borrowHistory} from "../../actions/borrowHistoryActions";
 
 class PaginateHistory extends Component{
-  componentWillMount(){
+  componentDidMount(){
     this.props.borrowHistory()
   }
   render() {

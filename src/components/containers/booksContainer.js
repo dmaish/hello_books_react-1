@@ -10,7 +10,7 @@ import Nav from "./publicNav";
 import Pagination from "../common/pagination";
 
 class AllBooks extends Component {
-  componentWillMount(){
+  componentDidMount(){
      this.props.getBooks()
   }
 

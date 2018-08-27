@@ -4,9 +4,9 @@
 
 import React, { Component } from "react";
 import {Router , Route} from "react-router-dom";
+import {ToastContainer} from "react-toastify";
 import {connect} from "react-redux";
 import Landing from "./components/landing";
-import {alertActions} from "./actions/alertActions";
 import {history} from "./helpers/history";
 import SignUpContainer from "./components/containers/signupContainer";
 import LoginContainer from "./components/containers/loginContainer";
@@ -20,29 +20,14 @@ import BorrowHistory from "./components/borrow/borrowingHistory";
 import {PrivateRoute} from "./helpers/privateRoutes";
 import UsersList from "./components/containers/usersListContainer";
 import ResetPasswordContainer from "./components/containers/resetPasswordContainer";
+import 'react-toastify/dist/ReactToastify.css';
 
 class Application extends Component {
-	// Define constructor that allow disptch of alert
-	// In case of any alert dispatched at any endpoint
-	// Alert is displayed
-	constructor(props){
-		super(props)
-		const {dispatch} = this.props
-		history.listen((location, action) => {
-			// Clear the notify message
-			dispatch(alertActions.clear())
-		})
-	}
 	render() {
-		// Get alert from the props passed
-		const {alert} = this.props
 		return (
 			<div>
 				<Router history={history}>
 					<div>
-					{alert.message &&
-					<div id="alertsize" className={`alert ${alert.type}`}>{alert.message}</div>
-				}
 						<Route exact path="/" component={Landing}></Route>
 						<Route path="/auth/register" component={SignUpContainer}></Route>
 						<Route path="/auth/login" component={LoginContainer}></Route>
@@ -55,6 +40,7 @@ class Application extends Component {
 						<PrivateRoute exact path="/users/books" component={BorrowHistory}></PrivateRoute>
 						<PrivateRoute path="/admin/users" component={UsersList}></PrivateRoute>
 						<Route path="/auth/reset-password" component={ResetPasswordContainer}></Route>
+						<ToastContainer/>
 					</div>
 				</Router>
 			</div>
@@ -62,10 +48,4 @@ class Application extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	const {alert} = state
-	return {
-		alert
-	}
-}
-export default connect(mapStateToProps)(Application);
+export default Application;

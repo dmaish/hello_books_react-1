@@ -5,6 +5,7 @@
 import {searchTypes} from "./searchTypes";
 import {alertActions} from "./alertActions";
 import {searchServices} from "../services/searchServices";
+import {notify} from "../helpers/notify";
 
 const searchAction = () => {
 	return dispatch => {
@@ -13,12 +14,13 @@ const searchAction = () => {
 			.then(
 				books => {
 					dispatch(searchSuccess(books));
-					dispatch(alertActions.success(books.message));
+					notify("success", "Success", books.message);
 				},
 				error => {
 					error.then(response => {
 						dispatch(searchError(error));
 						dispatch(alertActions.error(response.error));
+						notify("error", "Error", response.error);
 					});
 				}
 			);

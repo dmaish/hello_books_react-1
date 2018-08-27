@@ -25,7 +25,7 @@ class EditBook extends Component{
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-	// Handle any chnages and make sure that previous state/
+	// Handle any changes and make sure that previous state/
 	// State of the book/including it details are shown in the form
 	// It then detect any chnages and changes its values
 	handleChange(e){
@@ -100,7 +100,7 @@ class EditBook extends Component{
 								/>
 						</div>
 						<div className="form-group">
-								<label htmlFor="authors">Book Title</label>
+								<label htmlFor="authors">Authors</label>
 								<input
 										type="text"
 										onChange={this.handleChange}
@@ -126,7 +126,7 @@ class EditBook extends Component{
             <div className="form-group">
               <label htmlFor="year">Year</label>
               <input
-                type="text"
+                type="number"
                 onChange={this.handleChange}
                 className="form-control"
     						name="year"
@@ -148,9 +148,9 @@ class EditBook extends Component{
               />
             </div>
 						<div className="form-group">
-								<label htmlFor="book_isnb">Book Title</label>
+								<label htmlFor="book_isnb">Book ISNB</label>
 								<input
-										type="text"
+										type="number"
 										onChange={this.handleChange}
 										className="form-control"
 										name="book_isnb"
@@ -162,7 +162,7 @@ class EditBook extends Component{
             <div className="form-group">
               <label htmlFor="edition">Edition</label>
               <input
-                type="text"
+                type="number"
                 onChange={this.handleChange}
                 className="form-control"
     						name="edition"
@@ -174,7 +174,7 @@ class EditBook extends Component{
             <div className="form-group">
               <label htmlFor="copies">Copies</label>
               <input
-                type="text"
+                type="number"
                 onChange={this.handleChange}
                 className="form-control"
     						name="copies"

@@ -3,31 +3,36 @@
 * or when getting book or books
 */
 
+//Major imports that is used by add, get, edit, delete books functionalities
 import {booksServices, featuredbooksService} from "../services/booksServices";
 import {booksConstants} from "./actionTypes";
-import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
+import {notify} from "../helpers/notify";
 
+// Export addBook, editBook and getBook as booksActions
 export const booksActions = {
 	addBook,
 	getBook,
 	editBook
 };
 
+// Function to add a book by the admin
 function addBook(book) {
 	return dispatch => {
 		dispatch(requestAddBook(book));
 		booksServices.addBook(book)
 			.then(
 				book => {
+					// Dispatch function to add a book
 					dispatch(addedBook(book));
+					// Redirect the user to the admin dashboard
 					history.push("/secret/admin/dashboard");
-					dispatch(alertActions.success(book.message));
+					notify("success", "Success", book.message);
 				},
 				error => {
+					// Notify user on the error response received
 					error.then(response => {
 						dispatch(addedBookFailure(response.message));
-						dispatch(alertActions.error(response.message));
 					});
 				}
 			);
@@ -55,6 +60,7 @@ function addedBookFailure(error){
 	};
 }
 
+// Function to delete a book by the admin
 function editBook(book) {
 	return dispatch => {
 		dispatch(requestEditBook(book));
@@ -62,13 +68,18 @@ function editBook(book) {
 			.then(
 				book => {
 					dispatch(editedBook(book));
+					// Push to admin dashboard after success of editing
 					history.push("/secret/admin/dashboard");
-					dispatch(alertActions.success(book.message));
+					// Notify the user in case their is success
+					notify("success", "Success", book.message);
 				},
 				error => {
+					// Return response of the error received
 					error.then(response => {
+						// Dispatch user failure message to the reducers
 						dispatch(editBookFailure(response.message));
-						dispatch(alertActions.error(response.message));
+						// Notify the user what went wrong
+						notify("error", "Error", response.error);
 					});
 				}
 			);
@@ -108,7 +119,7 @@ export const getBooks = (page = 1) => {
 				error => {
 					error.then(response => {
 						dispatch(failureBooks(response.message));
-						dispatch(alertActions.error(response.message));
+						notify("error", "Error", response.message);
 					});
 				}
 			);
@@ -161,6 +172,7 @@ function getBook(bookId) {
 				error => {
 					error.then(response => {
 						dispatch(theBookNotFound(response.message));
+						notify("error", "Error", response.error);
 					});
 				}
 			);
@@ -193,12 +205,12 @@ export const deleteBookAction = (bookId) => {
 				book => {
 					dispatch(deleteBookSuccess(book.message, bookId));
 					history.push("/secret/admin/dashboard");
-					dispatch(alertActions.success(book.message));
+					notify("success", "Success", book.message);
 				},
 				error => {
 					error.then(response => {
 						dispatch(deleteBookFailure(response.message));
-						dispatch(alertActions.error(response.message));
+						notify("error", "Error", response.message);
 					});
 				}
 			);

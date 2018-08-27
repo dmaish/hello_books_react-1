@@ -17,7 +17,7 @@ import Pagination from "../common/pagination";
 
 class UserDashboard extends Component{
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.getBooks()
   }
 

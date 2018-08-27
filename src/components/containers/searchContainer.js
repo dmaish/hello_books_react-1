@@ -9,7 +9,7 @@ import searchAction from "../../actions/searchAction";
 
 
 class SearchBooks extends Component{
-	componentWillMount() {
+	componentDidMount() {
 		this.props.searchAction();
 	}
 	render(){

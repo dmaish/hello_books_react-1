@@ -9,7 +9,7 @@ import {borrowHistory} from "../../actions/borrowHistoryActions";
 import ReturnBookModal from "../popups/returnBookPopUp";
 
 class UnReturnedBooks extends Component{
-  componentWillMount(){
+  componentDidMount(){
     this.props.unReturnBooksHistory()
   }
 

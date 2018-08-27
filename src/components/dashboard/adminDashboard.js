@@ -15,7 +15,7 @@ import DeletePopUp from "../popups/deleteBookPopUp";
 
 class AdminDashboard extends Component{
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.getBooks()
   }
 

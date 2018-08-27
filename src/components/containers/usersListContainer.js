@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import usersListActions from "../../actions/usersListActions";
 
 class UsersList extends Component{
-	componentWillMount() {
+	componentDidMount() {
 		this.props.usersListActions();
 	}
 	render() {

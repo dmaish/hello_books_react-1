@@ -4,8 +4,8 @@
 
 import {borrowConstants} from "./borrowTypes";
 import {borrowServices} from "../services/borrowServices";
-import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
+import {notify} from "../helpers/notify";
 
 export const borrow = (bookId) => {
 	return dispatch => {
@@ -15,12 +15,12 @@ export const borrow = (bookId) => {
 				book => {
 					dispatch(borrowSuccess(book.book_borrowed));
 					history.push("/dashboard");
-					dispatch(alertActions.success(book.message));
+					notify("success", "Success", book.message);
 				},
 				error => {
 					error.then(response => {
 						dispatch(borrowFailure(response.message));
-						dispatch(alertActions.error(error.message));
+						notify("error", "Error", error.message);
 					});
 				}
 			);
@@ -56,11 +56,12 @@ export const returnBook = (bookId) => {
 				book => {
 					dispatch(returnSuccess(book.message, bookId));
 					history.push("/dashboard");
-					dispatch(alertActions.success(book.message));
+					notify("success", "Success", book.message);
 				},
 				error => {
 					error.then(response => {
 						dispatch(returnFailure(response.message));
+						notify("success", "Success", response.message);
 					});
 				}
 			);

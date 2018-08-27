@@ -10,7 +10,7 @@ import PaginateHistory from "./paginateHistory";
 
 class BorrowHistory extends Component{
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.returnBorrowHistory()
   }
 

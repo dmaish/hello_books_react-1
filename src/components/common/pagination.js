@@ -8,7 +8,7 @@ import {getBooks} from "../../actions/booksActions";
 
 class Pagination extends Component {
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.getBooks()
   }
   render(){

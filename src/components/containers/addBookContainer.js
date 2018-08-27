@@ -101,7 +101,7 @@ class AddBookContainer extends Component{
         <div className="form-group">
           <label htmlFor="year">Year</label>
           <input
-            type="text"
+            type="number"
             onChange={this.handleChange}
             className="form-control"
 						name="year"
@@ -119,7 +119,7 @@ class AddBookContainer extends Component{
         <div className="form-group">
           <label htmlFor="edition">Edition</label>
           <input
-            type="text"
+            type="number"
             onChange={this.handleChange}
             className="form-control"
 						name="edition"
@@ -155,7 +155,7 @@ class AddBookContainer extends Component{
         <div className="form-group">
           <label htmlFor="bookisnb">Book isnb</label>
           <input
-            type="text"
+            type="number"
             onChange={this.handleChange}
             className="form-control"
 						name="book_isnb"
@@ -191,7 +191,7 @@ class AddBookContainer extends Component{
         <div className="form-group">
           <label htmlFor="copies">Copies</label>
           <input
-            type="text"
+            type="number"
             onChange={this.handleChange}
             className="form-control"
 						name="copies"

@@ -6,8 +6,8 @@
 import {userConstants} from "./actionTypes";
 import {userServices} from "../services/userServices";
 import {resetPassword} from "../services/userServices";
-import {alertActions} from "./alertActions";
 import {history} from "../helpers/history";
+import {notify} from "../helpers/notify";
 
 export const userActions = {
 	register,
@@ -23,12 +23,12 @@ function register(user) {
 				user => {
 					dispatch(successRegister(user));
 					history.push("/auth/login");
-					dispatch(alertActions.success(user.message));
+					notify("success", "Success", user.message);
 				},
 				error => {
 					error.then(response => {
 						dispatch(failureRegister(response.message));
-						dispatch(alertActions.error(response.message));
+						notify("error", "Error", response.message);
 					});
 				}
 			);
@@ -67,12 +67,12 @@ function login(user) {
 					else {
 						history.push("/dashboard");
 					}
-					dispatch(alertActions.success(user.message));
+					notify("success", "Success", user.message);
 				},
 				error => {
 					error.then(response => {
 						dispatch(failureLogin(response.message));
-						dispatch(alertActions.error(response.message));
+						notify("error", "Error", user.message);
 					});
 				}
 			);
@@ -111,12 +111,12 @@ export const resetPasswordAction = (user) => {
 				user => {
 					dispatch(resetPasswordSuccess(user));
 					history.push("/auth/login");
-					dispatch(alertActions.success(user.message));
+					notify("success", "Success", user.message);
 				},
 				error => {
 					error.then(response => {
 						dispatch(resetPasswordFailure(response.message));
-						dispatch(alertActions.error(response.message));
+						notify("error", "Error", response.message);
 					});
 				}
 			);
@@ -152,12 +152,12 @@ function logout() {
 					dispatch(logoutUser(user));
 					localStorage.removeItem("access_token");
 					history.push("/");
-					dispatch(alertActions.success(user.message));
+					notify("success", "Success", user.message);
 				},
 				error => {
 					error.then(response => {
 						dispatch(logoutError(response.message));
-						dispatch(alertActions.error(response.message));
+						notify("error", "Error", response.message);
 					});
 				}
 			);
