@@ -98,8 +98,8 @@ class AddBookContainer extends Component{
 						{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
 					</div > : null
 				}
-        <div className="form-group">
-          <label htmlFor="year">Year</label>
+        <div className="form-group required">
+          <label className="control-label" htmlFor="year">Year</label>
           <input
             type="number"
             onChange={this.handleChange}
@@ -116,8 +116,8 @@ class AddBookContainer extends Component{
 						{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
 					</div > : null
 				}
-        <div className="form-group">
-          <label htmlFor="edition">Edition</label>
+        <div className="form-group required">
+          <label className="control-label" htmlFor="edition">Edition</label>
           <input
             type="number"
             onChange={this.handleChange}
@@ -152,8 +152,8 @@ class AddBookContainer extends Component{
 						{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
 					</div > : null
 				}
-        <div className="form-group">
-          <label htmlFor="bookisnb">Book isnb</label>
+        <div className="form-group required">
+          <label className="control-label" htmlFor="bookisnb">Book isnb</label>
           <input
             type="number"
             onChange={this.handleChange}
@@ -188,8 +188,8 @@ class AddBookContainer extends Component{
 						{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
 					</div > : null
 				}
-        <div className="form-group">
-          <label htmlFor="copies">Copies</label>
+        <div className="form-group required">
+          <label className="control-label" htmlFor="copies">Copies</label>
           <input
             type="number"
             onChange={this.handleChange}

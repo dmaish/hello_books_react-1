@@ -87,8 +87,8 @@ class EditBook extends Component{
         <div className="container col-md-5 offset-md-3" id="top-line">
             <br />
             <h4 className="text-center">Fill the form to edit book</h4>
-						<div className="form-group">
-								<label htmlFor="book_title">Book Title</label>
+						<div className="form-group required">
+								<label className="control-label" htmlFor="book_title">Book Title</label>
 								<input
 										type="text"
 										onChange={this.handleChange}
@@ -99,8 +99,8 @@ class EditBook extends Component{
 										placeholder="Enter book Title"
 								/>
 						</div>
-						<div className="form-group">
-								<label htmlFor="authors">Authors</label>
+						<div className="form-group required">
+								<label className="control-label" htmlFor="authors">Authors</label>
 								<input
 										type="text"
 										onChange={this.handleChange}
@@ -123,8 +123,8 @@ class EditBook extends Component{
                 placeholder="Enter publisher"
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="year">Year</label>
+            <div className="form-group required">
+              <label className="control-label" htmlFor="year">Year</label>
               <input
                 type="number"
                 onChange={this.handleChange}
@@ -147,8 +147,8 @@ class EditBook extends Component{
                 placeholder="Enter city published"
               />
             </div>
-						<div className="form-group">
-								<label htmlFor="book_isnb">Book ISNB</label>
+						<div className="form-group required">
+								<label className="control-label" htmlFor="book_isnb">Book ISNB</label>
 								<input
 										type="number"
 										onChange={this.handleChange}
@@ -159,8 +159,8 @@ class EditBook extends Component{
 										placeholder="Enter book isnb"
 								/>
 						</div>
-            <div className="form-group">
-              <label htmlFor="edition">Edition</label>
+            <div className="form-group required">
+              <label className="control-label" htmlFor="edition">Edition</label>
               <input
                 type="number"
                 onChange={this.handleChange}
@@ -171,8 +171,8 @@ class EditBook extends Component{
                 placeholder="Enter book edition"
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="copies">Copies</label>
+            <div className="form-group required">
+              <label className="control-label" htmlFor="copies">Copies</label>
               <input
                 type="number"
                 onChange={this.handleChange}
