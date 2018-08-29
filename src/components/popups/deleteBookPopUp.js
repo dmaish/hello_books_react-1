@@ -11,7 +11,7 @@ class DeletePopUp extends Component{
   constructor(props){
     super(props)
     this.state = {
-      bookId:null
+      bookId: null
     }
     this.handleClick = this.handleClick.bind(this)
   }

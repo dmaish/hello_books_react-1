@@ -154,18 +154,6 @@ class SignUpContainer extends Component {
 							{ alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
 						</div > : null
 					}
-					<div className="form-group required">
-						<label className="control-label" htmlFor="confirmPassword">Confirm Password: </label>
-						<input
-							type="password"
-							className="form-control"
-							data-match="#inputPassword"
-							data-match-error="Whoops, your password does not match!"
-							id="confirmPassword"
-							placeholder="Please confirm your password"
-							required="true"
-						/>
-					</div>
 					<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
 					aria-label="Toolbar with button groups">
 						<div className="btn-group mr-2" role="group" aria-label="First group">

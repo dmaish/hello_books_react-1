@@ -5,6 +5,7 @@
 
 
 import {booksConstants} from "../actions/actionTypes";
+import {borrowConstants} from "../actions/borrowTypes";
 
 export function gettingBook(state = {
 	loading:false,
@@ -79,7 +80,9 @@ export function getBooks(state = {
 	books:[],
 	errors:{}
 }, actions){
+	// Get the current state of books
 	const currentBooks = state.books.all_books || state.books;
+	// Get the new state of books after success
 	let newBooks = {...state.books};
 	switch(actions.type) {
 	case booksConstants.BOOKS_REQUEST:
@@ -89,7 +92,9 @@ export function getBooks(state = {
 	case booksConstants.BOOKS_FAILURE:
 		return {...state, loading:false, errors:actions.error};
 	case booksConstants.DELETE_BOOK_SUCCESS:
+		// Filter the book deleted and remove from the list autoamtically
 		newBooks.all_books = currentBooks.filter(book => book.book_id !== actions.bookId);
+		// Return the new state of books
 		return {...state, books:newBooks};
 	default:
 		return state;

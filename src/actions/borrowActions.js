@@ -20,7 +20,7 @@ export const borrow = (bookId) => {
 				error => {
 					error.then(response => {
 						dispatch(borrowFailure(response.message));
-						notify("error", "Error", error.message);
+						notify("error", "Error", response.message);
 					});
 				}
 			);

@@ -223,8 +223,8 @@ export const deleteBookAction = (bookId) => {
 const deleteBookSuccess = (book, bookId) => {
 	return {
 		type: booksConstants.DELETE_BOOK_SUCCESS,
-		bookId,
-		book
+		book,
+		bookId
 	};
 };
 

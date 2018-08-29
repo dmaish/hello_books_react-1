@@ -50,6 +50,15 @@ export function borrowHistoryReducer(state = {
 		return {...state, books:actions.books, loading:false};
 	case borrowConstants.BORROW_HISTORY_FAILURE:
 		return {...state, error:actions.error, loading:false};
+	case borrowConstants.BORROW_SUCCESS:
+		// Check the state of books
+		const currentStateOfBorrowBooks = state.books.all_borrowed_books || state.books;
+		// Check new state of books history in borrow
+		let newStateOfBorrowHistory = {...state.books}
+		// Update the list of all borrowed books with the new state
+		newStateOfBorrowHistory.all_borrowed_books = [...currentStateOfBorrowBooks, actions.book];
+		// Return the new list of all borrowed books
+		return {...state, books:newStateOfBorrowHistory}
 	default:
 		return state;
 	}
@@ -60,6 +69,8 @@ export function unReturnedBooksReducer(state = {
 	books: [],
 	error: {}
 }, actions) {
+	// Current state of books
+	// It can either return object/when book is unavailable or list of books
 	const currentUnreturnedBooks = state.books.un_returned_books || state.books;
 	let newUnreturnedBooks = {...state.books};
 	switch(actions.type){
