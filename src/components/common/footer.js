@@ -9,9 +9,9 @@ const Footer = () => (
 		<footer>
 			<div className="container-fluid">
 				<div className="container">
-						<center>	&copy; Hello Books Library 2018</center>
-					</div>
+					<center>	&copy; Hello Books Library 2018</center>
 				</div>
+			</div>
 		</footer>
 		<hr className="my-4"/>
 	</div>

@@ -2,10 +2,9 @@
 * Setting the routes of the application
 */
 
+// External(npm modules) and internal(Component) imports
 import React, { Component } from "react";
 import {Router , Route} from "react-router-dom";
-import {ToastContainer} from "react-toastify";
-import {connect} from "react-redux";
 import Landing from "./components/landing";
 import {history} from "./helpers/history";
 import SignUpContainer from "./components/containers/signupContainer";
@@ -20,9 +19,11 @@ import BorrowHistory from "./components/borrow/borrowingHistory";
 import {PrivateRoute} from "./helpers/privateRoutes";
 import UsersList from "./components/containers/usersListContainer";
 import ResetPasswordContainer from "./components/containers/resetPasswordContainer";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 class Application extends Component {
+	// Define routes
+	// All private routes are enclosed with PrivateRoute to protect them
 	render() {
 		return (
 			<div>

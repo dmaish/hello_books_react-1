@@ -3,6 +3,6 @@ import {shallow} from "enzyme";
 import store from "../../../store";
 import Landing from "../../../components/landing";
 
-it('renders without crashing', () => {
-  shallow(<Landing store={store}/>)
-})
+it("renders without crashing", () => {
+	shallow(<Landing store={store}/>);
+});

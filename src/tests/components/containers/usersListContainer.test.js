@@ -4,5 +4,5 @@ import store from "../../../store";
 import UsersList from "../../../components/containers/usersListContainer";
 
 it("renders without crashing", () => {
-  shallow(<UsersList store={store}/>)
-})
+	shallow(<UsersList store={store}/>);
+});

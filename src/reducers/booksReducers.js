@@ -20,7 +20,7 @@ export function gettingBook(state = {
 	case booksConstants.SINGLE_BOOK_FAILURE:
 		return {...state, loading:false, error:action.error};
 	default:
-	return state;
+		return state;
 	}
 }
 
@@ -47,14 +47,14 @@ export function editingBook(state = {
 	error:{}
 }, action){
 	switch(action.type){
-		case booksConstants.EDIT_BOOK_REQUEST:
-			return {...state, loading:true, editing:true};
-		case booksConstants.EDIT_BOOK_SUCCESS:
-			return {...state, loading:false, book:action.book, editing:false};
-		case booksConstants.EDIT_BOOK_FAILURE:
-			return {...state, loading:false, error:action.error, editing:false}
-		default:
-			return state;
+	case booksConstants.EDIT_BOOK_REQUEST:
+		return {...state, loading:true, editing:true};
+	case booksConstants.EDIT_BOOK_SUCCESS:
+		return {...state, loading:false, book:action.book, editing:false};
+	case booksConstants.EDIT_BOOK_FAILURE:
+		return {...state, loading:false, error:action.error, editing:false};
+	default:
+		return state;
 	}
 }
 
@@ -64,14 +64,14 @@ export function deletingBookReducer(state = {
 	error: {}
 }, action){
 	switch (action.type){
-		case booksConstants.DELETE_BOOK_REQUEST:
-			return {...state, loading:true}
-		case booksConstants.DELETE_BOOK_SUCCESS:
-			return {...state, loading:false, book_id:action.book_id};
-		case booksConstants.DELETE_BOOK_FAILURE:
-			return {...state, loading:false, error:action.error};
-		default:
-			return state;
+	case booksConstants.DELETE_BOOK_REQUEST:
+		return {...state, loading:true};
+	case booksConstants.DELETE_BOOK_SUCCESS:
+		return {...state, loading:false, book_id:action.book_id};
+	case booksConstants.DELETE_BOOK_FAILURE:
+		return {...state, loading:false, error:action.error};
+	default:
+		return state;
 	}
 }
 

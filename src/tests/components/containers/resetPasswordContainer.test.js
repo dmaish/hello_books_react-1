@@ -4,5 +4,5 @@ import store from "../../../store";
 import ResetPasswordContainer from "../../../components/containers/resetPasswordContainer";
 
 it("renders without crashing", () => {
-  shallow(<ResetPasswordContainer store={store}/>)
-})
+	shallow(<ResetPasswordContainer store={store}/>);
+});

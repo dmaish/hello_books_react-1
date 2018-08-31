@@ -3,6 +3,6 @@ import {shallow} from "enzyme";
 import store from "../../../store";
 import DeletePopUp from "../../../components/popups/deleteBookPopUp";
 
-it('renders without crashing', () => {
-  shallow(<DeletePopUp store={store}/>)
-})
+it("renders without crashing", () => {
+	shallow(<DeletePopUp store={store}/>);
+});

@@ -10,10 +10,10 @@ import Header from "../common/header";
 
 const Main = () => (
 	<div>
-			<Header/>
-			<Featured/>
-			<BreakLine/>
-			<BreakLine/>
+		<Header/>
+		<Featured/>
+		<BreakLine/>
+		<BreakLine/>
 	</div>
 );
 

@@ -11,11 +11,11 @@ export function borrowReducer(state = {
 }, actions){
 	switch(actions.type) {
 	case borrowConstants.BORROW_REQUEST:
-		return {...state, borrowing:true}
+		return {...state, borrowing:true};
 	case borrowConstants.BORROW_SUCCESS:
 		return {...state, borrowing:false, book_id:actions.book_id};
 	case borrowConstants.BORROW_FAILURE:
-		return {...state, borrowing:false, error:actions.error}
+		return {...state, borrowing:false, error:actions.error};
 	default:
 		return state;
 	}
@@ -28,11 +28,11 @@ export function returnBookReducer(state = {
 }, actions) {
 	switch(actions.type) {
 	case borrowConstants.RETURN_REQUEST:
-		return {...state, returning:true}
+		return {...state, returning:true};
 	case borrowConstants.RETURN_SUCCESS:
 		return {...state, returning:false, book_id:actions.book_id};
 	case borrowConstants.RETURN_FAILURE:
-		return {...state, returning:false, error:actions.error}
+		return {...state, returning:false, error:actions.error};
 	default:
 		return state;
 	}
@@ -54,11 +54,11 @@ export function borrowHistoryReducer(state = {
 		// Check the state of books
 		const currentStateOfBorrowBooks = state.books.all_borrowed_books || state.books;
 		// Check new state of books history in borrow
-		let newStateOfBorrowHistory = {...state.books}
+		let newStateOfBorrowHistory = {...state.books};
 		// Update the list of all borrowed books with the new state
 		newStateOfBorrowHistory.all_borrowed_books = [...currentStateOfBorrowBooks, actions.book];
 		// Return the new list of all borrowed books
-		return {...state, books:newStateOfBorrowHistory}
+		return {...state, books:newStateOfBorrowHistory};
 	default:
 		return state;
 	}

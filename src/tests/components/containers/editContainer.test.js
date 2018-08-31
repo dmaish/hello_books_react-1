@@ -4,5 +4,5 @@ import store from "../../../store";
 import EditBook from "../../../components/containers/editContainer";
 
 it("render without crashing", () => {
-  shallow(<EditBook store={store}/>)
-})
+	shallow(<EditBook store={store}/>);
+});

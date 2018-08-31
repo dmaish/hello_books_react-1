@@ -53,79 +53,79 @@ class ResetPasswordContainer extends Component {
 		const {user} = this.state;
 		return(
 			<div className="container-fluid">
-			<div id= "login_signup" className="log-sign-bg-col">
-			<form onSubmit={this.handleSubmit} className="form-horizontal">
-				<div className="container col-md-5 offset-md-3" id="top-line">
-				<br/>
-				<div id="bg-colo">
-				<img
-					src={logo}
-					id="img-display-form"
-					className="mx-auto d-block"
-					alt="logo" />
+				<div id= "login_signup" className="log-sign-bg-col">
+					<form onSubmit={this.handleSubmit} className="form-horizontal">
+						<div className="container col-md-5 offset-md-3" id="top-line">
+							<br/>
+							<div id="bg-colo">
+								<img
+									src={logo}
+									id="img-display-form"
+									className="mx-auto d-block"
+									alt="logo" />
 
-					<h4 className="text-center">Hello Books</h4>
-					</div>
-						<br/>
-					<div className="form-group required">
-						<label className="control-label" htmlFor="exampleInputEmail1">Email:</label>
-						<input
-							required="true"
-							type="email"
-							onChange={this.handleChange}
-							className="form-control"
-							name="email"
-							value={user.email}
-							id="exampleInputEmail1"
-							aria-describedby="emailHelp"
-							placeholder="Please enter your email" />
-					</div>
-					{
-						alert.message === "The email does not exist."?
-						<div className="bg bg-danger">
-						{alert.message && <div className={`alert $ {alert.type}`}> {alert.message}</div>}
-						</div>: null
-					}
-					<div>
-						<div className="form-group required">
-							<label className="control-label" htmlFor="exampleInputPassword1">New Password:</label>
-							<input
-								required="true"
-								type="password"
-								onChange={this.handleChange}
-								className="form-control"
-								id="exampleInputPassword1"
-								name="password"
-								value={user.password}
-								placeholder="Please enter your password" />
-						</div>
-						{
-							alert.message === "Password is short!"?
-							<div className="btn btn-danger">
-							{alert.message && <div className={`alert $ {alert.type}`}> { alert.message } </div> }
-							</div>: null
-						}
-						<div className="d-inline mx-auto center">
-						<button type="submit" className="btn btn-primary">Reset Password</button>
-						{resetting && <img id="loading-img" alt="loading img" src={loading}/>}
-						</div>
-						<br/>
-						<p align="center">Need to go home? <Link to="/">Click here</Link></p>
-						<p align="center">Need to login? <Link to="/auth/login">Click here</Link></p>
-						<br/>
-						<br/>
-					</div>
+								<h4 className="text-center">Hello Books</h4>
+							</div>
+							<br/>
+							<div className="form-group required">
+								<label className="control-label" htmlFor="exampleInputEmail1">Email:</label>
+								<input
+									required="true"
+									type="email"
+									onChange={this.handleChange}
+									className="form-control"
+									name="email"
+									value={user.email}
+									id="exampleInputEmail1"
+									aria-describedby="emailHelp"
+									placeholder="Please enter your email" />
+							</div>
+							{
+								alert.message === "The email does not exist."?
+									<div className="bg bg-danger">
+										{alert.message && <div className={"alert $ {alert.type}"}> {alert.message}</div>}
+									</div>: null
+							}
+							<div>
+								<div className="form-group required">
+									<label className="control-label" htmlFor="exampleInputPassword1">New Password:</label>
+									<input
+										required="true"
+										type="password"
+										onChange={this.handleChange}
+										className="form-control"
+										id="exampleInputPassword1"
+										name="password"
+										value={user.password}
+										placeholder="Please enter your password" />
+								</div>
+								{
+									alert.message === "Password is short!"?
+										<div className="btn btn-danger">
+											{alert.message && <div className={"alert $ {alert.type}"}> { alert.message } </div> }
+										</div>: null
+								}
+								<div className="d-inline mx-auto center">
+									<button type="submit" className="btn btn-primary">Reset Password</button>
+									{resetting && <img id="loading-img" alt="loading img" src={loading}/>}
+								</div>
+								<br/>
+								<p align="center">Need to go home? <Link to="/">Click here</Link></p>
+								<p align="center">Need to login? <Link to="/auth/login">Click here</Link></p>
+								<br/>
+								<br/>
+							</div>
 
+						</div>
+					</form>
 				</div>
-			</form>
-			</div>
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = (state) => {
-	const {resetting} = state.resetPasswordReducer
+	const {resetting} = state.resetPasswordReducer;
 	return {
 		resetting,
 		alert: state.alert

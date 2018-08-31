@@ -4,5 +4,5 @@ import store from "../../../store";
 import SearchBooks from "../../../components/containers/searchContainer";
 
 it("renders without crashing", () => {
-  shallow(<SearchBooks store={store}/>)
-})
+	shallow(<SearchBooks store={store}/>);
+});

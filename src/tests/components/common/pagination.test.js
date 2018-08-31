@@ -3,6 +3,6 @@ import {shallow} from "enzyme";
 import store from "../../../store";
 import Pagination from "../../../components/common/pagination";
 
-it('renders without crashing', () => {
-  shallow(<Pagination store={store}/>)
-})
+it("renders without crashing", () => {
+	shallow(<Pagination store={store}/>);
+});

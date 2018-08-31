@@ -4,5 +4,5 @@ import store from "../../../store";
 import AllBooks from "../../../components/containers/booksContainer";
 
 it("renders without crashing", () => {
-  shallow(<AllBooks store={store}/>)
-})
+	shallow(<AllBooks store={store}/>);
+});

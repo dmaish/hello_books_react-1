@@ -4,5 +4,5 @@ import store from "../../../store";
 import Nav from "../../../components/containers/publicNav";
 
 it("renders without crashing", () => {
-  shallow(<Nav store={store}/>)
-})
+	shallow(<Nav store={store}/>);
+});
