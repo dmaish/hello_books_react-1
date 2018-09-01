@@ -5,6 +5,7 @@
 // External(npm modules) and internal(Component) imports
 import React, { Component } from "react";
 import {Router , Route} from "react-router-dom";
+import {ToastContainer} from "react-toastify";
 import Landing from "./components/landing";
 import {history} from "./helpers/history";
 import SignUpContainer from "./components/containers/signupContainer";

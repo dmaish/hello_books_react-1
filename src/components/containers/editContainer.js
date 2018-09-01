@@ -185,9 +185,9 @@ class EditBook extends Component{
 						</div>
 						<div className="btn-toolbar d-inline mx-auto center" role="toolbar"
 							aria-label="Toolbar with button groups">
-						  <div className="btn-group mr-2" role="group" aria-label="First group">
+							<div className="btn-group mr-2" role="group" aria-label="First group">
 								<button type="submit" className="btn btn-primary">Submit</button>
-						  </div>
+							</div>
 						  <div className="btn-group" role="group" aria-label="Third group">
 								<Link to="/api/v1/secret/admin/dashboard">
 									<button type="button" className="btn btn-secondary"
