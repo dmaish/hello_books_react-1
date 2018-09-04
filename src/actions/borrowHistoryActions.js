@@ -1,86 +1,64 @@
 /**
-*  Actions triggerred when getting borrowing history or
-* books borrowed but yet to return
-*/
+ *  Actions triggerred when getting borrowing history or
+ * books borrowed but yet to return
+ */
 
-import {borrowConstants} from "./borrowTypes";
-import {borrowServices} from "../services/borrowServices";
+import { borrowConstants } from './borrowTypes';
+import { borrowServices } from '../services/borrowServices';
 
-export const borrowHistory = {
-	returnBorrowHistory,
-	unReturnBooksHistory
+const requestHistory = () => ({
+  type: borrowConstants.BORROW_HISTORY_REQUEST,
+});
+const receiveHistory = books => ({
+  type: borrowConstants.BORROW_HISTORY_SUCCESS,
+  books,
+});
+const historyFailure = error => ({
+  type: borrowConstants.BORROW_HISTORY_FAILURE,
+  error,
+});
+const returnBorrowHistory = (page = 1) => (dispatch) => {
+  dispatch(requestHistory());
+  borrowServices.borrowHistory(page).then(
+    (books) => {
+      dispatch(receiveHistory(books));
+    },
+    (error) => {
+      error.then((response) => {
+        dispatch(historyFailure(response.message));
+      });
+    },
+  );
 };
 
-function returnBorrowHistory(page = 1) {
-	return dispatch => {
-		dispatch(requestHistory());
-		borrowServices.borrowHistory(page)
-			.then(
-				books => {
-					dispatch(receiveHistory(books));
-				},
-				error => {
-					error.then(response => {
-						dispatch(historyFailure(response.message));
-					});
-				}
-			);
-	};
-}
+const requestUnreturnHistory = () => ({
+  type: borrowConstants.UNRETURNED_REQUEST,
+});
 
-function requestHistory() {
-	return {
-		type: borrowConstants.BORROW_HISTORY_REQUEST
-	};
-}
+const receiveUnreturnHistory = books => ({
+  type: borrowConstants.UNRETURNED_SUCCESS,
+  books,
+});
 
-function receiveHistory(books) {
-	return {
-		type: borrowConstants.BORROW_HISTORY_SUCCESS,
-		books
-	};
-}
+const unreturnHistoryFailure = error => ({
+  type: borrowConstants.UNRETURNED_FAILURE,
+  error,
+});
+const unReturnBooksHistory = () => (dispatch) => {
+  dispatch(requestUnreturnHistory());
+  borrowServices.unReturnedBooks().then(
+    (books) => {
+      dispatch(receiveUnreturnHistory(books));
+    },
+    (error) => {
+      error.then((response) => {
+        dispatch(unreturnHistoryFailure(response.message));
+      });
+    },
+  );
+};
 
-function historyFailure(error){
-	return {
-		type: borrowConstants.BORROW_HISTORY_FAILURE,
-		error
-	};
-}
-
-function unReturnBooksHistory(){
-	return dispatch => {
-		dispatch(requestUnreturnHistory());
-		borrowServices.unReturnedBooks()
-			.then(
-				books => {
-					dispatch(receiveUnreturnHistory(books));
-				},
-				error => {
-					error.then(response => {
-						dispatch(unreturnHistoryFailure(response.message));
-					});
-				}
-			);
-	};
-}
-
-function requestUnreturnHistory(){
-	return {
-		type: borrowConstants.UNRETURNED_REQUEST
-	};
-}
-
-function receiveUnreturnHistory(books) {
-	return {
-		type: borrowConstants.UNRETURNED_SUCCESS,
-		books
-	};
-}
-
-function unreturnHistoryFailure(error) {
-	return {
-		type: borrowConstants.UNRETURNED_FAILURE,
-		error
-	};
-}
+export const borrowHistory = {
+  returnBorrowHistory,
+  unReturnBooksHistory,
+};

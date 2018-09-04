@@ -171,7 +171,7 @@ class SignUpContainer extends Component {
                 required="true"
               />
             </div>
-            {alert.message === 'Password is short!' ? (
+            {alert.message === 'Password length minimum is 8 characters.' ? (
               <div className="bg bg-danger">
                 {alert.message && (
                 <div className={'alert $ {alert.type}'}>

@@ -108,7 +108,7 @@ class ResetPasswordContainer extends Component {
                     placeholder="Please enter your password"
                   />
                 </div>
-                {alert.message === 'Password is short!' ? (
+                {alert.message === 'Password length minimum is 8 characters.' ? (
                   <div className="btn btn-danger">
                     {alert.message && (
                       <div className={'alert $ {alert.type}'}>

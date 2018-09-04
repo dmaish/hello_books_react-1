@@ -10,13 +10,21 @@ import { history } from '../helpers/history';
 import { notify } from '../helpers/notify';
 import { alertActions } from './alertActions';
 
-// Export addBook, editBook and getBook as booksActions
-export const booksActions = {
-  addBook,
-  getBook,
-  editBook,
-};
-
+// Function to make request to the server (Add book request)
+const requestAddBook = book => ({
+  type: booksConstants.ADD_BOOK_REQUEST,
+  book,
+});
+// Function handling the sucess response from the server
+const addedBook = book => ({
+  type: booksConstants.ADD_BOOK_SUCCESS,
+  book,
+});
+// Function handling the failure response from the server
+const addedBookFailure = error => ({
+  type: booksConstants.ADD_BOOK_FAILURE,
+  error,
+});
 // Function to add a book by the admin
 function addBook(book) {
   return (dispatch) => {
@@ -44,28 +52,20 @@ function addBook(book) {
     );
   };
 }
-// Function to make request to the server (Add book request)
-function requestAddBook(book) {
-  return {
-    type: booksConstants.ADD_BOOK_REQUEST,
-    book,
-  };
-}
-// Function handling the sucess response from the server
-function addedBook(book) {
-  return {
-    type: booksConstants.ADD_BOOK_SUCCESS,
-    book,
-  };
-}
-// Function handling the failure response from the server
-function addedBookFailure(error) {
-  return {
-    type: booksConstants.ADD_BOOK_FAILURE,
-    error,
-  };
-}
-
+// Function making request to server for edit
+const requestEditBook = bookId => ({
+  type: booksConstants.EDIT_BOOK_REQUEST,
+  bookId,
+});
+const editedBook = (book, bookId) => ({
+  type: booksConstants.EDIT_BOOK_SUCCESS,
+  book,
+  bookId,
+});
+const editBookFailure = error => ({
+  type: booksConstants.EDIT_BOOK_FAILURE,
+  error,
+});
 // Function to delete a book by the admin
 function editBook(book) {
   return (dispatch) => {
@@ -91,28 +91,20 @@ function editBook(book) {
     );
   };
 }
-// Function making request to server for edit
-function requestEditBook(bookId) {
-  return {
-    type: booksConstants.EDIT_BOOK_REQUEST,
-    bookId,
-  };
-}
-
-function editedBook(book, bookId) {
-  return {
-    type: booksConstants.EDIT_BOOK_SUCCESS,
-    book,
-    bookId,
-  };
-}
-
-function editBookFailure(error) {
-  return {
-    type: booksConstants.EDIT_BOOK_FAILURE,
-    error,
-  };
-}
+// Make request to the server function
+const requestBooks = () => ({
+  type: booksConstants.BOOKS_REQUEST,
+});
+// Get response from server and dispatch in case of success
+const receiveBooks = books => ({
+  type: booksConstants.BOOKS_SUCCESS,
+  books,
+});
+// Get response from server and dispatch in case of failure
+const failureBooks = error => ({
+  type: booksConstants.BOOKS_FAILURE,
+  error,
+});
 // Get all books function.
 // Page is set to default 1 when making request
 export const getBooks = (page = 1) => (dispatch) => {
@@ -133,41 +125,56 @@ export const getBooks = (page = 1) => (dispatch) => {
     },
   );
 };
-
+// Make request to the server function
+const featuredBooksRequest = () => ({
+  type: booksConstants.BOOKS_REQUEST,
+});
+// Get response from server and dispatch in case of success
+const featuredBooksSuccess = books => ({
+  type: booksConstants.BOOKS_SUCCESS,
+  books,
+});
+// Get response from server and dispatch in case of failure
+const featuredBooksFailure = error => ({
+  type: booksConstants.BOOKS_FAILURE,
+  error,
+});
 // Get a list of eight books to diplay in homepage as featured books
 export const featuredBooksAction = () => (dispatch) => {
-  dispatch(requestBooks());
+  dispatch(featuredBooksRequest());
   // Call featuredbooksService function from services
   // to fetch the featuredBooks endpoint from backend
   featuredbooksService().then(
     (books) => {
       // Dispatch the received eight books
-      dispatch(receiveBooks(books));
+      dispatch(featuredBooksSuccess(books));
     },
     (error) => {
       error.then((response) => {
         // In case of any response rather that OK, then dispatch the error
-        dispatch(failureBooks(response.message));
+        dispatch(featuredBooksFailure(response.message));
       });
     },
   );
 };
-
-// Make request to the server function
-const requestBooks = () => ({
-  type: booksConstants.BOOKS_REQUEST,
-});
-// Get response from server and dispatch in case of success
-const receiveBooks = books => ({
-  type: booksConstants.BOOKS_SUCCESS,
-  books,
-});
-// Get response from server and dispatch in case of failure
-const failureBooks = error => ({
-  type: booksConstants.BOOKS_FAILURE,
-  error,
-});
-
+function getBookRequest(bookId) {
+  return {
+    type: booksConstants.SINGLE_BOOK_REQUEST,
+    bookId,
+  };
+}
+function receiveBook(bookId) {
+  return {
+    type: booksConstants.SINGLE_BOOK_SUCCESS,
+    bookId,
+  };
+}
+function theBookNotFound(error) {
+  return {
+    type: booksConstants.SINGLE_BOOK_FAILURE,
+    error,
+  };
+}
 // Get a single book action
 function getBook(bookId) {
   return (dispatch) => {
@@ -188,25 +195,24 @@ function getBook(bookId) {
       },
     );
   };
-  function getBookRequest(bookId) {
-    return {
-      type: booksConstants.SINGLE_BOOK_REQUEST,
-      bookId,
-    };
-  }
-  function receiveBook(bookId) {
-    return {
-      type: booksConstants.SINGLE_BOOK_SUCCESS,
-      bookId,
-    };
-  }
-  function theBookNotFound(error) {
-    return {
-      type: booksConstants.SINGLE_BOOK_FAILURE,
-      error,
-    };
-  }
 }
+// Make request to the server to delete a book.
+const deleteBookRequest = bookId => ({
+  type: booksConstants.DELETE_BOOK_REQUEST,
+  bookId,
+});
+// Function to call when the book was deleted successfully.
+// Get the book response and return the bookId.
+const deleteBookSuccess = (book, bookId) => ({
+  type: booksConstants.DELETE_BOOK_SUCCESS,
+  book,
+  bookId,
+});
+// Incase the response from server is not OK, call this function
+const deleteBookFailure = error => ({
+  type: booksConstants.DELETE_BOOK_FAILURE,
+  error,
+});
 
 // Delete action function that fetch api and dispatched the results to the user
 export const deleteBookAction = bookId => (dispatch) => {
@@ -231,20 +237,9 @@ export const deleteBookAction = bookId => (dispatch) => {
     },
   );
 };
-// Make request to the server to delete a book.
-const deleteBookRequest = bookId => ({
-  type: booksConstants.DELETE_BOOK_REQUEST,
-  bookId,
-});
-// Function to call when the book was deleted successfully.
-// Get the book response and return the bookId.
-const deleteBookSuccess = (book, bookId) => ({
-  type: booksConstants.DELETE_BOOK_SUCCESS,
-  book,
-  bookId,
-});
-// Incase the response from server is not OK, call this function
-const deleteBookFailure = error => ({
-  type: booksConstants.DELETE_BOOK_FAILURE,
-  error,
-});
+// Export addBook, editBook and getBook as booksActions
+export const booksActions = {
+  addBook,
+  getBook,
+  editBook,
+};

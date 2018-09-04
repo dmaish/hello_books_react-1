@@ -10,11 +10,24 @@ import { history } from '../helpers/history';
 import { notify } from '../helpers/notify';
 import { alertActions } from './alertActions';
 
-export const userActions = {
-  register,
-  login,
-  logout,
-};
+function requestRegister(user) {
+  return {
+    type: userConstants.REGISTER_REQUEST,
+    user,
+  };
+}
+function successRegister(user) {
+  return {
+    type: userConstants.REGISTER_SUCCESS,
+    user,
+  };
+}
+function failureRegister(error) {
+  return {
+    type: userConstants.REGISTER_FAILURE,
+    error,
+  };
+}
 
 function register(user) {
   return (dispatch) => {
@@ -33,26 +46,32 @@ function register(user) {
       },
     );
   };
-  function requestRegister(user) {
-    return {
-      type: userConstants.REGISTER_REQUEST,
-      user,
-    };
-  }
-  function successRegister(user) {
-    return {
-      type: userConstants.REGISTER_SUCCESS,
-      user,
-    };
-  }
-  function failureRegister(error) {
-    return {
-      type: userConstants.REGISTER_FAILURE,
-      error,
-    };
-  }
 }
 
+function requestLogin(user) {
+  return {
+    type: userConstants.LOGIN_REQUEST,
+    isFetching: true,
+    isAuthenticated: false,
+    user,
+  };
+}
+function successLogin(user) {
+  return {
+    type: userConstants.LOGIN_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    access_token: user.access_token,
+  };
+}
+function failureLogin(error) {
+  return {
+    type: userConstants.LOGIN_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    error,
+  };
+}
 function login(user) {
   return (dispatch) => {
     dispatch(requestLogin(user));
@@ -60,7 +79,7 @@ function login(user) {
       (user) => {
         dispatch(successLogin(user));
         localStorage.setItem('access_token', JSON.stringify(user.access_token));
-        if (user.email.endsWith('@hellobookslibrary.com')) {
+        if (user.is_admin === true) {
           history.push('/secret/admin/dashboard');
         } else {
           history.push('/dashboard');
@@ -75,31 +94,21 @@ function login(user) {
       },
     );
   };
-  function requestLogin(user) {
-    return {
-      type: userConstants.LOGIN_REQUEST,
-      isFetching: true,
-      isAuthenticated: false,
-      user,
-    };
-  }
-  function successLogin(user) {
-    return {
-      type: userConstants.LOGIN_SUCCESS,
-      isFetching: false,
-      isAuthenticated: true,
-      access_token: user.access_token,
-    };
-  }
-  function failureLogin(error) {
-    return {
-      type: userConstants.LOGIN_FAILURE,
-      isFetching: false,
-      isAuthenticated: false,
-      error,
-    };
-  }
 }
+const resetPasswordRequest = user => ({
+  type: userConstants.RESET_PASSWORD_REQUEST,
+  user,
+});
+
+const resetPasswordSuccess = user => ({
+  type: userConstants.RESET_PASSWORD_SUCCESS,
+  user,
+});
+
+const resetPasswordFailure = error => ({
+  type: userConstants.RESET_PASSWORD_FAILURE,
+  error,
+});
 // Action function to reset the password of a user
 export const resetPasswordAction = user => (dispatch) => {
   // Make request to the server
@@ -123,21 +132,18 @@ export const resetPasswordAction = user => (dispatch) => {
     },
   );
 };
-
-const resetPasswordRequest = user => ({
-  type: userConstants.RESET_PASSWORD_REQUEST,
+const userProfileRequest = () => ({
+  type: userConstants.USER_PROFILE_REQUEST,
+});
+const userProfileSuccess = user => ({
+  type: userConstants.USER_PROFILE_SUCCESS,
   user,
 });
-
-const resetPasswordSuccess = user => ({
-  type: userConstants.RESET_PASSWORD_SUCCESS,
-  user,
-});
-
-const resetPasswordFailure = error => ({
-  type: userConstants.RESET_PASSWORD_FAILURE,
+const userProfileFailure = error => ({
+  type: userConstants.USER_PROFILE_FAILURE,
   error,
 });
+
 // User Profile action that call user profile endpoint
 export const userProfileAction = () => (dispatch) => {
   dispatch(userProfileRequest());
@@ -156,19 +162,14 @@ export const userProfileAction = () => (dispatch) => {
     },
   );
 };
+const logoutUser = () => ({
+  type: userConstants.LOGOUT_USER,
+});
 
-const userProfileRequest = () => ({
-  type: userConstants.USER_PROFILE_REQUEST,
-});
-const userProfileSuccess = user => ({
-  type: userConstants.USER_PROFILE_SUCCESS,
-  user,
-});
-const userProfileFailure = error => ({
-  type: userConstants.USER_PROFILE_FAILURE,
+const logoutError = error => ({
+  type: userConstants.LOGOUT_ERROR,
   error,
 });
-
 function logout() {
   return (dispatch) => {
     userServices.logout().then(
@@ -188,11 +189,8 @@ function logout() {
   };
 }
 
-const logoutUser = () => ({
-  type: userConstants.LOGOUT_USER,
-});
-
-const logoutError = error => ({
-  type: userConstants.LOGOUT_ERROR,
-  error,
-});
+export const userActions = {
+  register,
+  login,
+  logout,
+};
