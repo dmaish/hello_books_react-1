@@ -1,8 +1,12 @@
-import React from "react";
-import {shallow} from "enzyme";
-import store from "../../../store";
-import SingleBook from "../../../components/page/singleBook";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import expect from 'expect';
+import ReactDOM from 'react-dom';
+import store from '../../../store';
+import SingleBook from '../../../components/page/singleBook';
 
-it("renders without crashing", () => {
-	shallow(<SingleBook store={store}/>);
+it('renders without crashing', () => {
+  const singlePageDiv = document.createElement('div');
+  ReactDOM.render(<SingleBook store={store} />, singlePageDiv);
+  expect(singlePageDiv.find(Link).props().to).toBe('/');
 });
