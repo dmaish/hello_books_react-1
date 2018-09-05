@@ -7,7 +7,7 @@ import { userConstants } from './actionTypes';
 import { userServices, userProfile } from '../services/userServices';
 import { resetPassword } from '../services/userServices';
 import { history } from '../helpers/history';
-import { notify } from '../helpers/notify';
+import notify from '../helpers/notify';
 import { alertActions } from './alertActions';
 
 function requestRegister(user) {

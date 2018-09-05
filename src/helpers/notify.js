@@ -1,15 +1,11 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-export const notify = (type, title, message) => {
+const notify = (type, title, message) => {
   const body = (
     <div>
       <h3>{title}</h3>
-      <p>
-        {' '}
-        {message}
-        {' '}
-      </p>
+      <p>{message}</p>
     </div>
   );
   switch (type) {
@@ -21,3 +17,5 @@ export const notify = (type, title, message) => {
       return toast(() => body);
   }
 };
+
+export default notify;

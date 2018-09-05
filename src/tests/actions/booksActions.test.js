@@ -14,6 +14,12 @@ const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 describe('Asyncs action to get books', () => {
+  beforeEach(() => {
+    localStorage.clear();
+    // remove callback
+    localStorage.itemInsertionCallback = null;
+    localStorage.setItem('access_token', JSON.stringify('eyJ0eXAiOiJKV1Qoii858545Q'));
+  });
   afterEach(() => {
     fetchMock.reset();
     fetchMock.restore();
@@ -28,16 +34,6 @@ describe('Asyncs action to get books', () => {
     const store = mockStore({ books: [] }, expectedActions);
     fetchMock.mock('*', { books: [] });
     store.dispatch(getBooks());
-  });
-  it('Get a book', () => {
-    const book = {};
-    const expectedAction = [
-      { type: booksConstants.SINGLE_BOOK_REQUEST },
-      { type: booksConstants.SINGLE_BOOK_SUCCESS, body: { book } },
-    ];
-    const store = mockStore({ book }, expectedAction);
-    fetchMock.mock('*', { book });
-    store.dispatch(booksActions.getBook());
   });
 
   it('Adds a book', () => {

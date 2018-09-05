@@ -10,6 +10,7 @@ import loading from '../../assets/images/loading.gif';
 import { userActions } from '../../actions/userActions';
 import { alertActions } from '../../actions/alertActions';
 import { history } from '../../helpers/history';
+import showPassword from '../common/showPassword';
 
 class SignUpContainer extends Component {
   constructor(props) {
@@ -158,7 +159,6 @@ class SignUpContainer extends Component {
             <div className="form-group required">
               <label className="control-label" htmlFor="inputPassword">
                 Password:
-                {' '}
               </label>
               <input
                 type="password"
@@ -182,6 +182,11 @@ class SignUpContainer extends Component {
                 )}
               </div>
             ) : null}
+            <div className="form-group">
+              <input type="checkbox" onClick={showPassword} />
+              {' '}
+Show Password
+            </div>
             <div
               className="btn-toolbar d-inline mx-auto center"
               role="toolbar"

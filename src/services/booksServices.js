@@ -5,14 +5,12 @@
 
 import { accessToken } from '../helpers/token';
 
-export const booksServices = {
-  addBook,
-  getBooks,
-  getBook,
-  editBook,
-  deleteBook,
-};
-
+function handleResponse(response) {
+  if (!response.ok) {
+    return Promise.reject(response.json());
+  }
+  return response.json();
+}
 function addBook(book) {
   const requestOptions = {
     method: 'POST',
@@ -53,15 +51,6 @@ function getBooks(page) {
   );
 }
 
-function getBook(book_id) {
-  const requestOptions = {
-    method: 'GET',
-  };
-  return fetch(`https://stark-falls-93345.herokuapp.com/books/${book_id}`, requestOptions).then(
-    handleResponse,
-  );
-}
-
 export const featuredbooksService = () => {
   const requestOptions = {
     method: 'GET',
@@ -84,9 +73,9 @@ function deleteBook(book_id) {
   );
 }
 
-function handleResponse(response) {
-  if (!response.ok) {
-    return Promise.reject(response.json());
-  }
-  return response.json();
-}
+export const booksServices = {
+  addBook,
+  getBooks,
+  editBook,
+  deleteBook,
+};

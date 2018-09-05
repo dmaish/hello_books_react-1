@@ -7,18 +7,12 @@ import { alertConstants } from './alertTypes';
 
 // Success function to alert the user incase of success in
 // functionalities of application such as addbook success
-function success(message) {
-  return { type: alertConstants.SUCCESS, message };
-}
+const success = message => ({ type: alertConstants.SUCCESS, message });
 // Error function to alert the user incase of error in
 // functionalities of application such as addbook error
-function error(message) {
-  return { type: alertConstants.ERROR, message };
-}
+const error = message => ({ type: alertConstants.ERROR, message });
 // Clear function on the alert
-function clear() {
-  return { type: alertConstants.CLEAR };
-}
+const clear = () => ({ type: alertConstants.CLEAR });
 
 // Export success, error and clear as alertActions
 export const alertActions = {

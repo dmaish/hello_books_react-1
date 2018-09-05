@@ -83,7 +83,7 @@ class AdminDashboard extends Component {
           </ul>
         </nav>
 
-        <Container>
+        <Container fluid>
           <hr className="my-4" />
           <Row>
             <UserProfile />

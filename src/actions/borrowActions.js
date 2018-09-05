@@ -5,7 +5,7 @@
 import { borrowConstants } from './borrowTypes';
 import { borrowServices } from '../services/borrowServices';
 import { history } from '../helpers/history';
-import { notify } from '../helpers/notify';
+import notify from '../helpers/notify';
 
 const borrowRequest = bookId => ({
   type: borrowConstants.BORROW_REQUEST,

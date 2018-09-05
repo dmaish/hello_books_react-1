@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  Col, Card, CardImg, CardSubtitle, CardBody,
+  Col, Card, CardTitle, CardSubtitle, CardBody,
 } from 'reactstrap';
-import person from '../../assets/images/person.jpg';
 import { userProfileAction } from '../../actions/userActions';
 
 class UserProfile extends Component {
@@ -15,8 +14,9 @@ class UserProfile extends Component {
     return (
       <Col xs="3">
         <Card>
-          <CardImg src={person} alt="user profile" />
           <CardBody>
+            <CardTitle>My Profile</CardTitle>
+            <br />
             <CardSubtitle>{`Email: ${this.props.user.user.email}`}</CardSubtitle>
             <br />
             <CardSubtitle>

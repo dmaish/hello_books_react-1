@@ -7,7 +7,7 @@
 import { booksServices, featuredbooksService } from '../services/booksServices';
 import { booksConstants } from './actionTypes';
 import { history } from '../helpers/history';
-import { notify } from '../helpers/notify';
+import notify from '../helpers/notify';
 import { alertActions } from './alertActions';
 
 // Function to make request to the server (Add book request)
@@ -157,45 +157,6 @@ export const featuredBooksAction = () => (dispatch) => {
     },
   );
 };
-function getBookRequest(bookId) {
-  return {
-    type: booksConstants.SINGLE_BOOK_REQUEST,
-    bookId,
-  };
-}
-function receiveBook(bookId) {
-  return {
-    type: booksConstants.SINGLE_BOOK_SUCCESS,
-    bookId,
-  };
-}
-function theBookNotFound(error) {
-  return {
-    type: booksConstants.SINGLE_BOOK_FAILURE,
-    error,
-  };
-}
-// Get a single book action
-function getBook(bookId) {
-  return (dispatch) => {
-    dispatch(getBookRequest(bookId));
-    // Make request to backend server through fetch
-    booksServices.getBook().then(
-      (book) => {
-        // In case of success, then dispatch the book received
-        dispatch(receiveBook(book));
-      },
-      (error) => {
-        // In case of error when fetching or error !== OK, then dipatch the error
-        error.then((response) => {
-          dispatch(theBookNotFound(response.message));
-          // Notify the user in case of an error
-          notify('error', 'Error', response.error);
-        });
-      },
-    );
-  };
-}
 // Make request to the server to delete a book.
 const deleteBookRequest = bookId => ({
   type: booksConstants.DELETE_BOOK_REQUEST,
@@ -240,6 +201,5 @@ export const deleteBookAction = bookId => (dispatch) => {
 // Export addBook, editBook and getBook as booksActions
 export const booksActions = {
   addBook,
-  getBook,
   editBook,
 };

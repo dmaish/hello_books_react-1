@@ -40,7 +40,7 @@ class EditBook extends Component {
             book_title: book.book_title,
             authors: book.authors,
             year: book.year,
-            edition: book.edition,
+            edition: book.book_edition,
             publisher: book.publisher,
             book_isnb: book.book_isnb,
             city_published: book.city_published,

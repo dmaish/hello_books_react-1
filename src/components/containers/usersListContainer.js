@@ -17,7 +17,6 @@ class UsersList extends Component {
       users = this.props.users.users.all_users.map((user, index) => (
         <tr key={user.user_id}>
           <td>{index + 1}</td>
-          <td>{user.user_id}</td>
           <td>{user.username}</td>
           <td>{user.first_name}</td>
           <td>{user.last_name}</td>
@@ -32,7 +31,6 @@ class UsersList extends Component {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">User Id</th>
               <th scope="col">Username</th>
               <th scope="col">First Name</th>
               <th scope="col">Last Name</th>

@@ -5,7 +5,7 @@
 import { searchTypes } from './searchTypes';
 import { alertActions } from './alertActions';
 import { searchServices } from '../services/searchServices';
-import { notify } from '../helpers/notify';
+import notify from '../helpers/notify';
 
 const searchRequest = () => ({
   type: searchTypes.SEARCH_REQUEST,

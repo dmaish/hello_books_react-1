@@ -17,7 +17,7 @@ import AddBookContainer from './components/containers/addBookContainer';
 import SingleBook from './components/page/singleBook';
 import EditBook from './components/containers/editContainer';
 import BorrowHistory from './components/borrow/borrowingHistory';
-import { PrivateRoute } from './helpers/privateRoutes';
+import PrivateRoute from './helpers/privateRoutes';
 import UsersList from './components/containers/usersListContainer';
 import ResetPasswordContainer from './components/containers/resetPasswordContainer';
 import 'react-toastify/dist/ReactToastify.css';
