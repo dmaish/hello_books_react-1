@@ -27,9 +27,8 @@ class EditBook extends Component {
   }
 
   componentDidMount() {
-    const bookId = this.props.match.params.book_id;
     // Fetch the current book and set the its state with the current state
-    fetch(`https://stark-falls-93345.herokuapp.com/books/${bookId}`)
+    fetch(`https://stark-falls-93345.herokuapp.com/books/${this.props.match.params.book_id}`)
       .then(res => res.json())
       .then((data) => {
         // Get the details of the book

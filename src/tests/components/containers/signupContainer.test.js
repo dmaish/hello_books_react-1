@@ -1,8 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import store from '../../../store';
 import SignUpContainer from '../../../components/containers/signupContainer';
 
 it('renders without crashing', () => {
-  shallow(<SignUpContainer store={store} />);
+  const signupDiv = document.createElement('div');
+  ReactDOM.render(
+    <BrowserRouter>
+      <SignUpContainer store={store} />
+    </BrowserRouter>,
+    signupDiv,
+  );
+  ReactDOM.unmountComponentAtNode(signupDiv);
 });

@@ -19,11 +19,9 @@ class SingleBook extends Component {
   }
 
   componentDidMount() {
-    const bookId = this.props.match.params.book_id;
-    fetch(`https://stark-falls-93345.herokuapp.com/books/${bookId}`)
+    fetch(`https://stark-falls-93345.herokuapp.com/books/${this.props.match.params.book_id}`)
       .then(res => res.json())
-      .then(data => this.setState({ book: data }))
-      .catch(error => console.log(error));
+      .then(data => this.setState({ book: data }));
   }
 
   render() {

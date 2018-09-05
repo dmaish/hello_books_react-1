@@ -1,8 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import store from '../../../store';
 import ResetPasswordContainer from '../../../components/containers/resetPasswordContainer';
 
 it('renders without crashing', () => {
-  shallow(<ResetPasswordContainer store={store} />);
+  const resetPasswordDiv = document.createElement('div');
+  ReactDOM.render(
+    <BrowserRouter>
+      <ResetPasswordContainer store={store} />
+    </BrowserRouter>,
+    resetPasswordDiv,
+  );
+  ReactDOM.unmountComponentAtNode(resetPasswordDiv);
 });
