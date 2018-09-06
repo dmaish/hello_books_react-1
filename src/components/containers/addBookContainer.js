@@ -6,17 +6,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { booksActions } from '../../actions/booksActions';
-import { alertActions } from '../../actions/alertActions';
-import { history } from '../../helpers/history';
 import loading from '../../assets/images/loading.gif';
 
 class AddBookContainer extends Component {
   constructor(props) {
     super(props);
-    const { dispatch } = this.props;
-    history.listen((location, action) => {
-      dispatch(alertActions.clear());
-    });
     this.state = {
       book: {
         book_title: '',
@@ -30,7 +24,6 @@ class AddBookContainer extends Component {
         isLoading: false,
         errors: {},
       },
-      submitted: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -132,7 +125,7 @@ class AddBookContainer extends Component {
               />
             </div>
             {alert.message === 'Please enter a valid year'
-            || alert.message === 'Please enter the year published' ? (
+            || alert.message === 'Please enter a valid year of publishing.' ? (
               <div className="bg bg-danger">
                 {alert.message && (
                 <div className={'alert $ {alert.type}'}>
@@ -196,7 +189,8 @@ class AddBookContainer extends Component {
                 required="true"
               />
             </div>
-            {alert.message === 'Please enter a valid book isnb' ? (
+            {alert.message === 'Please enter a valid book isnb'
+            || alert.message === 'Please enter book isnb' ? (
               <div className="bg bg-danger">
                 {alert.message && (
                 <div className={'alert $ {alert.type}'}>
@@ -206,7 +200,7 @@ class AddBookContainer extends Component {
                 </div>
                 )}
               </div>
-            ) : null}
+              ) : null}
             <div className="form-group">
               <label htmlFor="publisher">Publisher</label>
               <input

@@ -46,7 +46,7 @@ function addBook(book) {
           // Get the response when the response is not OK.
           dispatch(addedBookFailure(response.message));
           // Dispatch error notification to the user.
-          dispatch(alertActions.error(response.message));
+          notify('error', 'Error', response.message);
         });
       },
     );
@@ -85,7 +85,7 @@ function editBook(book) {
           // Dispatch user failure message to the reducers
           dispatch(editBookFailure(response.message));
           // Notify the user what went wrong in forms
-          dispatch(alertActions.error(response.message));
+          notify('error', 'Error', response.message);
         });
       },
     );

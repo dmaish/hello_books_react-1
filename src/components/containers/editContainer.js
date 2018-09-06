@@ -161,7 +161,7 @@ class EditBook extends Component {
               />
             </div>
             {alert.message === 'Please enter a valid year'
-            || alert.message === 'Please enter the year published' ? (
+            || alert.message === 'Please enter a valid year of publishing.' ? (
               <div className="bg bg-danger">
                 {alert.message && (
                 <div className={'alert $ {alert.type}'}>
@@ -199,7 +199,8 @@ class EditBook extends Component {
                 required="true"
               />
             </div>
-            {alert.message === 'Please enter a valid book isnb' ? (
+            {alert.message === 'Please ensure you enter a valid book isnb.'
+            || alert.message === 'Please enter book isnb' ? (
               <div className="bg bg-danger">
                 {alert.message && (
                 <div className={'alert $ {alert.type}'}>
@@ -209,7 +210,7 @@ class EditBook extends Component {
                 </div>
                 )}
               </div>
-            ) : null}
+              ) : null}
             <div className="form-group required">
               <label className="control-label" htmlFor="edition">
                 Edition
@@ -273,7 +274,7 @@ class EditBook extends Component {
                 </button>
               </div>
               <div className="btn-group" role="group" aria-label="Third group">
-                <Link to="/api/v1/secret/admin/dashboard">
+                <Link to="/secret/admin/dashboard">
                   <button type="button" className="btn btn-secondary" data-dismiss="modal">
                     Cancel
                   </button>
