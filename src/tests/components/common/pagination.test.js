@@ -1,8 +1,11 @@
-import React from "react";
-import {shallow} from "enzyme";
-import store from "../../../store";
-import Pagination from "../../../components/common/pagination";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import storage from 'mock-local-storage';
+import store from '../../../store';
+import Pagination from '../../../components/common/pagination';
 
 it('renders without crashing', () => {
-  shallow(<Pagination store={store}/>)
-})
+  const pagination = document.createElement('div');
+  ReactDOM.render(<Pagination store={store} />, pagination);
+  ReactDOM.unmountComponentAtNode(pagination);
+});

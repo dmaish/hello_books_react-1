@@ -1,8 +1,16 @@
-import React from "react";
-import {shallow} from "enzyme";
-import store from "../../../store";
-import LoginContainer from "../../../components/containers/loginContainer";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import store from '../../../store';
+import LoginContainer from '../../../components/containers/loginContainer';
 
-it("renders without crashing", () => {
-  shallow(<LoginContainer store={store}/>)
-})
+it('renders without crashing', () => {
+  const loginDiv = document.createElement('div');
+  ReactDOM.render(
+    <BrowserRouter>
+      <LoginContainer store={store} />
+    </BrowserRouter>,
+    loginDiv,
+  );
+  ReactDOM.unmountComponentAtNode(loginDiv);
+});

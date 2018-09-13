@@ -1,45 +1,35 @@
 /**
-*  Action triggerred when admin is getting list of all users
-*/
+ *  Action triggerred when admin is getting list of all users
+ */
 
-import {usersList} from "../services/usersListServices";
-import {usersListsTypes} from "./actionTypes";
+import { usersList } from '../services/usersListServices';
+import { usersListsTypes } from './actionTypes';
 
-const usersListActions = () => {
-	return dispatch => {
-		dispatch(requestUsers());
-		usersList()
-			.then(
-				users => {
-					dispatch(getUsersSuccess(users));
-				},
-				error => {
-					error.then(response => {
-						dispatch(getUsersFailure(response.message));
-					});
-				}
-			);
-	};
-};
+const requestUsers = () => ({
+  type: usersListsTypes.USERS_REQUEST,
+});
 
-const requestUsers = () => {
-	return {
-		type: usersListsTypes.USERS_REQUEST
-	};
-};
+const getUsersSuccess = users => ({
+  type: usersListsTypes.USERS_SUCCESS,
+  users,
+});
 
-const getUsersSuccess = (users) => {
-	return {
-		type: usersListsTypes.USERS_SUCCESS,
-		users
-	};
-};
-
-const getUsersFailure = (error) => {
-	return {
-		type: usersListsTypes.USERS_FAILURE,
-		error
-	};
+const getUsersFailure = error => ({
+  type: usersListsTypes.USERS_FAILURE,
+  error,
+});
+const usersListActions = () => (dispatch) => {
+  dispatch(requestUsers());
+  usersList().then(
+    (users) => {
+      dispatch(getUsersSuccess(users));
+    },
+    (error) => {
+      error.then((response) => {
+        dispatch(getUsersFailure(response.message));
+      });
+    },
+  );
 };
 
 export default usersListActions;

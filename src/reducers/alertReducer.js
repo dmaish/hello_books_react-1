@@ -1,27 +1,25 @@
 /**
-* This is alert reducers
-* When there is any alert, this is the reducer called
-*/
+ * This is alert reducers
+ * When there is any alert, this is the reducer called
+ */
 
-import {alertConstants} from "../actions/alertTypes";
+import { alertConstants } from '../actions/alertTypes';
 
-export const alert = (state = {
-
-}, {type, message}) => {
-	switch (type) {
-	case alertConstants.SUCCESS:
-		return {
-			type: "alert-success",
-			message: message
-		};
-	case alertConstants.ERROR:
-		return {
-			type: "alert-danger",
-			message: message
-		};
-	case alertConstants.CLEAR:
-		return {};
-	default:
-		return state;
-	}
+export const alert = (state = {}, { type, message }) => {
+  switch (type) {
+    case alertConstants.SUCCESS:
+      return {
+        type: 'alert-success',
+        message,
+      };
+    case alertConstants.ERROR:
+      return {
+        type: 'alert-danger',
+        message,
+      };
+    case alertConstants.CLEAR:
+      return {};
+    default:
+      return state;
+  }
 };

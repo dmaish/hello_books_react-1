@@ -20,13 +20,13 @@ body {
   background-color: white;
 }
 #nav-bg {
-    background-color: #e3f2fd;
+  background-color: #e3f2fd;
 }
 #bg-colo {
-    background-color: #E0EAF1;
+  background-color: #e0eaf1;
 }
 #top-line {
-  background-color: #DBE2E7;
+  background-color: #dbe2e7;
 }
 #login_signup {
   margin-top: 130px;
@@ -35,18 +35,17 @@ body {
   margin-bottom: 130px;
 }
 .d-inline.mx-auto.center {
-    text-align: center !important;
-    display: block !important;
+  text-align: center !important;
+  display: block !important;
 }
 #alertsize {
   width: 200px;
-  margin-top: auto;
   margin-left: 1080px;
-  transition-duration: 5s;
+  margin-top: 10px;
 }
 #nav-bg1 {
-    background-color: #F5F27F;
-    color: black;
+  background-color: #f5f27f;
+  color: black;
 }
 .log-sign-bg-col {
 }
@@ -63,10 +62,9 @@ body {
   margin-left: 500px;
   margin-top: 300px;
   max-width: inherit;
-
 }
 .form-group.required .control-label:after {
-  content: "*";
+  content: '*';
   color: red;
 }
 #login {
@@ -82,25 +80,24 @@ body {
   max-height: 500px;
 }
 .media img {
-    max-width: 120px;
-    height: auto;
+  max-width: 120px;
+  height: auto;
 }
 .carousel-caption {
-    top: 200px;
+  top: 200px;
 }
-.carousel-inner{
-    height: 550px;
-
+.carousel-inner {
+  height: 550px;
 }
 .carousel-inner h1 {
-    color: #070808;
-    font-weight: 600;
+  color: #070808;
+  font-weight: 600;
 }
 .App {
   text-align: left;
 }
 #carousel {
-  opacity: 1.0;
+  opacity: 1;
 }
 
 .App-header {
@@ -124,8 +121,8 @@ body {
 }
 
 #userdashboardimg {
-   width: 18rem;
-   height: 40px;
+  width: 18rem;
+  height: 40px;
 }
 
 #logoimg {
@@ -133,7 +130,7 @@ body {
   height: 30px;
 }
 #h3 {
-  color: #295ADD;
+  color: #295add;
 }
 
 #para {
@@ -141,6 +138,17 @@ body {
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#cardheight {
+  height: 100%;
+}
+#marginbottom {
+  margin-bottom: 20px;
 }
